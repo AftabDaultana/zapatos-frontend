@@ -2,14 +2,14 @@ import darkLogo from "../../../assets/Vector.svg";
 import lightLogo from "../../../assets/logo-white.svg";
 
 interface HeaderLogoProps {
-  varient?: "dark" | "light";
-  classname?: string;
+  variant?: "dark" | "light";
+  className?: string;
 }
 
 export default function HeaderLogo({
-  varient = "dark",
-  classname = "",
+  variant = "dark",
+  className = "",
 }: HeaderLogoProps) {
-  const logo = varient === "dark" ? lightLogo : darkLogo;
-  return <img src={logo} alt="Zapato" className={classname} />;
+  const logo = variant === "dark" ? darkLogo : lightLogo;
+  return <img src={logo} alt="Zapato" className={className} />;
 }

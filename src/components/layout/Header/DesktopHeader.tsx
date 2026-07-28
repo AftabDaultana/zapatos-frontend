@@ -4,10 +4,10 @@ import NavigationMenu from "./NavigationMenu";
 
 export default function DesktopHeader() {
   return (
-    <>
-      <AnnouncementBar />
+    <header>
+      <AnnouncementBar variant="desktop" />
       <HeaderMain />
       <NavigationMenu />
-    </>
+    </header>
   );
 }
