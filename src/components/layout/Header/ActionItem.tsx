@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 
 interface ActionItemProps {
   icon: ReactNode;
-  text: string;
+  text?: string;
   dropDown?: boolean;
 }
 
@@ -11,7 +11,9 @@ export default function ActionItem({ icon, text, dropDown }: ActionItemProps) {
   return (
     <div className="flex items-center gap-2">
       {icon}
-      <span className="text-sm leading-6 text-neutral-700">{text}</span>
+      {text && (
+        <span className="text-sm leading-6 text-neutral-700">{text}</span>
+      )}
       {dropDown && (
         <ChevronDown
           size={24}

@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 
 export default function SearchBar() {
   return (
-    <div className="flex h-12 w-130.5 items-center border border-secondary-1000 p-3">
+    <div className="flex h-12 w-full items-center border border-secondary-1000 p-3">
       <input
         type="text"
         placeholder="Search for products"
