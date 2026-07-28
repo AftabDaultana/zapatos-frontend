@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --font-sans: "Open Sans", sans-serif;
 
   --color-neutral-900: #111111;
