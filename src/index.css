@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Open Sans", sans-serif;
+
+  --color-neutral-900: #111111;
+  --color-neutral-700: #393939;
+  --color-neutral-500: #808080;
+  --color-neutral-100: #ffffff;
+
+  --color-primary-700: #86796c;
+  --color-primary-300: #c9b6a2;
+  --color-primary-200: #e4dbd1;
+  --color-primary-100: #f4f0ec;
+
+  --color-secondary-1000: #202d2d;
+
+  --color-success-500: #22c55e;
+  --color-warning-500: #eab308;
+  --color-error-500: #ef4444;
+  --color-information-500: #007dba;
+}
