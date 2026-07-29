@@ -1,6 +1,6 @@
-import FooterBottom from "./FooterBottom";
-import FooterContent from "./FooterContent";
-import Newsletter from "./Newsletter";
+import FooterBottom from "./FooterBody/FooterBottom";
+import FooterContent from "./FooterBody/FooterContent";
+import Newsletter from "./Newsletter/Newsletter";
 
 export default function Footer() {
   return (
