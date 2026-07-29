@@ -1,6 +1,6 @@
 import { Heart, Phone, ShoppingCart, User } from "lucide-react";
 import AnnouncementBar from "./AnnouncementBar";
-import HeaderLogo from "./HeaderLogo";
+import HeaderLogo from "../../shared/Logo";
 import MenuToggle from "./MenuToggle";
 import SearchBar from "./SearchBar";
 
