@@ -1,5 +1,3 @@
-// import React from "react";
-
 import BlogSection from "../../components/blog/BlogSection";
 import BrandSection from "../../components/brand/BrandSection";
 import CategorySection from "../../components/category/CategorySection";
@@ -10,6 +8,7 @@ import TrendingSection from "../../components/home/TrendingSection";
 function Home() {
   return (
     <>
+      {/* <MegaMenu /> */}
       <HeroSection />
       <CategorySection />
       <FeaturedProducts />

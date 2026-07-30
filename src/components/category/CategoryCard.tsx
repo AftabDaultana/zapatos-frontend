@@ -1,7 +1,5 @@
-import React from "react";
-
 function CategoryCard() {
-  return <div>C</div>;
+  return <div></div>;
 }
 
 export default CategoryCard;
