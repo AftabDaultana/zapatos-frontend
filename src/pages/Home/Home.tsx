@@ -7,7 +7,7 @@ import TrendingSection from "../../components/home/TrendingSection";
 
 function Home() {
   return (
-    <>
+    <div className="flex flex-col pt-8 pb-16 gap-16">
       {/* <MegaMenu /> */}
       <HeroSection />
       <CategorySection />
@@ -15,7 +15,7 @@ function Home() {
       <TrendingSection />
       <BrandSection />
       <BlogSection />
-    </>
+    </div>
   );
 }
 

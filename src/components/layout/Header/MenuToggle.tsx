@@ -6,7 +6,7 @@ export default function MenuToggle() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setSidebarOpen(true)}>
+      <button className="cursor-pointer" onClick={() => setSidebarOpen(true)}>
         <Menu size={24} className="text-neutral-100" aria-hidden="true" />
       </button>
 

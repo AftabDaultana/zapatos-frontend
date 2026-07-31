@@ -27,7 +27,10 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
           <div className="flex justify-between p-5 border border-neutral-300 md:border-none md:p-0">
             <User size={24} className="block md:hidden" />
             <button onClick={onClose}>
-              <X size={24} className="md:absolute md:top-5 md:right-6" />
+              <X
+                size={24}
+                className="cursor-pointer md:absolute md:top-5 md:right-6"
+              />
             </button>
           </div>
           <h2 className="text-xl font-semibold md:absolute md:top-5">Menu</h2>
@@ -43,7 +46,7 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                 return (
                   <li key={category.id}>
                     <button
-                      className="flex gap-2 items-center"
+                      className="flex gap-2 items-center cursor-pointer"
                       onClick={() => toggleCategory(category.id)}
                     >
                       {category.name}
@@ -60,7 +63,11 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                         <ul className="flex flex-col gap-2 p-2">
                           {categoryItems.map((subCategory) => {
                             return (
-                              <li key={subCategory.id}>{subCategory.name}</li>
+                              <li key={subCategory.id}>
+                                <button className="cursor-pointer">
+                                  {subCategory.name}
+                                </button>
+                              </li>
                             );
                           })}
                         </ul>
