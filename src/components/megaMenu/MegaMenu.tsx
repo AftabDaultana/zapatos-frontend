@@ -1,12 +1,12 @@
 import SubCategoryCard from "../subCategory/SubCategoryCard";
-import { SubCategories } from "../../data/subCategories";
+import { subCategories } from "../../data/subCategories";
 
 interface MegaMenuProps {
   categoryId: number;
 }
 
 export default function MegaMenu({ categoryId }: MegaMenuProps) {
-  const menuItems = SubCategories.filter((item) => {
+  const menuItems = subCategories.filter((item) => {
     return item.categoryId === categoryId;
   });
 

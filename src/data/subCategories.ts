@@ -18,7 +18,7 @@ export interface SubCategory {
   image: string;
 }
 
-export const SubCategories: SubCategory[] = [
+export const subCategories: SubCategory[] = [
   {
     id: 1,
     categoryId: 1,
