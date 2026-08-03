@@ -45,4 +45,31 @@ export const heroSlides: readonly HeroSlide[] = [
       },
     ],
   },
+  {
+    id: 2,
+    title: "Zapatos",
+    description:
+      "Discover the latest drops, limited editions, and classic styles designed for every step of your journey",
+    buttonText: "Explore New Arrivals",
+    image: heroShoe,
+    infoHeading: "Quality you can count on",
+    features: [
+      {
+        text: "Shipping",
+        icon: truckFast,
+      },
+      {
+        text: "Returns",
+        icon: box,
+      },
+      {
+        text: "Warranty",
+        icon: shield,
+      },
+      {
+        text: "FAQ",
+        icon: info,
+      },
+    ],
+  },
 ];
