@@ -1,7 +1,7 @@
 import BlogSection from "../../components/blog/BlogSection";
 import BrandSection from "../../components/brand/BrandSection";
 import CategorySection from "../../components/category/CategorySection";
-import FeaturedProducts from "../../components/home/FeaturedProducts";
+import FeaturedProducts from "../../components/featuredProducts/FeaturedProducts";
 import HeroSection from "../../components/home/HeroSection";
 import TrendingSection from "../../components/home/TrendingSection";
 

@@ -37,12 +37,10 @@ export default function HeroSection() {
 
   return (
     <>
-      {/* Main Frame Start */}
       <section className="relative h-114.75 md:h-200 xl:h-225 xl:gap-2.5 xl:px-8 md:px-0 px-4 ">
         <span className="flex justify-center min-h-6 items-center text-center text-sm leading-6 md:hidden">
           Spend $150 or more and get FREE SHIPPING on your order!
         </span>
-        {/* Hero Section Start */}
         <AnimatePresence mode="wait">
           <motion.div
             className="relative h-full bg-[#e5e5e5]"
@@ -51,18 +49,13 @@ export default function HeroSection() {
             dragElastic={0.2}
             onDragEnd={handleSwipe}
           >
-            {/* Frame 1 Start*/}
             <div className="relative flex flex-col w-full h-full px-4 py-8">
-              {/* Heading Start */}
               <div className="isolate inset-0 flex items-center justify-center z-0">
                 <h1 className="text-[78px] leading-20 md:text-[200px] md:leading-60 min-[1440px]:text-[410px] min-[1440px]:leading-75 tracking-[-5%] font-bold italic text-center">
                   {slide.title}
                 </h1>
               </div>
-              {/* Heading End */}
-              {/* Div containing discription, image and features start */}
               <div className="isolate z-20 pt-55 flex items-end justify-between px-4 gap-6">
-                {/* description start */}
                 <div className="hidden xl:block xl:z-40 relative w-137 h-24 overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.p
@@ -89,8 +82,6 @@ export default function HeroSection() {
                     </motion.p>
                   </AnimatePresence>
                 </div>
-                {/* description end */}
-                {/* image and button container start */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={slide.id}
@@ -123,8 +114,6 @@ export default function HeroSection() {
                     />
                   </motion.div>
                 </AnimatePresence>
-                {/* Image End */}
-                {/* Button Start */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={slide.id}
@@ -152,10 +141,6 @@ export default function HeroSection() {
                     </Button>
                   </motion.div>
                 </AnimatePresence>
-                {/* Button End */}
-                {/* </div> */}
-                {/* image and button container end */}
-                {/* Features Start */}
                 <div className="hidden xl:block xl:z-40 relative w-auto h-24">
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -205,17 +190,10 @@ export default function HeroSection() {
                     </motion.div>
                   </AnimatePresence>
                 </div>
-                {/* Features End */}
               </div>
-              {/* Div containing discription, image and features end */}
-              {/* Frame 1 End */}
-              {/* Carousel Buttons Frame Start */}
-              {/* Carousel Buttons Frame End */}
             </div>
           </motion.div>
         </AnimatePresence>
-        {/* Hero Section End */}
-        {/* carousel arrows */}
         <div className="flex items-center justify-between">
           <button
             aria-label="Previous slide"
@@ -234,9 +212,7 @@ export default function HeroSection() {
             <ChevronRight className="w-6 h-6 md:w-12 md:h-12" />
           </button>
         </div>
-        {/* Carousel Arrows End */}
       </section>
-      {/* Main Frame End */}
     </>
   );
 }

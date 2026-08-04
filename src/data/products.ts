@@ -1,3 +1,5 @@
+import productImage from "../assets/product-images/adfadf 1_1.png";
+
 export interface Product {
   id: number;
   name: string;
@@ -12,6 +14,8 @@ export interface Product {
 
   price: number;
   discountedPrice: number;
+
+  featured: boolean;
 
   specifications: {
     type: string;
@@ -37,6 +41,7 @@ export const products: Product[] = [
     ratingCount: 328,
     price: 18999,
     discountedPrice: 15999,
+    featured: true,
     specifications: {
       type: "Athletic Shoes",
       gender: "Unisex",
@@ -49,11 +54,7 @@ export const products: Product[] = [
         "Durable outsole",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -66,6 +67,7 @@ export const products: Product[] = [
     rating: 4.8,
     ratingCount: 512,
     price: 24999,
+    featured: true,
     discountedPrice: 21999,
     specifications: {
       type: "Athletic Shoes",
@@ -75,10 +77,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Boost cushioning", "Adaptive fit", "High energy return"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -92,6 +91,7 @@ export const products: Product[] = [
     ratingCount: 196,
     price: 14999,
     discountedPrice: 12999,
+    featured: false,
     specifications: {
       type: "Casual Sneakers",
       gender: "Unisex",
@@ -100,10 +100,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Classic silhouette", "Soft suede finish", "Rubber outsole"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -117,6 +114,7 @@ export const products: Product[] = [
     ratingCount: 142,
     price: 9999,
     discountedPrice: 8499,
+    featured: true,
     specifications: {
       type: "Athletic Shoes",
       gender: "Kids",
@@ -125,10 +123,7 @@ export const products: Product[] = [
       sizeRange: ["1", "2", "3", "4", "5"],
       features: ["Flexible sole", "Lightweight design", "Shock absorption"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -142,6 +137,7 @@ export const products: Product[] = [
     ratingCount: 275,
     price: 16999,
     discountedPrice: 14499,
+    featured: false,
     specifications: {
       type: "Retro",
       gender: "Unisex",
@@ -150,10 +146,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["ENCAP cushioning", "Retro design", "Daily comfort"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -167,6 +160,7 @@ export const products: Product[] = [
     ratingCount: 840,
     price: 22999,
     discountedPrice: 19999,
+    featured: false,
     specifications: {
       type: "Casual Sneakers",
       gender: "Unisex",
@@ -175,10 +169,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Classic design", "Padded collar", "Durable rubber sole"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -192,6 +183,7 @@ export const products: Product[] = [
     ratingCount: 430,
     price: 19999,
     discountedPrice: 17999,
+    featured: true,
     specifications: {
       type: "Retro",
       gender: "Unisex",
@@ -200,10 +192,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9"],
       features: ["Low profile design", "Classic stripes", "Comfortable fit"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -217,6 +206,7 @@ export const products: Product[] = [
     ratingCount: 180,
     price: 13999,
     discountedPrice: 11999,
+    featured: false,
     specifications: {
       type: "Retro",
       gender: "Unisex",
@@ -225,10 +215,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9"],
       features: ["Lightweight", "Retro styling", "Comfort sole"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -241,6 +228,7 @@ export const products: Product[] = [
     ratingCount: 620,
     price: 11999,
     discountedPrice: 9999,
+    featured: true,
     specifications: {
       type: "Casual Sneakers",
       gender: "Unisex",
@@ -249,10 +237,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9"],
       features: ["Classic silhouette", "Canvas upper", "Rubber toe cap"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -266,6 +251,7 @@ export const products: Product[] = [
     ratingCount: 390,
     price: 13999,
     discountedPrice: 12499,
+    featured: true,
     specifications: {
       type: "Casual Sneakers",
       gender: "Unisex",
@@ -278,10 +264,7 @@ export const products: Product[] = [
         "Comfort padding",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
   {
     id: 11,
@@ -294,6 +277,7 @@ export const products: Product[] = [
     ratingCount: 920,
     price: 21999,
     discountedPrice: 18999,
+    featured: false,
     specifications: {
       type: "Lifestyle Shoes",
       gender: "Unisex",
@@ -307,10 +291,7 @@ export const products: Product[] = [
         "Everyday comfort",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -324,6 +305,7 @@ export const products: Product[] = [
     ratingCount: 360,
     price: 17999,
     discountedPrice: 15499,
+    featured: true,
     specifications: {
       type: "Casual Shoes",
       gender: "Unisex",
@@ -336,10 +318,7 @@ export const products: Product[] = [
         "Comfortable fit",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -353,6 +332,7 @@ export const products: Product[] = [
     ratingCount: 440,
     price: 23999,
     discountedPrice: 20999,
+    featured: false,
     specifications: {
       type: "Running Shoes",
       gender: "Unisex",
@@ -366,10 +346,7 @@ export const products: Product[] = [
         "Long distance comfort",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_2.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -383,6 +360,7 @@ export const products: Product[] = [
     ratingCount: 760,
     price: 29999,
     discountedPrice: 26999,
+    featured: true,
     specifications: {
       type: "Basketball Shoes",
       gender: "Unisex",
@@ -395,10 +373,7 @@ export const products: Product[] = [
         "Iconic Jordan design",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -412,6 +387,7 @@ export const products: Product[] = [
     ratingCount: 520,
     price: 8999,
     discountedPrice: 7499,
+    featured: true,
     specifications: {
       type: "Clogs",
       gender: "Unisex",
@@ -425,10 +401,7 @@ export const products: Product[] = [
         "Comfort fit",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -442,6 +415,7 @@ export const products: Product[] = [
     ratingCount: 310,
     price: 19999,
     discountedPrice: 17499,
+    featured: true,
     specifications: {
       type: "Running Shoes",
       gender: "Unisex",
@@ -450,10 +424,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Responsive cushioning", "Breathable design", "Daily trainer"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -467,6 +438,7 @@ export const products: Product[] = [
     ratingCount: 680,
     price: 15999,
     discountedPrice: 13999,
+    featured: false,
     specifications: {
       type: "Lifestyle Shoes",
       gender: "Unisex",
@@ -479,10 +451,7 @@ export const products: Product[] = [
         "Durable outsole",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 
   {
@@ -496,6 +465,7 @@ export const products: Product[] = [
     ratingCount: 250,
     price: 16999,
     discountedPrice: 14999,
+    featured: true,
     specifications: {
       type: "Lifestyle Sneakers",
       gender: "Unisex",
@@ -508,10 +478,7 @@ export const products: Product[] = [
         "Durable materials",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
   {
     id: 19,
@@ -524,6 +491,7 @@ export const products: Product[] = [
     ratingCount: 340,
     price: 12999,
     discountedPrice: 10999,
+    featured: true,
     specifications: {
       type: "Walking Shoes",
       gender: "Unisex",
@@ -532,10 +500,7 @@ export const products: Product[] = [
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Lightweight design", "Comfort insole", "Flexible outsole"],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
   {
     id: 20,
@@ -548,6 +513,7 @@ export const products: Product[] = [
     ratingCount: 210,
     price: 18999,
     discountedPrice: 16499,
+    featured: false,
     specifications: {
       type: "Casual Shoes",
       gender: "Men",
@@ -560,9 +526,6 @@ export const products: Product[] = [
         "Durable grip outsole",
       ],
     },
-    images: [
-      "/assets/products/adfadf 1_1.png",
-      "/assets/products/adfadf 1_1.png",
-    ],
+    images: [productImage, productImage, productImage],
   },
 ];
