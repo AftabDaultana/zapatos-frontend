@@ -20,4 +20,7 @@
   --color-warning-500: #eab308;
   --color-error-500: #ef4444;
   --color-information-500: #007dba;
+
+  --breakpoint-md: 834px;
+  --breakpoint-xl: 1750px;
 }

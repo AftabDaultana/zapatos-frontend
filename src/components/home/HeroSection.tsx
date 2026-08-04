@@ -156,7 +156,7 @@ export default function HeroSection() {
                 {/* </div> */}
                 {/* image and button container end */}
                 {/* Features Start */}
-                <div className="hidden xl:block xl:z-40 relative w-auto h-24 overflow-hidden">
+                <div className="hidden xl:block xl:z-40 relative w-auto h-24">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={slide.id}
@@ -178,8 +178,9 @@ export default function HeroSection() {
                         ease: "easeInOut",
                       }}
                       layout={false}
+                      className="flex flex-col gap-6"
                     >
-                      <span className="text-2xl text-center font-semibold text-neutral-700">
+                      <span className="block w-full text-2xl text-right font-semibold text-neutral-700">
                         {slide.infoHeading}
                       </span>
                       <div className="flex items-center h-12 divide-x divide-neutral-950 border border-neutral-950">
