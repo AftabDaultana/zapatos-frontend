@@ -1,7 +1,3 @@
-import React from "react";
-
-function TrendingSection() {
+export default function TrendingSection() {
   return <div>TrendingSection</div>;
 }
-
-export default TrendingSection;

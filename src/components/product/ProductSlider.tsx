@@ -56,7 +56,7 @@ export default function ProductSlider() {
   return (
     <div className="flex flex-col items-center gap-8 md:gap-12">
       <div className="w-full overflow-hidden" ref={emblaRef}>
-        <div className="flex">
+        <div className="flex gap-8">
           {featuredProducts.map((product) => {
             return (
               <div

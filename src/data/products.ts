@@ -21,7 +21,7 @@ export interface Product {
     type: string;
     gender: string;
     material: string;
-    color: string;
+    color: string[];
     sizeRange: string[];
     features: string[];
   };
@@ -46,7 +46,7 @@ export const products: Product[] = [
       type: "Athletic Shoes",
       gender: "Unisex",
       material: "Mesh upper with synthetic overlays",
-      color: "Black / White",
+      color: ["Black", "White"],
       sizeRange: ["6", "7", "8", "9", "10", "11"],
       features: [
         "Air cushioning technology",
@@ -54,7 +54,14 @@ export const products: Product[] = [
         "Durable outsole",
       ],
     },
-    images: [productImage, productImage, productImage],
+    images: [
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+    ],
   },
 
   {
@@ -73,7 +80,7 @@ export const products: Product[] = [
       type: "Athletic Shoes",
       gender: "Unisex",
       material: "Primeknit upper",
-      color: "White",
+      color: ["White"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Boost cushioning", "Adaptive fit", "High energy return"],
     },
@@ -96,7 +103,7 @@ export const products: Product[] = [
       type: "Casual Sneakers",
       gender: "Unisex",
       material: "Premium suede",
-      color: "Black",
+      color: ["Black"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Classic silhouette", "Soft suede finish", "Rubber outsole"],
     },
@@ -119,7 +126,7 @@ export const products: Product[] = [
       type: "Athletic Shoes",
       gender: "Kids",
       material: "Mesh upper",
-      color: "Blue",
+      color: ["Blue"],
       sizeRange: ["1", "2", "3", "4", "5"],
       features: ["Flexible sole", "Lightweight design", "Shock absorption"],
     },
@@ -142,7 +149,7 @@ export const products: Product[] = [
       type: "Retro",
       gender: "Unisex",
       material: "Suede and mesh",
-      color: "Grey",
+      color: ["Grey"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["ENCAP cushioning", "Retro design", "Daily comfort"],
     },
@@ -165,7 +172,7 @@ export const products: Product[] = [
       type: "Casual Sneakers",
       gender: "Unisex",
       material: "Leather upper",
-      color: "Black White",
+      color: ["Black", "White"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Classic design", "Padded collar", "Durable rubber sole"],
     },
@@ -188,7 +195,7 @@ export const products: Product[] = [
       type: "Retro",
       gender: "Unisex",
       material: "Leather",
-      color: "White Black",
+      color: ["White", "Black"],
       sizeRange: ["6", "7", "8", "9"],
       features: ["Low profile design", "Classic stripes", "Comfortable fit"],
     },
@@ -211,7 +218,7 @@ export const products: Product[] = [
       type: "Retro",
       gender: "Unisex",
       material: "Synthetic and mesh",
-      color: "Blue",
+      color: ["Blue"],
       sizeRange: ["6", "7", "8", "9"],
       features: ["Lightweight", "Retro styling", "Comfort sole"],
     },
@@ -233,11 +240,11 @@ export const products: Product[] = [
       type: "Casual Sneakers",
       gender: "Unisex",
       material: "Canvas",
-      color: "Black",
+      color: ["Black"],
       sizeRange: ["6", "7", "8", "9"],
       features: ["Classic silhouette", "Canvas upper", "Rubber toe cap"],
     },
-    images: [productImage, productImage, productImage],
+    images: [productImage, productImage],
   },
 
   {
@@ -256,7 +263,7 @@ export const products: Product[] = [
       type: "Casual Sneakers",
       gender: "Unisex",
       material: "Canvas and suede",
-      color: "Black White",
+      color: ["Black", "White"],
       sizeRange: ["6", "7", "8", "9"],
       features: [
         "Durable construction",
@@ -282,7 +289,7 @@ export const products: Product[] = [
       type: "Lifestyle Shoes",
       gender: "Unisex",
       material: "Leather upper with rubber outsole",
-      color: "White",
+      color: ["White"],
       sizeRange: ["6", "7", "8", "9", "10", "11"],
       features: [
         "Classic AF1 design",
@@ -310,7 +317,7 @@ export const products: Product[] = [
       type: "Casual Shoes",
       gender: "Unisex",
       material: "Suede upper with leather details",
-      color: "Green White",
+      color: ["Green", "White"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: [
         "Retro inspired design",
@@ -318,7 +325,17 @@ export const products: Product[] = [
         "Comfortable fit",
       ],
     },
-    images: [productImage, productImage, productImage],
+    images: [
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+      productImage,
+    ],
   },
 
   {
@@ -337,7 +354,7 @@ export const products: Product[] = [
       type: "Running Shoes",
       gender: "Unisex",
       material: "Engineered mesh upper",
-      color: "Blue Black",
+      color: ["Blue", "Black"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: [
         "Gel cushioning",
@@ -365,7 +382,7 @@ export const products: Product[] = [
       type: "Basketball Shoes",
       gender: "Unisex",
       material: "Premium leather",
-      color: "Red Black White",
+      color: ["Red", "Black", "White"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: [
         "High-top ankle support",
@@ -392,7 +409,7 @@ export const products: Product[] = [
       type: "Clogs",
       gender: "Unisex",
       material: "Croslite foam",
-      color: "Navy Blue",
+      color: ["Navy", "Blue"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: [
         "Lightweight",
@@ -420,7 +437,7 @@ export const products: Product[] = [
       type: "Running Shoes",
       gender: "Unisex",
       material: "Flyknit mesh upper",
-      color: "Grey White",
+      color: ["Grey", "White"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Responsive cushioning", "Breathable design", "Daily trainer"],
     },
@@ -443,7 +460,7 @@ export const products: Product[] = [
       type: "Lifestyle Shoes",
       gender: "Unisex",
       material: "Leather upper",
-      color: "White Black",
+      color: ["White", "Black"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: [
         "Shell toe protection",
@@ -470,7 +487,7 @@ export const products: Product[] = [
       type: "Lifestyle Sneakers",
       gender: "Unisex",
       material: "Mesh and synthetic leather",
-      color: "White Blue",
+      color: ["White", "Blue"],
       sizeRange: ["6", "7", "8", "9"],
       features: [
         "Chunky sneaker design",
@@ -496,7 +513,7 @@ export const products: Product[] = [
       type: "Walking Shoes",
       gender: "Unisex",
       material: "Engineered mesh",
-      color: "Grey",
+      color: ["Grey"],
       sizeRange: ["6", "7", "8", "9", "10"],
       features: ["Lightweight design", "Comfort insole", "Flexible outsole"],
     },
@@ -518,7 +535,7 @@ export const products: Product[] = [
       type: "Casual Shoes",
       gender: "Men",
       material: "Premium leather",
-      color: "Brown",
+      color: ["Brown"],
       sizeRange: ["7", "8", "9", "10", "11"],
       features: [
         "Premium leather upper",
