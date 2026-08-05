@@ -37,7 +37,7 @@ export const products: Product[] = [
     subCategoryId: [1, 4, 16],
     description:
       "Nike Air Max Pulse delivers a modern running-inspired design with responsive cushioning, breathable construction, and everyday comfort.",
-    rating: 4.7,
+    rating: 5,
     ratingCount: 328,
     price: 18999,
     discountedPrice: 15999,

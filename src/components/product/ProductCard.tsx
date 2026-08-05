@@ -37,7 +37,6 @@ export function RenderStars(rating: number) {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="flex flex-col h-full">
-      {/* Image Section start */}
       <div className="relative bg-[#d9d9d9] px-2.5 py-2.5">
         <img src={product.images[0]} alt={product.name} />
         <div className="absolute top-2.5 left-2.5 bg-[#ececec] w-13.25 h-6 p-1 flex justify-center items-center">
@@ -47,11 +46,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Heart size={16} />
         </div>
       </div>
-      {/* Image Section end */}
-      {/* Product details start */}
       <div className="flex flex-1 flex-col py-3 gap-3 items-start">
-        <h6 className="text-lg leading-7 font-bold">{product.name}</h6>
-        <div className="flex justify-start gap-2">
+        <h6 className="h-14 text-lg leading-7 font-bold">{product.name}</h6>
+        <div className="flex flex-col md:flex-row justify-start gap-2">
           <div className="flex">{RenderStars(product.rating)}</div>
           <span className="text-sm leading-3.5 font-medium items-center">
             {product.rating}{" "}
@@ -64,17 +61,19 @@ export default function ProductCard({ product }: ProductCardProps) {
           </span>
           <span>PKR {product.discountedPrice.toLocaleString()}</span>
         </div>
-        <div className="flex items-center py-3 gap-2">
-          {product.images.slice(0, 3).map((Image, index) => {
-            return (
-              <img
-                key={index}
-                src={Image}
-                alt={product.name}
-                className="h-10 p-1.5 object-cover"
-              />
-            );
-          })}
+        <div className="flex flex-col md:flex-row items-start py-3 gap-2">
+          <div className="flex gap-2">
+            {product.images.slice(0, 3).map((Image, index) => {
+              return (
+                <img
+                  key={index}
+                  src={Image}
+                  alt={product.name}
+                  className="h-10 p-1.5 object-cover"
+                />
+              );
+            })}
+          </div>
 
           {product.images.length > 3 && (
             <span className="text-sm leading-3.5 font-medium text-[#888]">
@@ -91,9 +90,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
       </div>
-      {/* Product details end */}
-      {/* Add to cart button start */}
-      <div className="px-4 py-3">
+      <div className="xl:px-4 xl:py-3">
         <Button
           type="button"
           className="w-full border border-neutral-950 px-4 py-2 gap-1.5"
@@ -101,7 +98,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           ADD TO CART <ArrowRight size={16} />
         </Button>
       </div>
-      {/* Add to cart button end */}
     </div>
   );
 }
