@@ -1,0 +1,64 @@
+import Button from "./Button";
+
+interface BannerCardProps {
+  title?: string;
+  description?: string;
+
+  image: string;
+  imageClassName?: string;
+
+  buttonText?: string;
+  buttonIcon?: React.ReactNode;
+
+  cardClassName?: string;
+  overlayClassName?: string;
+
+  contentContainerClassName?: string;
+
+  titleClassName?: string;
+  descriptionClassName?: string;
+
+  buttonContainerClassName?: string;
+  buttonClassName?: string;
+}
+
+export default function BannerCard({
+  title,
+  image,
+  imageClassName = "",
+  description,
+  buttonText = "",
+  buttonIcon,
+  cardClassName = "",
+  overlayClassName = "",
+  contentContainerClassName = "",
+  titleClassName = "",
+  descriptionClassName = "",
+  buttonContainerClassName = "",
+  buttonClassName = "",
+}: BannerCardProps) {
+  return (
+    <div className={`group relative ${cardClassName} overflow-hidden`}>
+      <div className={`absolute inset-0 ${overlayClassName}`} />
+      <img
+        src={image}
+        alt={title ? title : buttonText}
+        className={`h-full w-full object-cover ${imageClassName}`}
+      />
+      <div className={`${contentContainerClassName}`}>
+        {title && <h5 className={titleClassName}>{title}</h5>}
+        {description && (
+          <span className={descriptionClassName}>{description}</span>
+        )}
+      </div>
+      {buttonText && (
+        <div className={buttonContainerClassName}>
+          <Button type="button" className={buttonClassName}>
+            {buttonText}
+            {buttonIcon}
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+}

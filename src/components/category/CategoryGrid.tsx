@@ -1,4 +1,4 @@
-import CategoryCard from "./CategoryCard";
+import BannerCard from "../ui/BannerCard";
 import men from "../../assets/men.jpg";
 import kids from "../../assets/kids.jpg";
 import women from "../../assets/women.jpg";
@@ -19,54 +19,54 @@ const cardClasses = {
 export default function CategoryGrid() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 xl:gap-6 justify-center">
-      <CategoryCard
-        title="Men"
+      <BannerCard
         image={men}
+        buttonText="Men"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
         buttonClassName={cardClasses.buttonClassName}
       />
-      <CategoryCard
-        title="Kids"
+      <BannerCard
         image={kids}
+        buttonText="Kids"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
         buttonClassName={cardClasses.buttonClassName}
       />
-      <CategoryCard
-        title="Women"
+      <BannerCard
         image={women}
+        buttonText="Women"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
         buttonClassName={cardClasses.buttonClassName}
       />
-      <CategoryCard
-        title="Sports"
+      <BannerCard
         image={sports}
+        buttonText="Sports"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
         buttonClassName={cardClasses.buttonClassName}
       />
-      <CategoryCard
-        title="Brands"
+      <BannerCard
         image={brands}
+        buttonText="Brands"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
         buttonClassName={cardClasses.buttonClassName}
       />
-      <CategoryCard
-        title="Sandals"
+      <BannerCard
         image={sandals}
+        buttonText="Sandals"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
