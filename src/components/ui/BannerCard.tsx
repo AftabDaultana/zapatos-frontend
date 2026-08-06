@@ -14,9 +14,12 @@ interface BannerCardProps {
   overlayClassName?: string;
 
   contentContainerClassName?: string;
+  textContainerClassName?: string;
 
   titleClassName?: string;
   descriptionClassName?: string;
+
+  buttonInsideContent?: boolean;
 
   buttonContainerClassName?: string;
   buttonClassName?: string;
@@ -32,26 +35,38 @@ export default function BannerCard({
   cardClassName = "",
   overlayClassName = "",
   contentContainerClassName = "",
+  textContainerClassName,
   titleClassName = "",
   descriptionClassName = "",
+  buttonInsideContent,
   buttonContainerClassName = "",
   buttonClassName = "",
 }: BannerCardProps) {
   return (
     <div className={`group relative ${cardClassName} overflow-hidden`}>
-      <div className={`absolute inset-0 ${overlayClassName}`} />
       <img
         src={image}
-        alt={title ? title : buttonText}
+        alt={title ?? buttonText}
         className={`h-full w-full object-cover ${imageClassName}`}
       />
-      <div className={`${contentContainerClassName}`}>
-        {title && <h5 className={titleClassName}>{title}</h5>}
-        {description && (
-          <span className={descriptionClassName}>{description}</span>
+      <div className={`absolute inset-0 ${overlayClassName}`} />
+      <div className={contentContainerClassName}>
+        <div className={textContainerClassName}>
+          {title && <h5 className={titleClassName}>{title}</h5>}
+          {description && (
+            <span className={descriptionClassName}>{description}</span>
+          )}
+        </div>
+        {buttonInsideContent && buttonText && (
+          <div className={buttonContainerClassName}>
+            <Button type="button" className={buttonClassName}>
+              {buttonText}
+              {buttonIcon}
+            </Button>
+          </div>
         )}
       </div>
-      {buttonText && (
+      {!buttonInsideContent && buttonText && (
         <div className={buttonContainerClassName}>
           <Button type="button" className={buttonClassName}>
             {buttonText}
