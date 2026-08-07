@@ -1,6 +1,7 @@
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 import TabletHeader from "./TabletHeader";
+import UserMenu from "../../ui/UserMenu";
 
 export default function Header() {
   return (
@@ -14,6 +15,9 @@ export default function Header() {
       <div className="block md:hidden">
         <MobileHeader />
       </div>
+      {/* <div>
+        <UserMenu />
+      </div> */}
     </>
   );
 }

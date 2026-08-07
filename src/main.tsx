@@ -7,13 +7,11 @@ import router from "./routes/router.tsx";
 import { store } from "./app/store.ts";
 
 import "./index.css";
-import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
-      <App />
     </Provider>
   </StrictMode>,
 );
