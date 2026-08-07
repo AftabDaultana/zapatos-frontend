@@ -1,9 +1,9 @@
-import BlogSection from "../../components/blog/BlogSection";
-import BrandSection from "../../components/brand/BrandSection";
-import CategorySection from "../../components/category/CategorySection";
-import FeaturedProducts from "../../components/featuredProducts/FeaturedProducts";
-import HeroSection from "../../components/home/HeroSection";
-import TrendingSection from "../../components/home/TrendingSection";
+import BlogSection from "../../components/sections/BlogSection";
+import BrandSection from "../../components/sections/BrandSection";
+import CategorySection from "../../components/sections/CategorySection";
+import FeaturedProducts from "../../components/sections/FeaturedProducts";
+import HeroSection from "../../components/sections/HeroSection";
+import TrendingSection from "../../components/sections/TrendingSection";
 
 function Home() {
   return (

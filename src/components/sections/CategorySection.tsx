@@ -1,4 +1,4 @@
-import CategoryGrid from "./CategoryGrid";
+import CategoryGrid from "../grids/CategoryGrid";
 
 function CategorySection() {
   return (

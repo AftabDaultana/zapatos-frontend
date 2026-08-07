@@ -1,6 +1,6 @@
 import type { Product } from "../../data/products";
 import useEmblaCarousel from "embla-carousel-react";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ui/ProductCard";
 import { useEffect, useState } from "react";
 import { products } from "../../data/products";
 
@@ -31,8 +31,6 @@ export default function ProductSlider() {
       setScrollSnaps(api.scrollSnapList());
       onSelect();
     }
-
-    console.log(featuredProducts);
 
     api.on("select", onSelect);
 

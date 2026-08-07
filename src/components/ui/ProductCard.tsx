@@ -1,6 +1,6 @@
 import { ArrowRight, Heart, Star } from "lucide-react";
 import type { Product } from "../../data/products";
-import Button from "../ui/Button";
+import Button from "./Button";
 
 interface ProductCardProps {
   product: Product;

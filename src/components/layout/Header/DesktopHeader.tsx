@@ -2,7 +2,7 @@ import { useState } from "react";
 import AnnouncementBar from "./AnnouncementBar";
 import HeaderMain from "./HeaderMain";
 import NavigationMenu from "./NavigationMenu";
-import MegaMenu from "../../megaMenu/MegaMenu";
+import MegaMenu from "../megaMenu/MegaMenu";
 
 export default function DesktopHeader() {
   const [activeMenu, setActiveMenu] = useState<{

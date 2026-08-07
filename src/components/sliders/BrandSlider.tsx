@@ -19,7 +19,7 @@ export default function BrandSlider() {
                 <img
                   src={brand.logo}
                   alt={brand.name}
-                  className={brand.className}
+                  className={brand.logoClassName}
                 />
               </div>
             </div>

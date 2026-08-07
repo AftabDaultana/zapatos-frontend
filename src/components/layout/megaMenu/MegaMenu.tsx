@@ -1,5 +1,5 @@
-import SubCategoryCard from "../subCategory/SubCategoryCard";
-import { subCategories } from "../../data/subCategories";
+import SubCategoryCard from "../../ui/SubCategoryCard";
+import { subCategories } from "../../../data/subCategories";
 
 interface MegaMenuProps {
   categoryId: number;
