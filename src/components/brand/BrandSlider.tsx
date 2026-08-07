@@ -16,7 +16,11 @@ export default function BrandSlider() {
               key={brand.id}
             >
               <div className="h-full w-full flex items-center justify-center">
-                <img src={brand.logo} alt={brand.name} className="h-12" />
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className={brand.className}
+                />
               </div>
             </div>
           );
