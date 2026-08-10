@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { Phone, Mail, Info, User, Heart, ShoppingCart } from "lucide-react";
+import { Phone, Mail, Info, Heart, ShoppingCart } from "lucide-react";
 import ActionItem from "./ActionItem";
+import UserMenu from "../../ui/UserMenu";
 
 interface HeaderAction {
   icon: ReactNode;
@@ -22,10 +23,10 @@ const desktopActions: HeaderAction[] = [
     text: "Info",
     dropDown: true,
   },
-  {
-    icon: <User size={24} />,
-    dropDown: true,
-  },
+  // {
+  //   icon: <User size={24} />,
+  //   dropDown: true,
+  // },
   {
     icon: <Heart size={24} />,
   },
@@ -49,7 +50,15 @@ export default function HeaderActions() {
             dropDown={action.dropDown}
           />
 
-          {index !== desktopActions.length - 1 && <Divider />}
+          {index == 2 && (
+            <>
+              <Divider />
+              <UserMenu />
+              <Divider />
+            </>
+          )}
+
+          {index !== desktopActions.length - 1 && index !== 2 && <Divider />}
         </div>
       ))}
     </div>

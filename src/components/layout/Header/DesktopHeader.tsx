@@ -16,7 +16,7 @@ export default function DesktopHeader() {
       <HeaderMain />
       <NavigationMenu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
       {activeMenu && (
-        <div className="absolute left-0 top-full w-full z-50 border-t border-neutral-200 bg-white shadow-lg">
+        <div className="absolute left-0 top-full w-full z-40 border-t border-neutral-200 bg-white shadow-lg">
           <MegaMenu categoryId={activeMenu.id} />
         </div>
       )}
