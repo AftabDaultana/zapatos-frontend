@@ -2,12 +2,14 @@ import { User } from "lucide-react";
 import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
 import Button from "./Button";
 import { logoutUser } from "../../app/slices/userSlice";
+import { Link } from "react-router-dom";
 
 interface LoggedInCardProps {
   onLogOut: () => void;
+  onClose: () => void;
 }
 
-export default function LoggedInCard({ onLogOut }: LoggedInCardProps) {
+export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state) => state.user.currentUser);
 
@@ -42,12 +44,14 @@ export default function LoggedInCard({ onLogOut }: LoggedInCardProps) {
           </span>
         </div>
         <div className="flex flex-col gap-2 h-px w-full bg-neutral-700" />
-        <Button
-          type="button"
-          className="hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950 bg-neutral-950 text-neutral-50 w-40 h-10"
-        >
-          View Profile
-        </Button>
+        <Link to={"/profile"} onClick={onClose}>
+          <Button
+            type="button"
+            className="hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950 bg-neutral-950 text-neutral-50 w-40 h-10"
+          >
+            View Profile
+          </Button>
+        </Link>
         <Button
           type="button"
           onClick={() => {

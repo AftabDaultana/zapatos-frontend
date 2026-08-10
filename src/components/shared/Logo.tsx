@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import darkLogo from "../../assets/Vector.svg";
 import lightLogo from "../../assets/logo-white.svg";
 
@@ -8,5 +9,9 @@ interface LogoProps {
 
 export default function Logo({ variant = "dark", className = "" }: LogoProps) {
   const logo = variant === "dark" ? darkLogo : lightLogo;
-  return <img src={logo} alt="Zapato" className={className} />;
+  return (
+    <Link to={"/"}>
+      <img src={logo} alt="Zapato" className={className} />
+    </Link>
+  );
 }

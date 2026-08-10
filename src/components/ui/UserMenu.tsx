@@ -1,5 +1,5 @@
 import Button from "./Button";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import LoggedInCard from "./LoggedInCard";
 import LoggedOutCard from "./LoggedOutCard";
 import { User, ChevronDown } from "lucide-react";
@@ -8,8 +8,23 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const currentUser = useAppSelector((state) => state.user.currentUser);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        userMenuRef.current &&
+        !userMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
   return (
-    <div className="relative">
+    <div ref={userMenuRef} className="relative">
       <Button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -26,6 +41,7 @@ export default function UserMenu() {
               onLogOut={() => {
                 setIsOpen(false);
               }}
+              onClose={() => setIsOpen(false)}
             />
           ) : (
             <LoggedOutCard />
