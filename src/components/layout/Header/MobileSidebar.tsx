@@ -1,7 +1,8 @@
-import { X, ChevronDown, User, Mail } from "lucide-react";
+import { X, ChevronDown, Mail } from "lucide-react";
 import { categories } from "../../../data/categories";
 import { subCategories } from "../../../data/subCategories";
 import { useState } from "react";
+import UserMenu from "../../ui/UserMenu";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -22,10 +23,10 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
   return (
     <>
       <div className="fixed inset-0 bg-black/40 z-40" onClick={onClose} />
-      <aside className="fixed flex flex-col gap-6 left-0 top-0 h-full w-90 bg-white z-50 p-6">
+      <aside className="fixed flex flex-col gap-6 left-0 top-0 h-full w-[dvw] bg-white z-50 p-6 overflow-auto">
         <div className="flex flex-col gap-6 py-5 border-b border-b-neutral-300">
           <div className="flex justify-between p-5 border border-neutral-300 md:border-none md:p-0">
-            <User size={24} className="block md:hidden" />
+            <UserMenu />
             <button onClick={onClose}>
               <X
                 size={24}
@@ -78,7 +79,7 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             </ul>
           </nav>
         </div>
-        <div className="absolute bottom-0 flex gap-2 py-5 border-t border-t-neutral-300">
+        <div className="flex gap-2 py-5 border-t border-t-neutral-300">
           <Mail size={24} />
           <p>supportoursmallbusiness@gmail.com</p>
         </div>

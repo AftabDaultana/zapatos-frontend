@@ -15,7 +15,7 @@ export default function Profile() {
     <div>
       {currentUser ? (
         <div className="flex flex-col px-12 py-6 gap-6">
-          <div className="flex px-6 justify-between items-center">
+          <div className="flex flex-col md:flex-row px-6 justify-between items-center">
             <h1 className="text-3xl leading-8">Welcome, {currentUser.name}</h1>
             {currentUser.profilePicture ? (
               <>

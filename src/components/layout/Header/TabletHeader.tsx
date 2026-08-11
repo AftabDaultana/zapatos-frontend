@@ -1,8 +1,9 @@
-import { Heart, Phone, ShoppingCart, User } from "lucide-react";
+import { Heart, Phone, ShoppingCart } from "lucide-react";
 import AnnouncementBar from "./AnnouncementBar";
 import HeaderLogo from "../../shared/Logo";
 import MenuToggle from "./MenuToggle";
 import SearchBar from "./SearchBar";
+import UserMenu from "../../ui/UserMenu";
 
 function Divider() {
   return <div className="h-6 w-px bg-neutral-100" />;
@@ -17,7 +18,7 @@ export default function TabletHeader() {
         <HeaderLogo variant="light" className="w-36.25 h-14" />
         <Phone size={24} className="text-neutral-100" />
         <Divider />
-        <User size={24} className="text-neutral-100" />
+        <UserMenu />
         <Heart size={24} className="text-neutral-100" />
         <Divider />
         <ShoppingCart size={24} className="text-neutral-100" />

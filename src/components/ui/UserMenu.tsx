@@ -30,12 +30,13 @@ export default function UserMenu() {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Open user menu"
         aria-expanded={isOpen}
+        className="md:text-neutral-50 xl:text-neutral-950"
       >
         <User size={24} />
         <ChevronDown size={24} />
       </Button>
       {isOpen && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-64 bg-white shadow-lg">
+        <div className="absolute left-0 md:left-auto md:right-0 top-full z-50 mt-2 w-64 bg-white shadow-lg">
           {currentUser ? (
             <LoggedInCard
               onLogOut={() => {

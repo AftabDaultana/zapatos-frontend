@@ -36,7 +36,7 @@ export default function Login({ onClose }: LoginProps) {
 
   return (
     <main className="fixed inset-0 z-100 bg-black/50 flex items-center justify-center p-6">
-      <div className="relative flex flex-col w-full max-w-125 bg-white p-6 gap-10">
+      <div className="relative flex max-h-[calc(100dvh-3rem)] w-full max-w-125 flex-col gap-4 overflow-y-auto bg-white p-6 md:gap-10">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold leading-7 text-neutral-950">
             SIGN IN
