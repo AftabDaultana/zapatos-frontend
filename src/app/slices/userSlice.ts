@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { users as initialUsers } from "../../data/users";
+import { users } from "../../data/users";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { User } from "../../types/user";
 
@@ -8,11 +8,11 @@ interface UserState {
   currentUser: User | null;
 }
 
-const getStoredUsers = (): User[] => {
+export const getStoredUsers = (): User[] => {
   const storedUsers = localStorage.getItem("users");
 
   if (!storedUsers) {
-    return initialUsers;
+    return users;
   }
 
   try {
@@ -20,11 +20,11 @@ const getStoredUsers = (): User[] => {
   } catch (error) {
     console.error("Failed to parse stored users", error);
     localStorage.removeItem("users");
-    return initialUsers;
+    return users;
   }
 };
 
-const getStoredUser = (): User | null => {
+export const getStoredUser = (): User | null => {
   const storedUser = localStorage.getItem("currentUser");
 
   if (!storedUser) {
@@ -54,7 +54,14 @@ const userSlice = createSlice({
       localStorage.setItem("users", JSON.stringify(state.users));
     },
     setUser: (state, action: PayloadAction<User>) => {
-      state.currentUser = action.payload;
+      const storedUsers = getStoredUsers();
+      const updatedUsers = storedUsers.map((user) =>
+        user.id === action.payload.id ? { ...user, isLoggedIn: true } : user,
+      );
+
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+      state.currentUser = { ...action.payload, isLoggedIn: true };
       localStorage.setItem("currentUser", JSON.stringify(action.payload));
     },
     updateUser: (state, action: PayloadAction<Partial<User>>) => {
@@ -67,6 +74,15 @@ const userSlice = createSlice({
       }
     },
     logoutUser: (state) => {
+      if (state.currentUser) {
+        const storedUsers = getStoredUsers();
+        const updatedUsers = storedUsers.map((user) =>
+          user.id === state.currentUser?.id
+            ? { ...user, isLoggedIn: false }
+            : user,
+        );
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+      }
       state.currentUser = null;
       localStorage.removeItem("currentUser");
     },

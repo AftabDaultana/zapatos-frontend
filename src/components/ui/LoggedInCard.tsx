@@ -38,10 +38,14 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
           <span className="block truncate text-lg font-medium text-neutral-700">
             {currentUser.email}
           </span>
-          <div className="h-px w-full bg-neutral-700" />
-          <span className="block truncate text-lg font-medium text-neutral-700">
-            {currentUser.phoneNumber}
-          </span>
+          {currentUser.phoneNumber ? (
+            <>
+              <div className="h-px w-full bg-neutral-700" />
+              <span className="block truncate text-lg font-medium text-neutral-700">
+                {currentUser.phoneNumber}
+              </span>
+            </>
+          ) : null}
         </div>
         <div className="flex flex-col gap-2 h-px w-full bg-neutral-700" />
         <Link to={"/profile"} onClick={onClose}>
