@@ -21,10 +21,7 @@ const navItems: NavItem[] = [
 function NavigationMenu({ activeMenu, setActiveMenu }: navigationMenuProps) {
   return (
     <nav className="flex w-full px-8 gap-10">
-      <ul
-        className="flex w-full items-center justify-center gap-6"
-        onMouseLeave={() => setActiveMenu(null)}
-      >
+      <ul className="flex w-full items-center justify-center gap-6">
         {navItems.map((navItem) => {
           return (
             <li

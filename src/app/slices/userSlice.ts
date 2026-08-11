@@ -6,8 +6,24 @@ interface UserState {
   currentUser: User | null;
 }
 
+const getStoredUser = (): User | null => {
+  const storedUser = localStorage.getItem("currentUser");
+
+  if (!storedUser) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(storedUser);
+  } catch (error) {
+    console.error("Failed to parse stored user", error);
+    localStorage.removeItem("currentUser");
+    return null;
+  }
+};
+
 const initialState: UserState = {
-  currentUser: null,
+  currentUser: getStoredUser(),
 };
 
 const userSlice = createSlice({
@@ -16,6 +32,7 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<User>) => {
       state.currentUser = action.payload;
+      localStorage.setItem("currentUser", JSON.stringify(action.payload));
     },
     updateUser: (state, action: PayloadAction<Partial<User>>) => {
       if (state.currentUser) {
@@ -23,10 +40,12 @@ const userSlice = createSlice({
           ...state.currentUser,
           ...action.payload,
         };
+        localStorage.setItem("currentUser", JSON.stringify(state.currentUser));
       }
     },
     logoutUser: (state) => {
       state.currentUser = null;
+      localStorage.removeItem("currentUser");
     },
   },
 });

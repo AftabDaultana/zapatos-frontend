@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { updateUser } from "../../app/slices/userSlice";
 import Button from "../../components/ui/Button";
@@ -25,27 +25,34 @@ export default function EditProfile({ onClose }: EditProfileProps) {
     currentUser?.profilePicture ?? "",
   );
 
-  useEffect(() => {
-    return () => {
-      if (previewUrl.startsWith("blob:")) {
-        URL.revokeObjectURL(previewUrl);
-      }
-    };
-  }, [previewUrl]);
+  // useEffect(() => {
+  //   return () => {
+  //     if (previewUrl.startsWith("blob:")) {
+  //       URL.revokeObjectURL(previewUrl);
+  //     }
+  //   };
+  // }, [previewUrl]);
 
-  if (!currentUser) {
-    return null;
-  }
+  // if (!currentUser) {
+  //   return null;
+  // }
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
     if (!file) return;
 
-    const newPreviewUrl = URL.createObjectURL(file);
+    const reader = new FileReader();
 
-    setProfilePicture(newPreviewUrl);
-    setPreviewUrl(newPreviewUrl);
+    reader.onload = () => {
+      const result = reader.result;
+
+      if (typeof result !== "string") return;
+
+      setProfilePicture(result);
+      setPreviewUrl(result);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
@@ -85,7 +92,7 @@ export default function EditProfile({ onClose }: EditProfileProps) {
               {previewUrl ? (
                 <img
                   src={previewUrl}
-                  alt={currentUser.name}
+                  alt={name}
                   className="h-full w-full object-cover"
                 />
               ) : (

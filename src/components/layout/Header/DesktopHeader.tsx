@@ -11,15 +11,21 @@ export default function DesktopHeader() {
   } | null>(null);
 
   return (
-    <header className="relative" onMouseLeave={() => setActiveMenu(null)}>
+    <header className="relative">
       <AnnouncementBar variant="desktop" />
       <HeaderMain />
-      <NavigationMenu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-      {activeMenu && (
-        <div className="absolute left-0 top-full w-full z-40 border-t border-neutral-200 bg-white shadow-lg">
-          <MegaMenu categoryId={activeMenu.id} />
-        </div>
-      )}
+      <div
+        onMouseLeave={() => setActiveMenu(null)}
+        className="relative
+      "
+      >
+        <NavigationMenu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+        {activeMenu && (
+          <div className="absolute left-0 top-full w-full z-40 border-t border-neutral-200 bg-white shadow-lg">
+            <MegaMenu categoryId={activeMenu.id} />
+          </div>
+        )}
+      </div>
     </header>
   );
 }
