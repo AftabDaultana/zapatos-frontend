@@ -3,6 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import ProductCard from "../ui/ProductCard";
 import { useEffect, useState } from "react";
 import { products } from "../../data/products";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 const visibleDots = 4;
 const featuredProducts: Product[] = products.filter(
@@ -10,9 +11,18 @@ const featuredProducts: Product[] = products.filter(
 );
 
 export default function ProductSlider() {
-  const [emblaRef, emblaAPI] = useEmblaCarousel({
-    align: "center",
-  });
+  const [emblaRef, emblaAPI] = useEmblaCarousel(
+    {
+      align: "start",
+    },
+    [
+      AutoScroll({
+        speed: 0.5,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 

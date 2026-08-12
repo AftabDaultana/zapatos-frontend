@@ -1,11 +1,21 @@
 import useEmblaSlider from "embla-carousel-react";
+import AutoScroll from "embla-carousel-auto-scroll";
 import { brands } from "../../data/brands";
 
 export default function BrandSlider() {
-  const [emblaRef] = useEmblaSlider({
-    align: "start",
-    loop: true,
-  });
+  const [emblaRef] = useEmblaSlider(
+    {
+      align: "start",
+      loop: true,
+    },
+    [
+      AutoScroll({
+        speed: 1,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
   return (
     <div className="overflow-hidden" ref={emblaRef}>
       <div className="flex items-center">

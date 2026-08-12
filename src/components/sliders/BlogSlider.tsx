@@ -2,14 +2,24 @@ import useEmblaCarousel from "embla-carousel-react";
 import { blogs } from "../../data/blogs";
 import BlogCard from "../ui/BlogCard";
 import { useEffect, useState } from "react";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 const visibleDots = 4;
 
 function BlogSlider() {
-  const [emblaRef, emblaAPI] = useEmblaCarousel({
-    align: "center",
-    loop: true,
-  });
+  const [emblaRef, emblaAPI] = useEmblaCarousel(
+    {
+      align: "center",
+      loop: true,
+    },
+    [
+      AutoScroll({
+        speed: 0.5,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
