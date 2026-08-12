@@ -61,17 +61,28 @@ const userSlice = createSlice({
 
       localStorage.setItem("users", JSON.stringify(updatedUsers));
 
-      state.currentUser = { ...action.payload, isLoggedIn: true };
-      localStorage.setItem("currentUser", JSON.stringify(action.payload));
+      const updatedCurrentUser = { ...action.payload, isLoggedIn: true };
+      state.currentUser = updatedCurrentUser;
+      localStorage.setItem("currentUser", JSON.stringify(updatedCurrentUser));
     },
     updateUser: (state, action: PayloadAction<Partial<User>>) => {
-      if (state.currentUser) {
-        state.currentUser = {
-          ...state.currentUser,
-          ...action.payload,
-        };
-        localStorage.setItem("currentUser", JSON.stringify(state.currentUser));
-      }
+      if (!state.currentUser) return;
+
+      const updatedCurrentUser = {
+        ...state.currentUser,
+        ...action.payload,
+      };
+
+      state.currentUser = updatedCurrentUser;
+
+      const storedUsers = getStoredUsers();
+
+      const updatedUsers = storedUsers.map((user) =>
+        user.id === updatedCurrentUser.id ? updatedCurrentUser : user,
+      );
+
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      localStorage.setItem("currentUser", JSON.stringify(updatedCurrentUser));
     },
     logoutUser: (state) => {
       if (state.currentUser) {

@@ -23,10 +23,6 @@ const desktopActions: HeaderAction[] = [
     text: "Info",
     dropDown: true,
   },
-  // {
-  //   icon: <User size={24} />,
-  //   dropDown: true,
-  // },
   {
     icon: <Heart size={24} />,
   },

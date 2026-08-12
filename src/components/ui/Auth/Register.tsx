@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../../hooks/reduxHooks";
-import { addUser, getStoredUsers } from "../../../app/slices/userSlice";
+import {
+  addUser,
+  getStoredUsers,
+  setUser,
+} from "../../../app/slices/userSlice";
 import Button from "../Button";
 import { Eye, EyeOff, X } from "lucide-react";
 import type { SubmitEvent } from "react";
+import type { User } from "../../../types/user";
 
 interface RegisterProps {
   onClose: () => void;
@@ -34,14 +39,14 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
       return;
     }
 
-    const newUser = {
+    const newUser: User = {
       id: Math.max(...storedUsers.map((user) => user.id), 0) + 1,
       name: name.trim(),
       email: email.trim(),
       password,
       phoneNumber: "",
       profilePicture: "",
-      role: "user" as const,
+      role: "user",
       isLoggedIn: false,
       shippingAddress: {
         street: "",
@@ -60,6 +65,8 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
     };
 
     dispatch(addUser(newUser));
+    dispatch(setUser(newUser));
+    onClose();
   };
 
   return (

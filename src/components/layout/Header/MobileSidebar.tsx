@@ -58,7 +58,6 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                         size={18}
                       />
                     </button>
-                    {/* <ChevronDown size={18} /> */}
                     {expandedCategory === category.id &&
                       categoryItems.length > 0 && (
                         <ul className="flex flex-col gap-2 p-2">

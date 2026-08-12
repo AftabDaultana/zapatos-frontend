@@ -1,7 +1,7 @@
-import blog1 from "../assets/blogs images/blog-1.jpg";
-import blog2 from "../assets/blogs images/blog-2.jpg";
-import blog3 from "../assets/blogs images/blog-4.jpg";
-import blog4 from "../assets/blogs images/blog-3.jpg";
+import blog1 from "../assets/blogs images/blog-1.jpg?format=webp";
+import blog2 from "../assets/blogs images/blog-2.jpg?format=webp";
+import blog3 from "../assets/blogs images/blog-4.jpg?format=webp";
+import blog4 from "../assets/blogs images/blog-3.jpg?format=webp";
 
 export interface Blog {
   id: number;

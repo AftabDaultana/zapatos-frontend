@@ -1,10 +1,10 @@
 import BannerCard from "../ui/BannerCard";
-import men from "../../assets/men.jpg";
-import kids from "../../assets/kids.jpg";
-import women from "../../assets/women.jpg";
-import sports from "../../assets/sports.jpg";
-import brands from "../../assets/brands.jpg";
-import sandals from "../../assets/sandals.jpg";
+import men from "../../assets/men.jpg?format=webp";
+import kids from "../../assets/kids.jpg?format=webp";
+import women from "../../assets/women.jpg?format=webp";
+import sports from "../../assets/sports.jpg?format=webp";
+import brands from "../../assets/brands.jpg?format=webp";
+import sandals from "../../assets/sandals.jpg?format=webp";
 import { ArrowRight } from "lucide-react";
 
 const cardClasses = {

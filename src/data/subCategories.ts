@@ -1,14 +1,14 @@
-import athleticShoes from "../assets/adfadf-1.png";
-import casualSneakers from "../assets/adfadf-1-1.png";
-import retro from "../assets/adfadf-1-2.png";
-import whites from "../assets/adfadf-1-3.png";
-import nike from "../assets/brands/nike.png";
-import adidas from "../assets/brands/adidas.png";
-import fila from "../assets/brands/fila.png";
-import brooks from "../assets/brands/brooks.png";
-import vans from "../assets/brands/vans.png";
-import salomon from "../assets/brands/salomon.png";
-import mizuna from "../assets/brands/mizuna.png";
+import athleticShoes from "../assets/adfadf-1.png?format=webp";
+import casualSneakers from "../assets/adfadf-1-1.png?format=webp";
+import retro from "../assets/adfadf-1-2.png?format=webp";
+import whites from "../assets/adfadf-1-3.png?format=webp";
+import nike from "../assets/brands/nike.png?format=webp";
+import adidas from "../assets/brands/adidas.png?format=webp";
+import fila from "../assets/brands/fila.png?format=webp";
+import brooks from "../assets/brands/brooks.png?format=webp";
+import vans from "../assets/brands/vans.png?format=webp";
+import salomon from "../assets/brands/salomon.png?format=webp";
+import mizuna from "../assets/brands/mizuna.png?format=webp";
 
 export interface SubCategory {
   id: number;

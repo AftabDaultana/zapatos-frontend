@@ -1,4 +1,4 @@
-import productImage from "../assets/product-images/adfadf 1_1.png";
+import productImage from "../assets/product-images/adfadf 1_1.png?format=webp";
 
 export interface Product {
   id: number;

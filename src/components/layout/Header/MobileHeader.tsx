@@ -10,7 +10,6 @@ function Divider() {
 export default function MobileHeader() {
   return (
     <header>
-      {/* top row */}
       <div className="flex w-full h-12 items-center justify-between px-4 bg-neutral-900">
         <MenuToggle />
         <HeaderLogo variant="light" className="w-24.75 h-9.5" />
@@ -21,7 +20,6 @@ export default function MobileHeader() {
         <Divider />
         <ShoppingCart size={24} className="text-neutral-100" />
       </div>
-      {/* search bar */}
       <div className="flex items-center px-4 py-3">
         <SearchBar />
       </div>

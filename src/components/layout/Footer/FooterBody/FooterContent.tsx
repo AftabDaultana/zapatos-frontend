@@ -30,7 +30,6 @@ const footerLinks = [
 function FooterContent() {
   return (
     <section className="flex flex-col px-4 py-12 gap-12 md:gap-10 md:p-8 lg:flex-row lg:justify-between lg:px-16 lg:py-20">
-      {/* Zapatos Info Column */}
       <div className="flex flex-col gap-12 md:gap-8 lg:gap-8">
         <div className="flex flex-col gap-6">
           <Logo variant="dark" className="w-45.75 h-[73.26px]" />
@@ -74,23 +73,6 @@ function FooterContent() {
         {footerLinks.map((footerLink) => {
           return <FooterLinks {...footerLink} />;
         })}
-        {/* Shop */}
-        {/* <FooterLinks heading="Shop" links={["Men", "Kids", "Women"]} /> */}
-        {/* Brands */}
-        {/* <FooterLinks
-          heading="brands"
-          links={["Adidas", "Nike", "fila", "Brooks", "Mizuna", "Salomon"]}
-        /> */}
-        {/* Quick Links */}
-        {/* <FooterLinks
-          heading="quick links"
-          links={["Return", "Shipping", "Terms & Conditions", "Privacy Policy"]}
-        /> */}
-        {/* Support */}
-        {/* <FooterLinks
-          heading="Support"
-          links={["About Us", "FAQ's", "Contact Us"]}
-        {/* /> */}
       </div>
     </section>
   );

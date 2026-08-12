@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { updateUser } from "../../app/slices/userSlice";
+import { getStoredUsers, updateUser } from "../../app/slices/userSlice";
 import Button from "../../components/ui/Button";
 import { X, User } from "lucide-react";
 
@@ -25,17 +25,7 @@ export default function EditProfile({ onClose }: EditProfileProps) {
     currentUser?.profilePicture ?? "",
   );
 
-  // useEffect(() => {
-  //   return () => {
-  //     if (previewUrl.startsWith("blob:")) {
-  //       URL.revokeObjectURL(previewUrl);
-  //     }
-  //   };
-  // }, [previewUrl]);
-
-  // if (!currentUser) {
-  //   return null;
-  // }
+  const [error, setError] = useState("");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -57,12 +47,27 @@ export default function EditProfile({ onClose }: EditProfileProps) {
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError("");
+
+    const storedUsers = getStoredUsers();
+
+    const emailAlreadyExists = storedUsers.some((user) => {
+      return (
+        user.id !== currentUser?.id &&
+        user.email.trim().toLowerCase() === email.trim().toLowerCase()
+      );
+    });
+
+    if (emailAlreadyExists) {
+      setError("User with this email already exist");
+      return;
+    }
 
     dispatch(
       updateUser({
-        name,
-        email,
-        phoneNumber,
+        name: name.trim(),
+        email: email.trim(),
+        phoneNumber: phoneNumber.trim(),
         profilePicture,
       }),
     );
@@ -71,7 +76,7 @@ export default function EditProfile({ onClose }: EditProfileProps) {
 
   return (
     <main className="fixed inset-0 z-100 flex items-center justify-center bg-black/50 p-4">
-      <div className="relative flex max-h[90dvh] w-full max-w-125 flex-col gap-8 overflow-y-auto bg-white p-6">
+      <div className="relative flex max-h-[90dvh] w-full max-w-125 flex-col gap-8 overflow-y-auto bg-white p-6">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold leading-7 text-neutral-950">
             EDIT PROFILE
@@ -86,7 +91,6 @@ export default function EditProfile({ onClose }: EditProfileProps) {
           </Button>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-          {/* Profile Picture */}
           <div className="flex flex-col items-center gap-3">
             <div className="h-28 w-28 overflow-hidden rounded-full">
               {previewUrl ? (
@@ -117,7 +121,6 @@ export default function EditProfile({ onClose }: EditProfileProps) {
               className="hidden"
             />
           </div>
-          {/* Name */}
           <div className="flex flex-col gap-1.5">
             <label htmlFor="name" className="text-lg text-neutral-900">
               Name
@@ -131,7 +134,6 @@ export default function EditProfile({ onClose }: EditProfileProps) {
               className="h-12 w-full border border-[#e7e7e7] px-4 text-sm text-neutral-700 outline-none placeholder:text-neutral-500 focus:border-neutral-950"
             />
           </div>
-          {/* Email */}
           <div className="flex flex-col gap-1.5">
             <label htmlFor="email" className="text-lg text-neutral-900">
               Email
@@ -144,8 +146,8 @@ export default function EditProfile({ onClose }: EditProfileProps) {
               onChange={(event) => setEmail(event.target.value)}
               className="h-12 w-full border border-[#e7e7e7] px-4 text-sm text-neutral-700 outline-none placeholder:text-neutral-500 focus:border-neutral-950"
             />
+            {error && <p className="text-sm text-red-500">{error}</p>}
           </div>
-          {/* Phone */}
           <div className="flex flex-col gap-1.5">
             <label htmlFor="phoneNumber" className="text-lg text-neutral-900">
               Phone Number
@@ -159,7 +161,6 @@ export default function EditProfile({ onClose }: EditProfileProps) {
               className="h-12 w-full border border-[#e7e7e7] px-4 text-sm text-neutral-700 outline-none placeholder:text-neutral-500 focus:border-neutral-950"
             />
           </div>
-          {/* Actions */}
           <div className="flex gap-3">
             <Button
               type="button"

@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import BannerCard from "../ui/BannerCard";
-import banner1 from "../../assets/men.jpg";
-import sneakers from "../../assets/sneakers.jpg";
-import highTops from "../../assets/high-tops.jpg";
-import performanceShoes from "../../assets/performance-shoes.jpg";
+import banner1 from "../../assets/men.jpg?format=webp";
+import sneakers from "../../assets/sneakers.jpg?format=webp";
+import highTops from "../../assets/high-tops.jpg?format=webp";
+import performanceShoes from "../../assets/performance-shoes.jpg?format=webp";
 
 export default function TrendingTablet() {
   return (
