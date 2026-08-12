@@ -38,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="flex flex-col h-full">
       <div className="relative bg-[#d9d9d9] px-2.5 py-2.5">
-        <img src={product.images[0]} alt={product.name} />
+        <img src={product.images[0]} alt={product.name} loading="lazy" />
         <div className="absolute top-2.5 left-2.5 bg-[#ececec] w-13.25 h-6 p-1 flex justify-center items-center">
           <p>Sale!</p>
         </div>
@@ -70,6 +70,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   src={Image}
                   alt={product.name}
                   className="h-10 p-1.5 object-cover"
+                  loading="lazy"
                 />
               );
             })}

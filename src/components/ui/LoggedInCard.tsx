@@ -24,6 +24,7 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
               src={currentUser.profilePicture}
               alt={currentUser.name}
               className="h-full w-full object-cover"
+              loading="lazy"
             />
           ) : (
             <User size={24} className="m-auto text-neutral-500" />

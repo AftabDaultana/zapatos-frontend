@@ -94,6 +94,7 @@ export default function EditProfile({ onClose }: EditProfileProps) {
                   src={previewUrl}
                   alt={name}
                   className="h-full w-full object-cover"
+                  loading="lazy"
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-neutral-100">

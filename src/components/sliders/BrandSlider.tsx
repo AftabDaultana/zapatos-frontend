@@ -20,6 +20,7 @@ export default function BrandSlider() {
                   src={brand.logo}
                   alt={brand.name}
                   className={brand.logoClassName}
+                  loading="lazy"
                 />
               </div>
             </div>

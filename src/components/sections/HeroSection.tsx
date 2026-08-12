@@ -111,6 +111,7 @@ export default function HeroSection() {
                       src={slide.image}
                       alt={slide.title}
                       className="w-70 md:w-160 xl:w-180 h-auto z-10 relative"
+                      loading="eager"
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -179,6 +180,7 @@ export default function HeroSection() {
                                 src={feature.icon}
                                 alt={feature.text}
                                 className="w-6 h-6"
+                                loading="eager"
                               />
                               <span className="text-sm leading-6 font-semibold whitespace-nowrap">
                                 {feature.text}

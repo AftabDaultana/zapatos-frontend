@@ -48,6 +48,7 @@ export default function BannerCard({
         src={image}
         alt={title ?? buttonText}
         className={`h-full w-full object-cover ${imageClassName}`}
+        loading="lazy"
       />
       <div className={`absolute inset-0 ${overlayClassName}`} />
       <div className={contentContainerClassName}>

@@ -23,6 +23,7 @@ export default function Profile() {
                   src={currentUser.profilePicture}
                   alt={currentUser.name}
                   className="w-14 h-14 rounded-full object-contain"
+                  loading="lazy"
                 />
               </>
             ) : (

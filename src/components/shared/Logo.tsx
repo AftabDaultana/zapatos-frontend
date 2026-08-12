@@ -11,7 +11,7 @@ export default function Logo({ variant = "dark", className = "" }: LogoProps) {
   const logo = variant === "dark" ? darkLogo : lightLogo;
   return (
     <Link to={"/"}>
-      <img src={logo} alt="Zapato" className={className} />
+      <img src={logo} alt="Zapato" className={className} loading="eager" />
     </Link>
   );
 }
