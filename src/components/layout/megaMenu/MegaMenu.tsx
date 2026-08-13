@@ -1,14 +1,15 @@
 import SubCategoryCard from "../../ui/SubCategoryCard";
-import { subCategories } from "../../../data/subCategories";
+import { useAppSelector } from "../../../hooks/reduxHooks";
+import { selectSubCategoriesByCategoryId } from "../../../app/selectors/catalogSelectors";
 
 interface MegaMenuProps {
   categoryId: number;
 }
 
 export default function MegaMenu({ categoryId }: MegaMenuProps) {
-  const menuItems = subCategories.filter((item) => {
-    return item.categoryId === categoryId;
-  });
+  const menuItems = useAppSelector((state) =>
+    selectSubCategoriesByCategoryId(state, categoryId),
+  );
 
   return (
     <section className="flex items-center justify-center px-6 py-8 gap-6">
