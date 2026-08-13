@@ -46,6 +46,12 @@ export const selectCategories = (state: RootState) => {
   return state.catalog.categories;
 };
 
+export const selectCategoryById = (state: RootState, categoryId: number) => {
+  return state.catalog.categories.find(
+    (category) => category.id === categoryId,
+  );
+};
+
 export const selectProducts = (state: RootState) => {
   return state.catalog.products;
 };
