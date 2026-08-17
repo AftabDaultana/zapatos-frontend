@@ -9,6 +9,7 @@ interface BannerCardProps {
 
   buttonText?: string;
   buttonIcon?: React.ReactNode;
+  onButtonClick?: () => void;
 
   cardClassName?: string;
   overlayClassName?: string;
@@ -32,6 +33,7 @@ export default function BannerCard({
   description,
   buttonText = "",
   buttonIcon,
+  onButtonClick,
   cardClassName = "",
   overlayClassName = "",
   contentContainerClassName = "",
@@ -60,7 +62,11 @@ export default function BannerCard({
         </div>
         {buttonInsideContent && buttonText && (
           <div className={buttonContainerClassName}>
-            <Button type="button" className={buttonClassName}>
+            <Button
+              type="button"
+              className={buttonClassName}
+              onClick={onButtonClick}
+            >
               {buttonText}
               {buttonIcon}
             </Button>
@@ -69,7 +75,11 @@ export default function BannerCard({
       </div>
       {!buttonInsideContent && buttonText && (
         <div className={buttonContainerClassName}>
-          <Button type="button" className={buttonClassName}>
+          <Button
+            type="button"
+            className={buttonClassName}
+            onClick={onButtonClick}
+          >
             {buttonText}
             {buttonIcon}
           </Button>

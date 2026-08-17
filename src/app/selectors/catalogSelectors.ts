@@ -196,3 +196,23 @@ export const selectAvailableRatings = (state: RootState) => {
     ),
   ).sort((a, b) => b - a);
 };
+
+export const selectNewArrivals = (state: RootState) => {
+  return state.catalog.products.filter(
+    (product) => product.isNewArrival === true,
+  );
+};
+
+export const selectfeaturedProducts = (state: RootState) => {
+  return state.catalog.products.filter((product) => product.featured === true);
+};
+
+export const selectSustainableProducts = (state: RootState) => {
+  return state.catalog.products.filter(
+    (product) => product.isSustainable === true,
+  );
+};
+
+export const selectHighTops = (state: RootState) => {
+  return state.catalog.products.filter((product) => product.isHighTop === true);
+};

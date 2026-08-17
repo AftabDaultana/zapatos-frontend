@@ -8,6 +8,10 @@ import {
   selectProductsBySubCategoryId,
   selectSubCategoryBySlug,
   selectProductsByFilters,
+  selectNewArrivals,
+  selectfeaturedProducts,
+  selectSustainableProducts,
+  selectHighTops,
 } from "../../app/selectors/catalogSelectors";
 import SubCategoryBanner from "../../components/layout/SubCategoryBanner/SubCategoryBanner";
 import Button from "../../components/ui/Button";
@@ -22,6 +26,11 @@ export default function CategoryProducts() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const { categorySlug, subCategorySlug } = useParams();
+  const isNewArrivals = window.location.pathname === "/new-arrivals";
+  const isFeatured = window.location.pathname === "/featured";
+  const isSustainable = window.location.pathname === "/sustainable";
+  const isHighTops = window.location.pathname === "/high-tops";
+
   const category = useAppSelector((state) =>
     selectCategoryBySlug(state, categorySlug),
   );
@@ -31,7 +40,15 @@ export default function CategoryProducts() {
   );
 
   const products = useAppSelector((state) => {
-    if (subCategory) {
+    if (isNewArrivals) {
+      return selectNewArrivals(state);
+    } else if (isFeatured) {
+      return selectfeaturedProducts(state);
+    } else if (isSustainable) {
+      return selectSustainableProducts(state);
+    } else if (isHighTops) {
+      return selectHighTops(state);
+    } else if (subCategory) {
       return selectProductsBySubCategoryId(state, subCategory.id);
     }
     return selectProductsByCategoryId(state, category?.id);
@@ -61,11 +78,19 @@ export default function CategoryProducts() {
       />
 
       <h1 className="text-3xl font-medium text-neutral-950">
-        {subCategory?.name.toUpperCase() ??
-          category?.name.toUpperCase() ??
-          "CATEGORY"}
+        {isNewArrivals
+          ? "NEW ARRIVALS"
+          : isFeatured
+            ? "FEATURED PRODUCTS"
+            : isSustainable
+              ? "SUSTAINABLE SNEAKERS"
+              : isHighTops
+                ? "HIGH TOPS"
+                : (subCategory?.name.toUpperCase() ??
+                  category?.name.toUpperCase() ??
+                  "CATEGORY")}
       </h1>
-      {category && (
+      {category && !isNewArrivals && !isFeatured && !isHighTops && (
         <SubCategoryBanner
           categoryId={category.id}
           categorySlug={category.slug}

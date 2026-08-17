@@ -9,6 +9,7 @@ export interface HeroSlide {
   title: string;
   description: string;
   buttonText: string;
+  buttonPath: string;
   image: string;
   infoHeading: string;
   features: {
@@ -24,6 +25,7 @@ export const heroSlides: readonly HeroSlide[] = [
     description:
       "Discover the latest drops, limited editions, and classic styles designed for every step of your journey",
     buttonText: "Explore New Arrivals",
+    buttonPath: "/new-arrivals",
     image: heroShoe,
     infoHeading: "Quality you can count on",
     features: [
@@ -51,6 +53,7 @@ export const heroSlides: readonly HeroSlide[] = [
     description:
       "Discover the latest drops, limited editions, and classic styles designed for every step of your journey",
     buttonText: "Explore New Arrivals",
+    buttonPath: "/new-arrivals",
     image: heroShoe,
     infoHeading: "Quality you can count on",
     features: [

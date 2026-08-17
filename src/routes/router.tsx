@@ -39,6 +39,38 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/new-arrivals",
+    element: (
+      <Layout>
+        <CategoryProducts />
+      </Layout>
+    ),
+  },
+  {
+    path: "/featured",
+    element: (
+      <Layout>
+        <CategoryProducts />
+      </Layout>
+    ),
+  },
+  {
+    path: "/sustainable",
+    element: (
+      <Layout>
+        <CategoryProducts />
+      </Layout>
+    ),
+  },
+  {
+    path: "/high-tops",
+    element: (
+      <Layout>
+        <CategoryProducts />
+      </Layout>
+    ),
+  },
+  {
     path: "/checkout",
     element: (
       <Layout>

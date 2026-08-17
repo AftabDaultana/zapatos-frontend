@@ -17,7 +17,7 @@ export default function SubCategoryCard({
 }: SubCategoryCardProps) {
   return (
     <section
-      className={`relative h-100 w-95 bg-center bg-no-repeat ${imageFit === "cover" ? "bg-cover" : " bg-contain"}`}
+      className={`relative aspect-95/100 w-full bg-center bg-no-repeat ${imageFit === "cover" ? "bg-cover" : " bg-contain"}`}
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
       {path ? (

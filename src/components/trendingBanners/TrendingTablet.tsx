@@ -4,8 +4,10 @@ import banner1 from "../../assets/men.jpg?format=webp";
 import sneakers from "../../assets/sneakers.jpg?format=webp";
 import highTops from "../../assets/high-tops.jpg?format=webp";
 import performanceShoes from "../../assets/performance-shoes.jpg?format=webp";
+import { useNavigate } from "react-router-dom";
 
 export default function TrendingTablet() {
+  const navigate = useNavigate();
   return (
     <div className="hidden xl:hidden md:flex flex-col gap-4">
       <div className="relative grid grid-cols-1 gap-4">
@@ -23,6 +25,10 @@ export default function TrendingTablet() {
           buttonClassName="bg-neutral-950 text-neutral-50 w-[141px] h-11 text-lg font-medium gap-1.5"
           buttonText="SEE MORE"
           buttonIcon={<ArrowRight size={16} />}
+          onButtonClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/category/men/casual-sneakers");
+          }}
         />
       </div>
       <div className="flex flex-col gap-4">
@@ -39,6 +45,10 @@ export default function TrendingTablet() {
             buttonClassName="bg-neutral-950 text-neutral-50 w-[141px] h-11 text-lg font-medium gap-1.5"
             buttonText="SEE MORE"
             buttonIcon={<ArrowRight size={16} />}
+            onButtonClick={() => {
+              window.scrollTo(0, 0);
+              navigate("/category/men/athletic-shoes");
+            }}
           />
           <BannerCard
             title="Sustainable Sneakers"
@@ -52,6 +62,10 @@ export default function TrendingTablet() {
             buttonClassName="bg-neutral-950 text-neutral-50 w-[141px] h-11 text-lg font-medium gap-1.5"
             buttonText="SEE MORE"
             buttonIcon={<ArrowRight size={16} />}
+            onButtonClick={() => {
+              window.scrollTo(0, 0);
+              navigate("/sustainable");
+            }}
           />
           <BannerCard
             title="High-Tops for Streetwear Looks"
@@ -65,6 +79,10 @@ export default function TrendingTablet() {
             buttonClassName="bg-neutral-950 text-neutral-50 w-[141px] h-11 text-lg font-medium gap-1.5"
             buttonText="SEE MORE"
             buttonIcon={<ArrowRight size={16} />}
+            onButtonClick={() => {
+              window.scrollTo(0, 0);
+              navigate("/high-tops");
+            }}
           />
         </div>
       </div>

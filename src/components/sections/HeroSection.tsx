@@ -5,9 +5,11 @@ import Button from "../ui/Button";
 import { useState } from "react";
 
 import type { PanInfo } from "motion/react";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
   const slide = heroSlides[currentSlide];
 
   function handleNextSlide() {
@@ -135,7 +137,10 @@ export default function HeroSection() {
                     }}
                     className="absolute left-1/2 top-1/2 -translate-x-1/2  md:translate-y-[500%] translate-y-[300%] flex flex-col items-center"
                   >
-                    <Button className="z-20 gap-6 px-4 py-2 md:py-3 xl:p-4 text-lg leading-7 xl:text-2xl xl:leading-8 font-semibold bg-neutral-950 text-neutral-50 whitespace-nowrap">
+                    <Button
+                      onClick={() => navigate(slide.buttonPath)}
+                      className="z-20 gap-6 px-4 py-2 md:py-3 xl:p-4 text-lg leading-7 xl:text-2xl xl:leading-8 font-semibold bg-neutral-950 text-neutral-50 whitespace-nowrap"
+                    >
                       {slide.buttonText}{" "}
                       <ArrowRight className="w-4 h-4 xl:w-6 xl:h-6" />
                     </Button>

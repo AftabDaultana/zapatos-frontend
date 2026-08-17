@@ -6,6 +6,7 @@ import sports from "../../assets/sports.jpg?format=webp";
 import brands from "../../assets/brands.jpg?format=webp";
 import sandals from "../../assets/sandals.jpg?format=webp";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const cardClasses = {
   cardClassName:
@@ -17,12 +18,14 @@ const cardClasses = {
 };
 
 export default function CategoryGrid() {
+  const navigate = useNavigate();
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 xl:gap-6 justify-center">
       <BannerCard
         image={men}
         buttonText="Men"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
+        onButtonClick={() => navigate("category/men")}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
@@ -32,6 +35,7 @@ export default function CategoryGrid() {
         image={kids}
         buttonText="Kids"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
+        onButtonClick={() => navigate("category/kids")}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
@@ -41,6 +45,7 @@ export default function CategoryGrid() {
         image={women}
         buttonText="Women"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
+        onButtonClick={() => navigate("category/women")}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
@@ -50,6 +55,7 @@ export default function CategoryGrid() {
         image={sports}
         buttonText="Sports"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
+        onButtonClick={() => navigate("category/kids/sports")}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
@@ -59,6 +65,7 @@ export default function CategoryGrid() {
         image={brands}
         buttonText="Brands"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
+        onButtonClick={() => navigate("category/brands")}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}
@@ -68,6 +75,7 @@ export default function CategoryGrid() {
         image={sandals}
         buttonText="Sandals"
         buttonIcon={<ArrowRight className="w-4 h-4" />}
+        onButtonClick={() => navigate("category/sandals")}
         cardClassName={cardClasses.cardClassName}
         overlayClassName={cardClasses.overlayClassName}
         buttonContainerClassName={cardClasses.buttonContainerClassName}

@@ -15,7 +15,13 @@ export interface Product {
   price: number;
   discountedPrice: number;
 
-  featured: boolean;
+  featured?: boolean;
+
+  isNewArrival?: boolean;
+
+  isSustainable?: boolean;
+
+  isHighTop?: boolean;
 
   specifications: {
     type: string;
@@ -42,6 +48,9 @@ export const products: Product[] = [
     price: 18999,
     discountedPrice: 15999,
     featured: true,
+    isNewArrival: true,
+    isSustainable: true,
+    isHighTop: true,
     specifications: {
       type: "Athletic Shoes",
       gender: "Unisex",
@@ -75,6 +84,7 @@ export const products: Product[] = [
     ratingCount: 512,
     price: 24999,
     featured: true,
+    isNewArrival: true,
     discountedPrice: 21999,
     specifications: {
       type: "Athletic Shoes",
@@ -99,6 +109,7 @@ export const products: Product[] = [
     price: 14999,
     discountedPrice: 12999,
     featured: false,
+    isHighTop: true,
     specifications: {
       type: "Casual Sneakers",
       gender: "Unisex",
@@ -122,6 +133,9 @@ export const products: Product[] = [
     price: 9999,
     discountedPrice: 8499,
     featured: true,
+    isNewArrival: true,
+    isSustainable: true,
+    isHighTop: true,
     specifications: {
       type: "Athletic Shoes",
       gender: "Kids",
@@ -145,6 +159,8 @@ export const products: Product[] = [
     price: 16999,
     discountedPrice: 14499,
     featured: false,
+    isSustainable: true,
+    isHighTop: true,
     specifications: {
       type: "Retro",
       gender: "Unisex",
@@ -168,6 +184,9 @@ export const products: Product[] = [
     price: 22999,
     discountedPrice: 19999,
     featured: false,
+    isNewArrival: true,
+    isSustainable: true,
+    isHighTop: true,
     specifications: {
       type: "Casual Sneakers",
       gender: "Unisex",
@@ -191,6 +210,7 @@ export const products: Product[] = [
     price: 19999,
     discountedPrice: 17999,
     featured: true,
+    isNewArrival: true,
     specifications: {
       type: "Retro",
       gender: "Unisex",
@@ -214,6 +234,8 @@ export const products: Product[] = [
     price: 13999,
     discountedPrice: 11999,
     featured: false,
+    isSustainable: true,
+    isHighTop: true,
     specifications: {
       type: "Retro",
       gender: "Unisex",
@@ -236,6 +258,7 @@ export const products: Product[] = [
     price: 11999,
     discountedPrice: 9999,
     featured: true,
+    isNewArrival: true,
     specifications: {
       type: "Casual Sneakers",
       gender: "Unisex",
@@ -259,6 +282,8 @@ export const products: Product[] = [
     price: 13999,
     discountedPrice: 12499,
     featured: true,
+    isNewArrival: true,
+    isSustainable: true,
     specifications: {
       type: "Casual Sneakers",
       gender: "Unisex",
@@ -285,6 +310,7 @@ export const products: Product[] = [
     price: 21999,
     discountedPrice: 18999,
     featured: false,
+    isSustainable: true,
     specifications: {
       type: "Lifestyle Shoes",
       gender: "Unisex",
@@ -313,6 +339,9 @@ export const products: Product[] = [
     price: 17999,
     discountedPrice: 15499,
     featured: true,
+    isNewArrival: true,
+    isSustainable: true,
+    isHighTop: true,
     specifications: {
       type: "Casual Shoes",
       gender: "Unisex",
@@ -350,6 +379,8 @@ export const products: Product[] = [
     price: 23999,
     discountedPrice: 20999,
     featured: false,
+    isNewArrival: true,
+    isHighTop: true,
     specifications: {
       type: "Running Shoes",
       gender: "Unisex",
@@ -378,6 +409,8 @@ export const products: Product[] = [
     price: 29999,
     discountedPrice: 26999,
     featured: true,
+    isNewArrival: true,
+    isHighTop: true,
     specifications: {
       type: "Basketball Shoes",
       gender: "Unisex",
@@ -405,6 +438,7 @@ export const products: Product[] = [
     price: 8999,
     discountedPrice: 7499,
     featured: true,
+    isNewArrival: true,
     specifications: {
       type: "Clogs",
       gender: "Unisex",
@@ -433,6 +467,8 @@ export const products: Product[] = [
     price: 19999,
     discountedPrice: 17499,
     featured: true,
+    isNewArrival: true,
+    isHighTop: true,
     specifications: {
       type: "Running Shoes",
       gender: "Unisex",
@@ -483,6 +519,8 @@ export const products: Product[] = [
     price: 16999,
     discountedPrice: 14999,
     featured: true,
+    isNewArrival: true,
+    isHighTop: true,
     specifications: {
       type: "Lifestyle Sneakers",
       gender: "Unisex",
@@ -509,6 +547,8 @@ export const products: Product[] = [
     price: 12999,
     discountedPrice: 10999,
     featured: true,
+    isNewArrival: true,
+    isHighTop: true,
     specifications: {
       type: "Walking Shoes",
       gender: "Unisex",
@@ -531,6 +571,7 @@ export const products: Product[] = [
     price: 18999,
     discountedPrice: 16499,
     featured: false,
+    isNewArrival: true,
     specifications: {
       type: "Casual Shoes",
       gender: "Men",

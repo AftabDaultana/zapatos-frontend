@@ -1,6 +1,7 @@
 import useEmblaSlider from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { brands } from "../../data/brands";
+import { useNavigate } from "react-router-dom";
 
 export default function BrandSlider() {
   const [emblaRef] = useEmblaSlider(
@@ -16,6 +17,7 @@ export default function BrandSlider() {
       }),
     ],
   );
+  const navigate = useNavigate();
   return (
     <div className="overflow-hidden" ref={emblaRef}>
       <div className="flex items-center">
@@ -29,6 +31,10 @@ export default function BrandSlider() {
                 <img
                   src={brand.logo}
                   alt={brand.name}
+                  onClick={() => {
+                    (window.scrollTo(0, 0),
+                      navigate(`/category/brands/${brand.name}`));
+                  }}
                   className={brand.logoClassName}
                   loading="lazy"
                 />
