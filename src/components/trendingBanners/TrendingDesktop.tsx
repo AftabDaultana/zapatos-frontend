@@ -44,9 +44,9 @@ export default function TrendingDesktop() {
             buttonIcon={<ArrowRight size={16} />}
           />
           <BannerCard
-            title="Performance Running Shoes"
+            title="Sustainable Sneakers"
             titleClassName="text-2xl text-neutral-100 leading-8 font-bold"
-            description="Built for speed and support."
+            description="Eco-friendly and stylish."
             descriptionClassName="w-full text-lg text-neutral-100 leading-7"
             contentContainerClassName="absolute top-12 left-12 w-42.5 flex flex-col gap-11 items-center"
             textContainerClassName="flex flex-col"
@@ -59,9 +59,9 @@ export default function TrendingDesktop() {
             buttonIcon={<ArrowRight size={16} />}
           />
           <BannerCard
-            title="Performance Running Shoes"
+            title="High-Tops for Streetwear Looks"
             titleClassName="text-2xl text-neutral-100 leading-8 font-bold"
-            description="Built for speed and support."
+            description="Fashionable with extra ankle support."
             descriptionClassName="w-full text-lg text-neutral-100 leading-7"
             contentContainerClassName="absolute top-12 left-12 w-42.5 flex flex-col gap-11 items-center"
             textContainerClassName="flex flex-col"

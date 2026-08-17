@@ -41,7 +41,7 @@ export default function TrendingTablet() {
             buttonIcon={<ArrowRight size={16} />}
           />
           <BannerCard
-            title="Performance Running Shoes"
+            title="Sustainable Sneakers"
             titleClassName="text-2xl text-neutral-100 leading-8 font-bold"
             contentContainerClassName="absolute top-12 left-12 w-42.5 flex flex-col gap-11 items-center"
             textContainerClassName="flex flex-col"
@@ -54,7 +54,7 @@ export default function TrendingTablet() {
             buttonIcon={<ArrowRight size={16} />}
           />
           <BannerCard
-            title="Performance Running Shoes"
+            title="High-Tops for Streetwear Looks"
             titleClassName="text-2xl text-neutral-100 leading-8 font-bold"
             contentContainerClassName="absolute top-12 left-12 w-42.5 flex flex-col gap-11 items-center"
             textContainerClassName="flex flex-col"
