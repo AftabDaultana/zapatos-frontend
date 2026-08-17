@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import CategoryProducts from "../pages/CategoryProducts/CategoryProducts";
 import Profile from "../pages/Profile/Profile";
 import Layout from "../components/layout/Layout";
+import Checkout from "../pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <CategoryProducts />
+      </Layout>
+    ),
+  },
+  {
+    path: "/checkout",
+    element: (
+      <Layout>
+        <Checkout />
       </Layout>
     ),
   },

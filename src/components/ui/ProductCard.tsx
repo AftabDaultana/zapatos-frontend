@@ -1,6 +1,8 @@
 import { ArrowRight, Heart, Star } from "lucide-react";
 import type { Product } from "../../data/products";
 import Button from "./Button";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { addToCart } from "../../app/slices/cartSlice";
 
 interface ProductCardProps {
   product: Product;
@@ -35,6 +37,7 @@ export function RenderStars(rating: number) {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const dispatch = useAppDispatch();
   return (
     <div className="flex flex-col h-full">
       <div className="relative bg-[#d9d9d9] px-2.5 py-2.5">
@@ -94,6 +97,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="xl:px-4 xl:py-3">
         <Button
           type="button"
+          onClick={() => dispatch(addToCart(product.id))}
           className="w-full border border-neutral-950 px-4 py-2 gap-1.5"
         >
           ADD TO CART <ArrowRight size={16} />

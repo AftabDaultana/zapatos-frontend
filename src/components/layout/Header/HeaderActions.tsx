@@ -4,6 +4,9 @@ import { Phone, Mail, Info, Heart, ShoppingCart } from "lucide-react";
 import ActionItem from "./ActionItem";
 import UserMenu from "../../ui/UserMenu";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../hooks/reduxHooks";
+import { selectCartItemCount } from "../../../app/selectors/cartSelectors";
+import CartModal from "../cartModal/cartModal";
 
 interface HeaderAction {
   icon: ReactNode;
@@ -39,7 +42,9 @@ function Divider() {
 
 export default function HeaderActions() {
   const [infoOpen, setInfoOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const infoRef = useRef<HTMLDivElement>(null);
+  const cartItemCount = useAppSelector(selectCartItemCount);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -61,14 +66,31 @@ export default function HeaderActions() {
           key={index}
           className={`flex items-center gap-3 ${index === 2 ? "relative" : ""}`}
         >
-          <ActionItem
-            icon={action.icon}
-            text={action.text}
-            dropDown={action.dropDown}
-            onClick={
-              index === 2 ? () => setInfoOpen((prev) => !prev) : undefined
-            }
-          />
+          {index === desktopActions.length - 1 ? (
+            <div className="relative">
+              <ActionItem
+                icon={action.icon}
+                text={action.text}
+                dropDown={action.dropDown}
+                onClick={() => setCartOpen((prev) => !prev)}
+              />
+
+              {cartItemCount > 0 && (
+                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-neutral-950 text-xs text-neutral-50">
+                  {cartItemCount}
+                </span>
+              )}
+            </div>
+          ) : (
+            <ActionItem
+              icon={action.icon}
+              text={action.text}
+              dropDown={action.dropDown}
+              onClick={
+                index === 2 ? () => setInfoOpen((prev) => !prev) : undefined
+              }
+            />
+          )}
 
           {index === 2 && infoOpen && (
             <div className="absolute left-auto right-0 top-full z-50 mt-2 w-64 bg-[#e7e7e7] shadow-lg p-6">
@@ -121,6 +143,7 @@ export default function HeaderActions() {
           {index !== desktopActions.length - 1 && index !== 2 && <Divider />}
         </div>
       ))}
+      {cartOpen && <CartModal onClose={() => setCartOpen(false)} />}
     </div>
   );
 }
