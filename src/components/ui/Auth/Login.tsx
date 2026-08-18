@@ -33,6 +33,7 @@ export default function Login({ onClose, onRegister }: LoginProps) {
 
     if (user) {
       dispatch(setUser(user));
+      onClose();
     } else {
       setError("Invalid Email or Password");
     }

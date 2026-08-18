@@ -72,6 +72,14 @@ export default function Profile() {
             >
               Edit Profile
             </Button>
+            <Link to={"/orders"} onClick={() => window.scrollTo(0, 0)}>
+              <Button
+                type="button"
+                className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
+              >
+                My Orders
+              </Button>
+            </Link>
             <Link to={"/"}>
               <Button
                 type="button"

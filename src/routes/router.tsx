@@ -5,6 +5,8 @@ import Profile from "../pages/Profile/Profile";
 import Layout from "../components/layout/Layout";
 import Checkout from "../pages/Checkout/Checkout";
 import OrderDetails from "../pages/Order/OrderDetails";
+import Orders from "../pages/Order/Orders";
+import ProtectedRoutes from "../components/auth/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -83,7 +85,19 @@ const router = createBrowserRouter([
     path: "/order/:orderId",
     element: (
       <Layout>
-        <OrderDetails />
+        <ProtectedRoutes>
+          <OrderDetails />
+        </ProtectedRoutes>
+      </Layout>
+    ),
+  },
+  {
+    path: "/orders",
+    element: (
+      <Layout>
+        <ProtectedRoutes>
+          <Orders />
+        </ProtectedRoutes>
       </Layout>
     ),
   },

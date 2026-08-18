@@ -9,5 +9,10 @@ export const selectOrderById = (state: RootState, orderId: string) => {
 };
 
 export const selectOrdersByUserId = (state: RootState, userId: number) => {
-  return state.order.orders.filter((order) => order.userId === userId);
+  return state.order.orders
+    .filter((order) => order.userId === userId)
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    );
 };

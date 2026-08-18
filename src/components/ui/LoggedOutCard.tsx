@@ -1,12 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import Button from "./Button";
 import { useState } from "react";
-import Login from "./Auth/Login";
-import Register from "./Auth/Register";
+import AuthModal from "./Auth/AuthModal";
 
 export default function LoggedOutCard() {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
 
   return (
     <div className="flex flex-col gap-5 p-4 items-center">
@@ -17,7 +15,7 @@ export default function LoggedOutCard() {
 
         <Button
           type="button"
-          onClick={() => setShowLogin(true)}
+          onClick={() => setShowAuth(true)}
           className="bg-neutral-950 text-neutral-50 w-30 h-10"
         >
           Login
@@ -31,7 +29,7 @@ export default function LoggedOutCard() {
 
         <Button
           type="button"
-          onClick={() => setShowRegister(true)}
+          onClick={() => setShowAuth(true)}
           className="text-neutral-950"
         >
           Register
@@ -39,25 +37,7 @@ export default function LoggedOutCard() {
         </Button>
       </div>
 
-      {showLogin && (
-        <Login
-          onClose={() => setShowLogin(false)}
-          onRegister={() => {
-            setShowLogin(false);
-            setShowRegister(true);
-          }}
-        />
-      )}
-
-      {showRegister && (
-        <Register
-          onClose={() => setShowRegister(false)}
-          onLogin={() => {
-            setShowRegister(false);
-            setShowLogin(true);
-          }}
-        />
-      )}
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </div>
   );
 }
