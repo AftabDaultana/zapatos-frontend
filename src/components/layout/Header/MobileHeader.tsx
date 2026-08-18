@@ -16,7 +16,7 @@ export default function MobileHeader() {
   const [cartOpen, setCartOpen] = useState(false);
   const cartItemCount = useAppSelector(selectCartItemCount);
   return (
-    <header>
+    <header className="border-b border-neutral-700">
       <div className="flex w-full h-12 items-center justify-between px-4 bg-neutral-900">
         <MenuToggle />
         <HeaderLogo variant="light" className="w-24.75 h-9.5" />

@@ -18,7 +18,7 @@ export default function TabletHeader() {
   const [cartOpen, setCartOpen] = useState(false);
   const cartItemCount = useAppSelector(selectCartItemCount);
   return (
-    <header>
+    <header className="border-b border-neutral-700">
       <div className="flex w-full h-14 items-center justify-between bg-neutral-900 px-6">
         <MenuToggle />
         <HeaderLogo variant="light" className="w-36.25 h-14" />

@@ -11,7 +11,7 @@ export default function DesktopHeader() {
   } | null>(null);
 
   return (
-    <header className="relative">
+    <header className="relative border-b border-neutral-700">
       <AnnouncementBar variant="desktop" />
       <HeaderMain />
       <div
