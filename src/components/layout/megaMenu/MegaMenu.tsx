@@ -30,6 +30,7 @@ export default function MegaMenu({ categoryId }: MegaMenuProps) {
           title={item.name}
           imageUrl={item.image}
           imageFit={item.categoryId === 4 ? "contain" : "cover"}
+          variant={item.categoryId === 4 ? "brand" : "default"}
           path={`/category/${category.slug}/${item.slug}`}
         />
       ))}

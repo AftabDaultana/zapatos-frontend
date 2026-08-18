@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface NavItem {
   id: number;
@@ -24,18 +25,20 @@ function NavigationMenu({ activeMenu, setActiveMenu }: navigationMenuProps) {
       <ul className="flex w-full items-center justify-center gap-6">
         {navItems.map((navItem) => {
           return (
-            <li
-              key={navItem.id}
-              onMouseEnter={() => setActiveMenu(navItem)}
-              className={`flex items-center gap-1.5 py-4 text-lg leading-7 font-semibold cursor-pointer ${
-                activeMenu?.id === navItem.id
-                  ? "text-neutral-300"
-                  : "text-neutral-900"
-              }`}
-            >
-              {navItem.name}
-              <ChevronDown size={16} />
-            </li>
+            <Link to={`/category/${navItem.name.toLowerCase()}`}>
+              <li
+                key={navItem.id}
+                onMouseEnter={() => setActiveMenu(navItem)}
+                className={`flex items-center gap-1.5 py-4 text-lg leading-7 font-semibold cursor-pointer ${
+                  activeMenu?.id === navItem.id
+                    ? "text-neutral-300"
+                    : "text-neutral-900"
+                }`}
+              >
+                {navItem.name}
+                <ChevronDown size={16} />
+              </li>
+            </Link>
           );
         })}
       </ul>

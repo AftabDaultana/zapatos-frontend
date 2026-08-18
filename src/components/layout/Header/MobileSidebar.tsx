@@ -3,6 +3,7 @@ import { categories } from "../../../data/categories";
 import { subCategories } from "../../../data/subCategories";
 import { useState } from "react";
 import UserMenu from "../../ui/UserMenu";
+import { Link } from "react-router-dom";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -46,16 +47,19 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                 );
                 return (
                   <li key={category.id}>
-                    <button
-                      className="flex gap-2 items-center cursor-pointer"
-                      onClick={() => toggleCategory(category.id)}
-                    >
-                      {category.name}
+                    <button className="flex gap-2 items-center cursor-pointer">
+                      <Link
+                        to={`/category/${category.name.toLowerCase()}`}
+                        onClick={onClose}
+                      >
+                        {category.name}
+                      </Link>
                       <ChevronDown
                         className={`transition-transform duration-200 ${
                           expandedCategory === category.id ? "rotate-180" : ""
                         }`}
                         size={18}
+                        onClick={() => toggleCategory(category.id)}
                       />
                     </button>
                     {expandedCategory === category.id &&
@@ -63,11 +67,15 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                         <ul className="flex flex-col gap-2 p-2">
                           {categoryItems.map((subCategory) => {
                             return (
-                              <li key={subCategory.id}>
-                                <button className="cursor-pointer">
-                                  {subCategory.name}
-                                </button>
-                              </li>
+                              <Link
+                                to={`/category/${category.name.toLowerCase()}/${subCategory.name.toLowerCase()}`}
+                              >
+                                <li key={subCategory.id}>
+                                  <button className="cursor-pointer">
+                                    {subCategory.name}
+                                  </button>
+                                </li>
+                              </Link>
                             );
                           })}
                         </ul>

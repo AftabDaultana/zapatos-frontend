@@ -59,6 +59,7 @@ export default function SubCategoryBanner({
             imageUrl={subCategory.image}
             imageFit={subCategory.categoryId === 4 ? "contain" : "cover"}
             isActive={subCategory.id === activeSubCategoryId}
+            variant={subCategory.categoryId === 4 ? "brand" : "default"}
             path={`/category/${categorySlug}/${subCategory.slug}`}
           />
         ))}
