@@ -12,6 +12,11 @@ import {
 } from "lucide-react";
 import Button from "../ui/Button";
 import { addToCart } from "../../app/slices/cartSlice";
+import { selectWishlistProductIds } from "../../app/selectors/wishlistSelectors";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../app/slices/wishlistSlice";
 
 export default function ProductDetailsSection() {
   const [selectedImage, setSelectedimage] = useState(0);
@@ -21,10 +26,12 @@ export default function ProductDetailsSection() {
   const { slug } = useParams();
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectProducts);
+  const wishlistProductIds = useAppSelector(selectWishlistProductIds);
   const product = products.find((product) => product.slug === slug);
   if (!product) {
     return <Navigate to={"/"} replace />;
   }
+  const isWishlisted = wishlistProductIds.includes(product.id);
   useEffect(() => {
     setSelectedColor(product.specifications.color[0] ?? "");
     setSelectedSize(product.specifications.sizeRange[0] ?? "");
@@ -194,9 +201,23 @@ export default function ProductDetailsSection() {
           <div className="mt-8 flex gap-3">
             <Button
               type="button"
-              className="border border-neutral-950 px-1 py-1"
+              onClick={() => {
+                if (isWishlisted) {
+                  dispatch(removeFromWishlist(product.id));
+                } else {
+                  dispatch(addToWishlist(product.id));
+                }
+              }}
+              className={`border border-neutral-950 px-1 py-1 ${
+                isWishlisted
+                  ? "bg-neutral-950 text-neutral-50"
+                  : "text-neutral-950"
+              }`}
+              aria-label={
+                isWishlisted ? "Remove from wishlist" : "Add to wishlist"
+              }
             >
-              <Heart size={24} />
+              <Heart size={24} fill={isWishlisted ? "red" : "none"} />
             </Button>
             <Button
               type="button"
