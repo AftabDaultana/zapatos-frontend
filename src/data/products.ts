@@ -15,6 +15,8 @@ export interface Product {
   price: number;
   discountedPrice: number;
 
+  quantity: number;
+
   featured?: boolean;
 
   isNewArrival?: boolean;
@@ -47,6 +49,7 @@ export const products: Product[] = [
     ratingCount: 328,
     price: 18999,
     discountedPrice: 15999,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     isSustainable: true,
@@ -86,6 +89,7 @@ export const products: Product[] = [
     featured: true,
     isNewArrival: true,
     discountedPrice: 21999,
+    quantity: 0,
     specifications: {
       type: "Athletic Shoes",
       gender: "Unisex",
@@ -108,6 +112,7 @@ export const products: Product[] = [
     ratingCount: 196,
     price: 14999,
     discountedPrice: 12999,
+    quantity: 20,
     featured: false,
     isHighTop: true,
     specifications: {
@@ -132,6 +137,7 @@ export const products: Product[] = [
     ratingCount: 142,
     price: 9999,
     discountedPrice: 8499,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     isSustainable: true,
@@ -158,6 +164,7 @@ export const products: Product[] = [
     ratingCount: 275,
     price: 16999,
     discountedPrice: 14499,
+    quantity: 20,
     featured: false,
     isSustainable: true,
     isHighTop: true,
@@ -183,6 +190,7 @@ export const products: Product[] = [
     ratingCount: 840,
     price: 22999,
     discountedPrice: 19999,
+    quantity: 20,
     featured: false,
     isNewArrival: true,
     isSustainable: true,
@@ -209,6 +217,7 @@ export const products: Product[] = [
     ratingCount: 430,
     price: 19999,
     discountedPrice: 17999,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     specifications: {
@@ -233,6 +242,7 @@ export const products: Product[] = [
     ratingCount: 180,
     price: 13999,
     discountedPrice: 11999,
+    quantity: 20,
     featured: false,
     isSustainable: true,
     isHighTop: true,
@@ -257,6 +267,7 @@ export const products: Product[] = [
     ratingCount: 620,
     price: 11999,
     discountedPrice: 9999,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     specifications: {
@@ -281,6 +292,7 @@ export const products: Product[] = [
     ratingCount: 390,
     price: 13999,
     discountedPrice: 12499,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     isSustainable: true,
@@ -309,6 +321,7 @@ export const products: Product[] = [
     ratingCount: 920,
     price: 21999,
     discountedPrice: 18999,
+    quantity: 20,
     featured: false,
     isSustainable: true,
     specifications: {
@@ -338,6 +351,7 @@ export const products: Product[] = [
     ratingCount: 360,
     price: 17999,
     discountedPrice: 15499,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     isSustainable: true,
@@ -378,6 +392,7 @@ export const products: Product[] = [
     ratingCount: 440,
     price: 23999,
     discountedPrice: 20999,
+    quantity: 20,
     featured: false,
     isNewArrival: true,
     isHighTop: true,
@@ -408,6 +423,7 @@ export const products: Product[] = [
     ratingCount: 760,
     price: 29999,
     discountedPrice: 26999,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     isHighTop: true,
@@ -437,6 +453,7 @@ export const products: Product[] = [
     ratingCount: 520,
     price: 8999,
     discountedPrice: 7499,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     specifications: {
@@ -466,6 +483,7 @@ export const products: Product[] = [
     ratingCount: 310,
     price: 19999,
     discountedPrice: 17499,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     isHighTop: true,
@@ -491,6 +509,7 @@ export const products: Product[] = [
     ratingCount: 680,
     price: 15999,
     discountedPrice: 13999,
+    quantity: 20,
     featured: false,
     specifications: {
       type: "Lifestyle Shoes",
@@ -518,6 +537,7 @@ export const products: Product[] = [
     ratingCount: 250,
     price: 16999,
     discountedPrice: 14999,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     isHighTop: true,
@@ -546,6 +566,7 @@ export const products: Product[] = [
     ratingCount: 340,
     price: 12999,
     discountedPrice: 10999,
+    quantity: 20,
     featured: true,
     isNewArrival: true,
     isHighTop: true,
@@ -570,6 +591,7 @@ export const products: Product[] = [
     ratingCount: 210,
     price: 18999,
     discountedPrice: 16499,
+    quantity: 20,
     featured: false,
     isNewArrival: true,
     specifications: {

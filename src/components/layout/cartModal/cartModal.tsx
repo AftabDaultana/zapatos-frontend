@@ -61,6 +61,8 @@ export default function CartModal({ onClose }: CartModalProps) {
             cartProducts.map((cartItem) => {
               const product = cartItem.product;
               const quantity = cartItem.quantity;
+              const color = cartItem.color;
+              const size = cartItem.size;
               if (!product) return null;
               const cartItemSubtotal = product.discountedPrice * quantity;
               return (
@@ -77,10 +79,22 @@ export default function CartModal({ onClose }: CartModalProps) {
                     <h3 className="font-medium text-neutral-950">
                       {product.name}
                     </h3>
+                    <div className="py-2">
+                      <p className="text-sm text-neutral-500">Color: {color}</p>
+                      <p className="text-sm text-neutral-500">Size: {size}</p>
+                    </div>
                     <div className="flex items-center gap-2">
                       <Button
                         type="button"
-                        onClick={() => dispatch(decreaseQuantity(product.id))}
+                        onClick={() =>
+                          dispatch(
+                            decreaseQuantity({
+                              productId: product.id,
+                              color,
+                              size,
+                            }),
+                          )
+                        }
                         className="flex items-center justify-center w-8 h-8 text-neutral-950 border border-neutral-500"
                       >
                         <Minus size={18} />
@@ -90,7 +104,15 @@ export default function CartModal({ onClose }: CartModalProps) {
                       </span>
                       <Button
                         type="button"
-                        onClick={() => dispatch(increaseQuantity(product.id))}
+                        onClick={() =>
+                          dispatch(
+                            increaseQuantity({
+                              productId: product.id,
+                              color,
+                              size,
+                            }),
+                          )
+                        }
                         className="flex items-center justify-center w-8 h-8 text-neutral-950 border border-neutral-500"
                       >
                         <Plus size={18} />
@@ -101,7 +123,15 @@ export default function CartModal({ onClose }: CartModalProps) {
                     </p>
                     <Button
                       type="button"
-                      onClick={() => dispatch(removeFromCart(product.id))}
+                      onClick={() =>
+                        dispatch(
+                          removeFromCart({
+                            productId: product.id,
+                            color,
+                            size,
+                          }),
+                        )
+                      }
                       className="self-start text-sm font-medium text-neutral-600 hover:text-neutral-950"
                     >
                       REMOVE

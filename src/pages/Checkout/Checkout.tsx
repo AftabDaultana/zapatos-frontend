@@ -9,7 +9,7 @@ import Button from "../../components/ui/Button";
 
 import type { Order } from "../../types/order";
 import { addOrder } from "../../app/slices/orderSlice";
-import { clearCart } from "../../app/slices/cartSlice";
+import { clearCart, removeFromCart } from "../../app/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 interface CheckoutFormData {
@@ -131,9 +131,11 @@ export default function Checkout() {
                 e.preventDefault();
                 if (!formData.billingAddress.country) {
                   alert("Please select a billing country");
+                  return;
                 }
                 if (!formData.shippingAddress.country) {
                   alert("Please select shipping country");
+                  return;
                 }
 
                 if (checkoutItems.length === 0) {
@@ -154,12 +156,14 @@ export default function Checkout() {
 
                   items: checkoutItems
                     .filter((item) => item.product)
-                    .map(({ product, quantity }) => ({
+                    .map(({ product, quantity, color, size }) => ({
                       productId: product!.id,
                       name: product!.name,
                       image: product!.images[0],
                       price: product!.price,
                       quantity,
+                      color,
+                      size,
                     })),
                   status: "pending",
                   subtotal,
@@ -171,6 +175,7 @@ export default function Checkout() {
                 dispatch(clearCart());
                 alert("Order Placed Successfully");
                 navigate("/");
+                window.scrollTo(0, 0);
               }}
               className="border p-6"
             >
@@ -541,11 +546,11 @@ export default function Checkout() {
             </h2>
             <div className="border p-6">
               <div className="space-y-6">
-                {checkoutItems.map(({ product, quantity }) => {
+                {checkoutItems.map(({ product, quantity, size, color }) => {
                   if (!product) return null;
 
                   return (
-                    <div key={product.id} className="flex gap-4">
+                    <div key={product.id} className="flex gap-4 items-center">
                       <img
                         src={product.images[0]}
                         alt={product.name}
@@ -556,7 +561,10 @@ export default function Checkout() {
                         <h3 className="font-medium text-neutral-950">
                           {product.name}
                         </h3>
-
+                        <p className="mt-1 text-sm text-neutral-500">
+                          Color: {color}
+                        </p>
+                        <p className="text-sm text-neutral-500">Size: {size}</p>
                         <p className="mt-1 text-sm text-neutral-500">
                           Quantity: {quantity}
                         </p>
@@ -565,6 +573,21 @@ export default function Checkout() {
                           PKR {product.discountedPrice.toLocaleString()}
                         </p>
                       </div>
+                      <Button
+                        type="button"
+                        onClick={() =>
+                          dispatch(
+                            removeFromCart({
+                              productId: product.id,
+                              color,
+                              size,
+                            }),
+                          )
+                        }
+                        className="text-sm font-medium text-neutral-600 hover:text-neutral-950"
+                      >
+                        REMOVE
+                      </Button>
                     </div>
                   );
                 })}

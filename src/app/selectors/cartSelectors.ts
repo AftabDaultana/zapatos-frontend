@@ -13,6 +13,8 @@ export const selectCartProducts = (state: RootState) => {
     return {
       product,
       quantity: cartItem.quantity,
+      color: cartItem.color,
+      size: cartItem.size,
     };
   });
 };

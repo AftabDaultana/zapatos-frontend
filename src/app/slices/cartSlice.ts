@@ -4,6 +4,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 interface CartItem {
   productId: number;
   quantity: number;
+  color: string;
+  size: string;
 }
 
 interface cartState {
@@ -18,27 +20,47 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<number>) => {
-      const productId = action.payload;
+    addToCart: (
+      state,
+      action: PayloadAction<{ productId: number; color: string; size: string }>,
+    ) => {
+      const { productId, color, size } = action.payload;
       const existingItem = state.items.find(
-        (item) => item.productId === productId,
+        (item) =>
+          item.productId === productId &&
+          item.color === color &&
+          item.size === size,
       );
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.items.push({ productId, quantity: 1 });
+        state.items.push({ productId, quantity: 1, size, color });
       }
     },
-    increaseQuantity: (state, action: PayloadAction<number>) => {
+    increaseQuantity: (
+      state,
+      action: PayloadAction<{ productId: number; color: string; size: string }>,
+    ) => {
+      const { productId, color, size } = action.payload;
       const item = state.items.find(
-        (item) => item.productId === action.payload,
+        (item) =>
+          item.productId === productId &&
+          item.color === color &&
+          item.size === size,
       );
       if (!item) return;
       item.quantity += 1;
     },
-    decreaseQuantity: (state, action: PayloadAction<number>) => {
+    decreaseQuantity: (
+      state,
+      action: PayloadAction<{ productId: number; color: string; size: string }>,
+    ) => {
+      const { productId, color, size } = action.payload;
       const item = state.items.find(
-        (item) => item.productId === action.payload,
+        (item) =>
+          item.productId === productId &&
+          item.color === color &&
+          item.size === size,
       );
       if (!item) return;
 
@@ -46,13 +68,27 @@ const cartSlice = createSlice({
         item.quantity -= 1;
       } else {
         state.items = state.items.filter(
-          (item) => item.productId !== action.payload,
+          (item) =>
+            !(
+              item.productId === productId &&
+              item.color === color &&
+              item.size === size
+            ),
         );
       }
     },
-    removeFromCart: (state, action: PayloadAction<number>) => {
+    removeFromCart: (
+      state,
+      action: PayloadAction<{ productId: number; color: string; size: string }>,
+    ) => {
+      const { productId, color, size } = action.payload;
       state.items = state.items.filter(
-        (item) => item.productId !== action.payload,
+        (item) =>
+          !(
+            item.productId === productId &&
+            item.color === color &&
+            item.size === size
+          ),
       );
     },
     clearCart: (state) => {

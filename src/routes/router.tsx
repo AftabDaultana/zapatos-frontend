@@ -7,6 +7,7 @@ import Checkout from "../pages/Checkout/Checkout";
 import OrderDetails from "../pages/Order/OrderDetails";
 import Orders from "../pages/Order/Orders";
 import ProtectedRoutes from "../components/auth/ProtectedRoutes";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,14 @@ const router = createBrowserRouter([
         <ProtectedRoutes>
           <Orders />
         </ProtectedRoutes>
+      </Layout>
+    ),
+  },
+  {
+    path: "/products/:slug",
+    element: (
+      <Layout>
+        <ProductDetails />
       </Layout>
     ),
   },

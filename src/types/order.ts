@@ -6,6 +6,8 @@ export interface OrderItem {
   image: string;
   price: number;
   quantity: number;
+  color: string;
+  size: string;
 }
 
 export interface Order {
