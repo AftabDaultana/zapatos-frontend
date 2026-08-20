@@ -10,6 +10,8 @@ import ProtectedRoutes from "../components/auth/ProtectedRoutes";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Wishlist from "../pages/Wishlist/Wishlist";
 import Contact from "../pages/Contact/Contact";
+import AdminLayout from "../components/layout/AdminLayout";
+import Dashboard from "../pages/Admin/DashBoard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -127,6 +129,16 @@ const router = createBrowserRouter([
         <Contact />
       </Layout>
     ),
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+    ],
   },
 ]);
 
