@@ -9,6 +9,7 @@ import Button from "../../ui/Button";
 import CartModal from "../cartModal/cartModal";
 import { useAppSelector } from "../../../hooks/reduxHooks";
 import { selectCartItemCount } from "../../../app/selectors/cartSelectors";
+import { Link } from "react-router-dom";
 
 function Divider() {
   return <div className="h-6 w-px bg-neutral-100" />;
@@ -25,7 +26,9 @@ export default function TabletHeader() {
         <Phone size={24} className="text-neutral-100" />
         <Divider />
         <UserMenu />
-        <Heart size={24} className="text-neutral-100" />
+        <Link to={"/wishlist"}>
+          <Heart size={24} className="text-neutral-100" />
+        </Link>
         <Divider />
         <div className="relative">
           <Button type="button" onClick={() => setCartOpen(true)}>

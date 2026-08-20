@@ -8,7 +8,6 @@ import {
   ChevronRight,
   Heart,
   ShoppingCart,
-  Star,
 } from "lucide-react";
 import Button from "../ui/Button";
 import { addToCart } from "../../app/slices/cartSlice";
@@ -17,6 +16,7 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../../app/slices/wishlistSlice";
+import RatingStars from "../ui/RatingStars";
 
 export default function ProductDetailsSection() {
   const [selectedImage, setSelectedimage] = useState(0);
@@ -117,11 +117,7 @@ export default function ProductDetailsSection() {
           </h1>
           <div className="mt-3 flex items-center gap-2">
             <span className="flex gap-px text-sm text-neutral-950">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
+              <RatingStars rating={product.rating} />
             </span>
             <span className="text-sm text-neutral-500">
               {product.ratingCount} reviews

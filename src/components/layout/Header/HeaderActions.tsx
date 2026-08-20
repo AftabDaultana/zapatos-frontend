@@ -55,7 +55,7 @@ export default function HeaderActions() {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
   return (
@@ -81,6 +81,14 @@ export default function HeaderActions() {
                 </span>
               )}
             </div>
+          ) : index === 3 ? (
+            <Link to="/wishlist" aria-label="Wishlist">
+              <ActionItem
+                icon={action.icon}
+                text={action.text}
+                dropDown={action.dropDown}
+              />
+            </Link>
           ) : (
             <ActionItem
               icon={action.icon}

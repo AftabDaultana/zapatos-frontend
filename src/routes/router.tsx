@@ -8,6 +8,7 @@ import OrderDetails from "../pages/Order/OrderDetails";
 import Orders from "../pages/Order/Orders";
 import ProtectedRoutes from "../components/auth/ProtectedRoutes";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
+import Wishlist from "../pages/Wishlist/Wishlist";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <ProductDetails />
+      </Layout>
+    ),
+  },
+  {
+    path: "/wishlist",
+    element: (
+      <Layout>
+        <Wishlist />
       </Layout>
     ),
   },
