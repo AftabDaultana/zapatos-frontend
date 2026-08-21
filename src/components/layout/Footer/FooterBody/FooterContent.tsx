@@ -32,7 +32,7 @@ function FooterContent() {
     <section className="flex flex-col px-4 py-12 gap-12 md:gap-10 md:p-8 lg:flex-row lg:justify-between lg:px-16 lg:py-20">
       <div className="flex flex-col gap-12 md:gap-8 lg:gap-8">
         <div className="flex flex-col gap-6">
-          <Logo variant="dark" className="w-45.75 h-[73.26px]" />
+          <Logo variant="dark" className="w-45.75 h-[73.26px]" link="/" />
           <p>
             Not Just Shoes, but a Statement.
             <br /> Kicks Designed to Keep You One Step Ahead

@@ -22,7 +22,7 @@ export default function TabletHeader() {
     <header className="border-b border-neutral-700">
       <div className="flex w-full h-14 items-center justify-between bg-neutral-900 px-6">
         <MenuToggle />
-        <HeaderLogo variant="light" className="w-36.25 h-14" />
+        <HeaderLogo variant="light" className="w-36.25 h-14" link="/" />
         <Phone size={24} className="text-neutral-100" />
         <Divider />
         <UserMenu />

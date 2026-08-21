@@ -5,12 +5,17 @@ import lightLogo from "../../assets/logo-white.svg";
 interface LogoProps {
   variant?: "dark" | "light";
   className?: string;
+  link: string;
 }
 
-export default function Logo({ variant = "dark", className = "" }: LogoProps) {
+export default function Logo({
+  variant = "dark",
+  className = "",
+  link,
+}: LogoProps) {
   const logo = variant === "dark" ? darkLogo : lightLogo;
   return (
-    <Link to={"/"}>
+    <Link to={link}>
       <img src={logo} alt="Zapato" className={className} loading="eager" />
     </Link>
   );
