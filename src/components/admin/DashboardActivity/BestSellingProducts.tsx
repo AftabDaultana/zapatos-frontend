@@ -18,6 +18,7 @@ export default function BestSellingProducts() {
               cx="50%"
               cy="50%"
               outerRadius={100}
+              paddingAngle={2}
               label={({ value }) => `${value}%`}
             />
             <Tooltip />

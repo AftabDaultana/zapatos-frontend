@@ -1,7 +1,6 @@
 import {
   Bar,
   BarChart,
-  CartesianGrid,
   Legend,
   ResponsiveContainer,
   Tooltip,
@@ -31,16 +30,35 @@ export default function WeeklyActivityChart({
 
       <div className="h-80 rounded-2xl bg-white p-4">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
+          <BarChart data={data} barGap={8} barCategoryGap="20%">
             <XAxis dataKey="day" />
             <YAxis />
             <Tooltip />
             <Legend />
 
-            <Bar dataKey="orders" name="Orders" />
-            <Bar dataKey="delivered" name="Delivered" />
-            <Bar dataKey="cancelled" name="Cancelled" />
+            <Bar
+              dataKey="delivered"
+              name="Delivered"
+              fill="#737373"
+              barSize={12}
+              radius={[6, 6, 0, 0]}
+            />
+
+            <Bar
+              dataKey="orders"
+              name="Orders"
+              fill="#171717"
+              barSize={12}
+              radius={[6, 6, 0, 0]}
+            />
+
+            <Bar
+              dataKey="cancelled"
+              name="Cancelled"
+              fill="#749191"
+              barSize={12}
+              radius={[6, 6, 0, 0]}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>

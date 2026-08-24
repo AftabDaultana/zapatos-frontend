@@ -12,6 +12,7 @@ import OrderStatsCard from "../../../components/admin/OrderStatusCard/OrderStats
 import DashboardActivity from "../../../components/admin/DashboardActivity/DashboardActivity";
 import WeeklyActivityChart from "../../../components/admin/DashboardActivity/WeeklyActivityChart";
 import BestSellingProducts from "../../../components/admin/DashboardActivity/BestSellingProducts";
+import RevenueCharts from "../../../components/admin/RevenueCharts/RevenueCharts";
 
 const salesOverview = [
   {
@@ -135,6 +136,7 @@ export default function Dashboard() {
         <WeeklyActivityChart data={weeklyActivity} />
         <BestSellingProducts />
       </DashboardActivity>
+      <RevenueCharts />
     </main>
   );
 }
