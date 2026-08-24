@@ -13,6 +13,7 @@ import DashboardActivity from "../../../components/admin/DashboardActivity/Dashb
 import WeeklyActivityChart from "../../../components/admin/DashboardActivity/WeeklyActivityChart";
 import BestSellingProducts from "../../../components/admin/DashboardActivity/BestSellingProducts";
 import RevenueCharts from "../../../components/admin/RevenueCharts/RevenueCharts";
+import RecentOrders from "../../../components/admin/RecentOrders/RecentOrders";
 
 const salesOverview = [
   {
@@ -137,6 +138,7 @@ export default function Dashboard() {
         <BestSellingProducts />
       </DashboardActivity>
       <RevenueCharts />
+      <RecentOrders />
     </main>
   );
 }

@@ -31,8 +31,22 @@ const orderSlice = createSlice({
       state.orders.push(action.payload);
       localStorage.setItem("orders", JSON.stringify(state.orders));
     },
+    updateOrderStatus: (
+      state,
+      action: PayloadAction<{
+        orderId: string;
+        status: Order["status"];
+      }>,
+    ) => {
+      const { orderId, status } = action.payload;
+      const order = state.orders.find((order) => order.id === orderId);
+      if (order) {
+        order.status = status;
+        localStorage.setItem("orders", JSON.stringify(state.orders));
+      }
+    },
   },
 });
 
-export const { addOrder } = orderSlice.actions;
+export const { addOrder, updateOrderStatus } = orderSlice.actions;
 export default orderSlice.reducer;

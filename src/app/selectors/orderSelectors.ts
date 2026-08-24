@@ -1,6 +1,6 @@
 import type { RootState } from "../store";
 
-export const selectOrder = (state: RootState) => {
+export const selectOrders = (state: RootState) => {
   return state.order.orders;
 };
 
