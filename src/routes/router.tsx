@@ -12,6 +12,7 @@ import Wishlist from "../pages/Wishlist/Wishlist";
 import Contact from "../pages/Contact/Contact";
 import AdminLayout from "../components/layout/AdminLayout";
 import Dashboard from "../pages/Admin/DashBoard/Dashboard";
+import ListProducts from "../pages/Admin/ListProducts/ListProduct";
 
 const router = createBrowserRouter([
   {
@@ -141,6 +142,10 @@ const router = createBrowserRouter([
       {
         path: "orders/:orderId",
         element: <OrderDetails />,
+      },
+      {
+        path: "products",
+        element: <ListProducts />,
       },
     ],
   },
