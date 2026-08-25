@@ -58,15 +58,25 @@ const statusStyles = {
 export default function RecentOrders() {
   const orders = useAppSelector(selectOrders);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedStatus, setSelectedStatus] = useState<"all" | Order["status"]>(
+    "all",
+  );
   const ordersSectionRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
+  const filteredOrders = useMemo(() => {
+    if (selectedStatus === "all") {
+      return orders;
+    }
+    return orders.filter((order) => order.status === selectedStatus);
+  }, [orders, selectedStatus]);
+
   const sortedOrders = useMemo(() => {
-    return [...orders].sort(
+    return [...filteredOrders].sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
-  }, [orders]);
+  }, [filteredOrders]);
 
   const totalOrders = sortedOrders.length;
   const totalPages = Math.ceil(totalOrders / ORDERS_PER_PAGE);
@@ -100,6 +110,36 @@ export default function RecentOrders() {
     <section ref={ordersSectionRef}>
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-xl font-bold text-neutral-950">Recent Orders</h2>
+        <select
+          value={selectedStatus}
+          onChange={(event) => {
+            setSelectedStatus(event.target.value as "all" | Order["status"]);
+            setCurrentPage(1);
+          }}
+          className="border border-neutral-950 px-2 py-1 text-xs font-medium uppercase outline-none"
+        >
+          <option value="all">All Orders ({orders.length})</option>
+          <option value="pending">
+            Pending (
+            {orders.filter((order) => order.status === "pending").length})
+          </option>
+          <option value="processing">
+            Processing (
+            {orders.filter((order) => order.status === "processing").length})
+          </option>
+          <option value="shipped">
+            Shipped (
+            {orders.filter((order) => order.status === "shipped").length})
+          </option>
+          <option value="delivered">
+            Delivered (
+            {orders.filter((order) => order.status === "delivered").length})
+          </option>
+          <option value="cancelled">
+            Cancelled (
+            {orders.filter((order) => order.status === "cancelled").length})
+          </option>
+        </select>
       </div>
       <div className="rounded-2xl bg-white">
         <div className="overflow-x-auto">

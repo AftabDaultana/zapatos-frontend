@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { orders as dummyOrders } from "../../data/orders";
 import type { Order } from "../../types/order";
 
 interface OrderState {
@@ -8,15 +9,18 @@ interface OrderState {
 const getStoredOrders = (): Order[] => {
   const storedOrders = localStorage.getItem("orders");
 
-  if (!storedOrders) return [];
-
-  try {
-    return JSON.parse(storedOrders);
-  } catch (error) {
-    console.error("Failed to parse orders: ", error);
-    localStorage.removeItem("orders");
-    return [];
+  if (storedOrders) {
+    try {
+      return JSON.parse(storedOrders);
+    } catch (error) {
+      console.error("Failed to parse orders:", error);
+      localStorage.removeItem("orders");
+    }
   }
+
+  localStorage.setItem("orders", JSON.stringify(dummyOrders));
+
+  return dummyOrders;
 };
 
 const initialState: OrderState = {
