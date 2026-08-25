@@ -85,12 +85,16 @@ export default function RecentOrders() {
     }
   }, [currentPage, totalPages]);
 
-  useEffect(() => {
-    ordersSectionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+
+    requestAnimationFrame(() => {
+      ordersSectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
     });
-  }, [currentPage]);
+  };
 
   return (
     <section ref={ordersSectionRef}>
@@ -103,7 +107,7 @@ export default function RecentOrders() {
             <thead>
               <tr className="border-b border-neutral-100 text-left">
                 <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
-                  Invoice No
+                  Order ID
                 </th>
                 <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
                   Order Time
@@ -236,7 +240,7 @@ export default function RecentOrders() {
               <Button
                 type="button"
                 disabled={currentPage === 1}
-                onClick={() => setCurrentPage((page) => page - 1)}
+                onClick={() => handlePageChange(currentPage - 1)}
               >
                 <ChevronLeft size={16} />
               </Button>
@@ -256,7 +260,7 @@ export default function RecentOrders() {
                   <Button
                     key={page}
                     type="button"
-                    onClick={() => setCurrentPage(page)}
+                    onClick={() => handlePageChange(page)}
                     className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                       currentPage === page
                         ? "bg-[#16DBCC] text-white"
@@ -270,7 +274,7 @@ export default function RecentOrders() {
               <Button
                 type="button"
                 disabled={currentPage === totalPages || totalPages === 0}
-                onClick={() => setCurrentPage((page) => page + 1)}
+                onClick={() => handlePageChange(currentPage + 1)}
               >
                 <ChevronRight size={16} />
               </Button>

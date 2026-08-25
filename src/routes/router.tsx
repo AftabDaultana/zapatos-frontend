@@ -138,6 +138,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
       },
+      {
+        path: "orders/:orderId",
+        element: <OrderDetails />,
+      },
     ],
   },
 ]);

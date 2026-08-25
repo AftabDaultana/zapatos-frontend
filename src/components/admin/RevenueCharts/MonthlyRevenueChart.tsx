@@ -7,8 +7,9 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import { monthlyRevenue } from "../../../data/monthlyRevenueData";
 import { useState } from "react";
+import { useAppSelector } from "../../../hooks/reduxHooks";
+import { selectOrders } from "../../../app/selectors/orderSelectors";
 
 interface MonthlyRevenueItem {
   year: number;
@@ -17,12 +18,38 @@ interface MonthlyRevenueItem {
 }
 
 export default function MonthlyRevenueChart() {
-  const [selectedYear, setSelectedYear] = useState(2026);
-  const monthlyData: MonthlyRevenueItem[] = monthlyRevenue.filter(
-    (item) => item.year === selectedYear,
+  const orders = useAppSelector(selectOrders);
+  const availableYears = [
+    ...new Set(orders.map((order) => new Date(order.createdAt).getFullYear())),
+  ].sort((a, b) => b - a);
+  const [selectedYear, setSelectedYear] = useState(
+    availableYears[0] ?? new Date().getFullYear(),
   );
-  const years = [...new Set(monthlyRevenue.map((item) => item.year))].sort(
-    (a, b) => b - a,
+  const monthlyData: MonthlyRevenueItem[] = Array.from(
+    { length: 12 },
+    (_, index) => {
+      const month = new Date(selectedYear, index, 1).toLocaleString("en-US", {
+        month: "short",
+      });
+
+      const revenue = orders
+        .filter((order) => {
+          const date = new Date(order.createdAt);
+
+          return (
+            date.getFullYear() === selectedYear &&
+            date.getMonth() === index &&
+            order.status !== "cancelled"
+          );
+        })
+        .reduce((total, order) => total + order.total, 0);
+
+      return {
+        year: selectedYear,
+        month,
+        revenue,
+      };
+    },
   );
   return (
     <div>
@@ -33,7 +60,7 @@ export default function MonthlyRevenueChart() {
           onChange={(event) => setSelectedYear(Number(event.target.value))}
           className="rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm font-medium text-neutral-700 outline-none transition focus:border-neutral-300 focus:ring-2 focus:ring-[#16DBCC]/20"
         >
-          {years.map((year) => (
+          {availableYears.map((year) => (
             <option key={year} value={year}>
               {year}
             </option>
