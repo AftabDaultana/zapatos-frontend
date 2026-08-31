@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { getStoredUsers, updateUser } from "../../app/slices/userSlice";
 import Button from "../../components/ui/Button";
 import { X, User } from "lucide-react";
+import { uploadToCloudinary } from "../../utils/cloudinary";
 
 interface EditProfileProps {
   onClose: () => void;
@@ -17,8 +18,10 @@ export default function EditProfile({ onClose }: EditProfileProps) {
   const [phoneNumber, setPhoneNumber] = useState(
     currentUser?.phoneNumber ?? "",
   );
-  const [profilePicture, setProfilePicture] = useState(
-    currentUser?.profilePicture ?? "",
+  const [profilePicture] = useState(currentUser?.profilePicture ?? "");
+
+  const [profilePictureFile, setProfilePictureFile] = useState<File | null>(
+    null,
   );
 
   const [previewUrl, setPreviewUrl] = useState(
@@ -32,22 +35,39 @@ export default function EditProfile({ onClose }: EditProfileProps) {
 
     if (!file) return;
 
-    const reader = new FileReader();
+    if (!file.type.startsWith("image/")) {
+      setError("Please select a valid image file.");
+      event.target.value = "";
+      return;
+    }
 
-    reader.onload = () => {
-      const result = reader.result;
+    if (file.size > 5 * 1024 * 1024) {
+      setError("Profile picture must be smaller than 5 MB.");
+      event.target.value = "";
+      return;
+    }
 
-      if (typeof result !== "string") return;
+    setError("");
+    setProfilePictureFile(file);
+    setPreviewUrl(URL.createObjectURL(file));
 
-      setProfilePicture(result);
-      setPreviewUrl(result);
-    };
-    reader.readAsDataURL(file);
+    event.target.value = "";
   };
 
-  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
+
+    let profilePictureUrl = profilePicture;
+
+    if (profilePictureFile) {
+      try {
+        profilePictureUrl = await uploadToCloudinary(profilePictureFile);
+      } catch {
+        setError("Unable to upload profile picture");
+        return;
+      }
+    }
 
     const storedUsers = getStoredUsers();
 
@@ -68,9 +88,10 @@ export default function EditProfile({ onClose }: EditProfileProps) {
         name: name.trim(),
         email: email.trim(),
         phoneNumber: phoneNumber.trim(),
-        profilePicture,
+        profilePicture: profilePictureUrl,
       }),
     );
+    setProfilePictureFile(null);
     onClose();
   };
 

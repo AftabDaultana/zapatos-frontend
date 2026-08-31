@@ -37,8 +37,18 @@ const catalogSlice = createSlice({
       state.products.push(action.payload);
       localStorage.setItem("products", JSON.stringify(state.products));
     },
+    editProduct: (state, action: PayloadAction<Product>) => {
+      const index = state.products.findIndex(
+        (product) => product.id === action.payload.id,
+      );
+
+      if (index !== -1) {
+        state.products[index] = action.payload;
+        localStorage.setItem("products", JSON.stringify(state.products));
+      }
+    },
   },
 });
 
-export const { deleteProduct, addProduct } = catalogSlice.actions;
+export const { deleteProduct, addProduct, editProduct } = catalogSlice.actions;
 export default catalogSlice.reducer;

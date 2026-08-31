@@ -8,7 +8,7 @@ import {
   LogOut,
   ChevronDown,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Button from "../../ui/Button";
 import Logo from "../../shared/Logo";
 
@@ -78,6 +78,7 @@ function NavigationList({
   level?: number;
 }) {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
+  const location = useLocation();
   const toggleItem = (label: string) => {
     setOpenItems((prev) => ({
       ...prev,
@@ -92,26 +93,41 @@ function NavigationList({
         return (
           <div key={item.label}>
             {item.children ? (
-              <Button
-                type="button"
-                onClick={() => toggleItem(item.label)}
-                className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-neutral-400 transition hover:bg-neutral-900 hover:text-white"
-                style={{ paddingLeft: `${12 + level * 16}px` }}
+              <div
+                className={`flex items-center rounded-md transition ${
+                  location.pathname === item.path
+                    ? "bg-neutral-800 text-white"
+                    : "text-neutral-400 hover:bg-neutral-900 hover:text-white"
+                }`}
               >
-                {Icon && <Icon size={18} />}
+                <NavLink
+                  to={item.path!}
+                  end
+                  className="flex flex-1 items-center gap-3 px-3 py-2"
+                  style={{ paddingLeft: `${12 + level * 16}px` }}
+                >
+                  {Icon && <Icon size={18} />}
+                  <span>{item.label}</span>
+                </NavLink>
 
-                <span>{item.label}</span>
-
-                <ChevronDown
-                  size={16}
-                  className={`ml-auto transition-transform ${
-                    openItems[item.label] ? "rotate-180" : ""
-                  }`}
-                />
-              </Button>
+                <Button
+                  type="button"
+                  onClick={() => toggleItem(item.label)}
+                  className="rounded-md p-2 text-neutral-400 transition hover:bg-neutral-700 hover:text-white"
+                  aria-label={`Toggle ${item.label} submenu`}
+                >
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform ${
+                      openItems[item.label] ? "rotate-180" : ""
+                    }`}
+                  />
+                </Button>
+              </div>
             ) : item.path ? (
               <NavLink
                 to={item.path}
+                end
                 className={({ isActive }) =>
                   `flex items-center gap-3 rounded-md px-3 py-2 transition ${
                     isActive

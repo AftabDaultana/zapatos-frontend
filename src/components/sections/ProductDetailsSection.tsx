@@ -7,6 +7,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Heart,
+  Pencil,
   ShoppingCart,
 } from "lucide-react";
 import Button from "../ui/Button";
@@ -28,6 +29,9 @@ export default function ProductDetailsSection() {
   const products = useAppSelector(selectProducts);
   const wishlistProductIds = useAppSelector(selectWishlistProductIds);
   const product = products.find((product) => product.slug === slug);
+
+  const isAdmin = window.location.pathname.startsWith("/admin/");
+
   if (!product) {
     return <Navigate to={"/"} replace />;
   }
@@ -194,36 +198,48 @@ export default function ProductDetailsSection() {
               ))}
             </ul>
           </div>
-          <div className="mt-8 flex gap-3">
-            <Button
-              type="button"
-              onClick={() => {
-                if (isWishlisted) {
-                  dispatch(removeFromWishlist(product.id));
-                } else {
-                  dispatch(addToWishlist(product.id));
+          {!isAdmin && (
+            <div className="mt-8 flex gap-3">
+              <Button
+                type="button"
+                onClick={() => {
+                  if (isWishlisted) {
+                    dispatch(removeFromWishlist(product.id));
+                  } else {
+                    dispatch(addToWishlist(product.id));
+                  }
+                }}
+                className={`border border-neutral-950 px-1 py-1 ${
+                  isWishlisted
+                    ? "bg-neutral-950 text-neutral-50"
+                    : "text-neutral-950"
+                }`}
+                aria-label={
+                  isWishlisted ? "Remove from wishlist" : "Add to wishlist"
                 }
-              }}
-              className={`border border-neutral-950 px-1 py-1 ${
-                isWishlisted
-                  ? "bg-neutral-950 text-neutral-50"
-                  : "text-neutral-950"
-              }`}
-              aria-label={
-                isWishlisted ? "Remove from wishlist" : "Add to wishlist"
-              }
-            >
-              <Heart size={24} fill={isWishlisted ? "red" : "none"} />
-            </Button>
-            <Button
-              type="button"
-              disabled={product.quantity === 0}
-              onClick={() => handleAddToCart()}
-              className="border border-neutral-950 px-1 py-1 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {isAdded ? <Check size={24} /> : <ShoppingCart size={24} />}
-            </Button>
-          </div>
+              >
+                <Heart size={24} fill={isWishlisted ? "red" : "none"} />
+              </Button>
+              <Button
+                type="button"
+                disabled={product.quantity === 0}
+                onClick={() => handleAddToCart()}
+                className="border border-neutral-950 px-1 py-1 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {isAdded ? <Check size={24} /> : <ShoppingCart size={24} />}
+              </Button>
+            </div>
+          )}
+          {isAdmin && (
+            <div className="mt-8">
+              <Button
+                type="button"
+                className="flex items-center gap-2 bg-neutral-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-800"
+              >
+                <Pencil size={16} /> Edit Product
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

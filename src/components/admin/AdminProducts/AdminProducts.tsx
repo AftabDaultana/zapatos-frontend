@@ -2,6 +2,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Funnel,
+  Pencil,
+  Plus,
   Search,
   Trash2,
 } from "lucide-react";
@@ -18,7 +20,8 @@ import {
   selectSubCategories,
 } from "../../../app/selectors/catalogSelectors";
 import { deleteProduct } from "../../../app/slices/catalogSlice";
-import AddProductModal from "./AddProductModal";
+import ProductFormModal from "./ProductFormModal";
+import type { Product } from "../../../data/products";
 
 type PaginationPage = number | "...";
 
@@ -75,9 +78,12 @@ export default function AdminProducts() {
   const [selectedStock, setSelectedStock] = useState("all");
   const [selectedRating, setSelectedRating] = useState("all");
   const [selectedPriceRange, setSelectedPriceRange] = useState("all");
+  const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
+    undefined,
+  );
 
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
+  const [isProductsFormModalOpen, setIsProductsFormModalOpen] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -259,10 +265,13 @@ export default function AdminProducts() {
 
         <Button
           type="button"
-          onClick={() => setIsAddProductModalOpen(true)}
-          className="rounded-lg bg-neutral-950 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-800"
+          onClick={() => {
+            setSelectedProduct(undefined);
+            setIsProductsFormModalOpen(true);
+          }}
+          className="rounded-lg bg-neutral-950 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-800 flex gap-2"
         >
-          + Add new product
+          <Plus size={16} /> Add new product
         </Button>
       </section>
 
@@ -329,7 +338,7 @@ export default function AdminProducts() {
                     </td>
 
                     <td className="px-6 py-4">
-                      <Link to={`/admin/products/${product.id}`}>
+                      <Link to={`/admin/products/${product.slug}`}>
                         <div className="flex items-center gap-3">
                           <img
                             src={product.images[0]}
@@ -379,14 +388,26 @@ export default function AdminProducts() {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-5 text-neutral-500">
                         <Link
-                          to={`/admin/products/${product.id}`}
+                          to={`/admin/products/${product.slug}`}
                           aria-label={`View ${product.name}`}
                           className="transition hover:text-neutral-950"
                         >
                           <Search size={20} />
                         </Link>
 
-                        <button
+                        <Button
+                          type="button"
+                          aria-label={`Edit ${product.name}`}
+                          onClick={() => {
+                            setSelectedProduct(product);
+                            setIsProductsFormModalOpen(true);
+                          }}
+                          className="transition hover:text-red-600"
+                        >
+                          <Pencil size={20} />
+                        </Button>
+
+                        <Button
                           type="button"
                           aria-label={`Delete ${product.name}`}
                           onClick={() => handleDeleteProduct(product.id)}
@@ -396,7 +417,7 @@ export default function AdminProducts() {
                             size={20}
                             onClick={() => handleDeleteProduct(product.id)}
                           />
-                        </button>
+                        </Button>
                       </div>
                     </td>
                   </tr>
@@ -431,7 +452,7 @@ export default function AdminProducts() {
             </p>
 
             <div className="flex items-center gap-1">
-              <button
+              <Button
                 type="button"
                 disabled={currentPage === 1 || totalPages === 0}
                 onClick={() => handlePageChange(currentPage - 1)}
@@ -439,7 +460,7 @@ export default function AdminProducts() {
                 aria-label="Previous page"
               >
                 <ChevronLeft size={18} />
-              </button>
+              </Button>
 
               {paginationPages.map((page, index) => {
                 if (page === "...") {
@@ -454,7 +475,7 @@ export default function AdminProducts() {
                 }
 
                 return (
-                  <button
+                  <Button
                     key={page}
                     type="button"
                     onClick={() => handlePageChange(page)}
@@ -465,11 +486,11 @@ export default function AdminProducts() {
                     }`}
                   >
                     {page}
-                  </button>
+                  </Button>
                 );
               })}
 
-              <button
+              <Button
                 type="button"
                 disabled={currentPage === totalPages || totalPages === 0}
                 onClick={() => handlePageChange(currentPage + 1)}
@@ -477,7 +498,7 @@ export default function AdminProducts() {
                 aria-label="Next page"
               >
                 <ChevronRight size={18} />
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -500,11 +521,12 @@ export default function AdminProducts() {
         onPriceRangeChange={handlePriceRangeChange}
         onClearFilters={handleClearFilters}
       />
-      <AddProductModal
-        isOpen={isAddProductModalOpen}
-        onClose={() => setIsAddProductModalOpen(false)}
+      <ProductFormModal
+        isOpen={isProductsFormModalOpen}
+        onClose={() => setIsProductsFormModalOpen(false)}
         categories={categories}
         subCategories={subCategories}
+        product={selectedProduct}
       />
     </main>
   );

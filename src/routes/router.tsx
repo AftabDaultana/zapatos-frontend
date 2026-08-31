@@ -147,6 +147,10 @@ const router = createBrowserRouter([
         path: "products",
         element: <ListProducts />,
       },
+      {
+        path: "products/:slug",
+        element: <ProductDetails />,
+      },
     ],
   },
 ]);
