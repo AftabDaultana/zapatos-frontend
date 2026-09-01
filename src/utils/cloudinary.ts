@@ -1,3 +1,9 @@
+console.log(
+  "Cloudinary env:",
+  import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+  import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET,
+);
+
 export const uploadToCloudinary = async (file: File): Promise<string> => {
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
