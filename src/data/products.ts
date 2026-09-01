@@ -65,12 +65,12 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -97,9 +97,9 @@ export const products: Product[] = [
       features: ["Boost cushioning", "Adaptive fit", "High energy return"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -126,9 +126,9 @@ export const products: Product[] = [
       features: ["Classic silhouette", "Soft suede finish", "Rubber outsole"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -157,9 +157,9 @@ export const products: Product[] = [
       features: ["Flexible sole", "Lightweight design", "Shock absorption"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -187,9 +187,9 @@ export const products: Product[] = [
       features: ["ENCAP cushioning", "Retro design", "Daily comfort"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -218,9 +218,9 @@ export const products: Product[] = [
       features: ["Classic design", "Padded collar", "Durable rubber sole"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -247,9 +247,9 @@ export const products: Product[] = [
       features: ["Low profile design", "Classic stripes", "Comfortable fit"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -277,9 +277,9 @@ export const products: Product[] = [
       features: ["Lightweight", "Retro styling", "Comfort sole"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -305,8 +305,8 @@ export const products: Product[] = [
       features: ["Classic silhouette", "Canvas upper", "Rubber toe cap"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -338,9 +338,9 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -371,9 +371,9 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -406,15 +406,15 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -447,9 +447,9 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -481,9 +481,9 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -515,9 +515,9 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -545,9 +545,9 @@ export const products: Product[] = [
       features: ["Responsive cushioning", "Breathable design", "Daily trainer"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -577,9 +577,9 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 
@@ -611,9 +611,9 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -640,9 +640,9 @@ export const products: Product[] = [
       features: ["Lightweight design", "Comfort insole", "Flexible outsole"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -672,9 +672,9 @@ export const products: Product[] = [
       ],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -701,9 +701,9 @@ export const products: Product[] = [
       features: ["Zoom Air cushioning", "Lightweight", "Responsive feel"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -729,9 +729,9 @@ export const products: Product[] = [
       features: ["Boost cushioning", "Energy return", "Breathable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -757,9 +757,9 @@ export const products: Product[] = [
       features: ["Classic design", "Durable leather", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -786,9 +786,9 @@ export const products: Product[] = [
       features: ["Retro design", "Comfort cushioning", "Durable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -814,9 +814,9 @@ export const products: Product[] = [
       features: ["ENCAP cushioning", "Heritage design", "Premium materials"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -841,9 +841,9 @@ export const products: Product[] = [
       features: ["Platform sole", "Durable canvas", "Modern design"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -869,9 +869,9 @@ export const products: Product[] = [
       features: ["Gel cushioning", "Soft landing", "Responsive"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -897,9 +897,9 @@ export const products: Product[] = [
       features: ["High-top design", "Durable", "Classic styling"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -925,9 +925,9 @@ export const products: Product[] = [
       features: ["Retro design", "Suede finish", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -954,9 +954,9 @@ export const products: Product[] = [
       features: ["React foam", "Cushioned", "Stable ride"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -983,9 +983,9 @@ export const products: Product[] = [
       features: ["Air cushioning", "Modern design", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1011,9 +1011,9 @@ export const products: Product[] = [
       features: ["Boost cushioning", "Energy return", "Lightweight"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1039,9 +1039,9 @@ export const products: Product[] = [
       features: ["Classic design", "Comfortable", "Durable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1067,9 +1067,9 @@ export const products: Product[] = [
       features: ["Platform sole", "Modern design", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1095,9 +1095,9 @@ export const products: Product[] = [
       features: ["Soft foam", "Breathable", "Lightweight"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1122,9 +1122,9 @@ export const products: Product[] = [
       features: ["Platform sole", "Canvas upper", "Classic design"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1150,9 +1150,9 @@ export const products: Product[] = [
       features: ["Gel cushioning", "Stability", "Support"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1178,9 +1178,9 @@ export const products: Product[] = [
       features: ["Classic design", "Durable", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1206,9 +1206,9 @@ export const products: Product[] = [
       features: ["Balanced cushioning", "Smooth ride", "Breathable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1235,9 +1235,9 @@ export const products: Product[] = [
       features: ["Classic design", "Leather upper", "Durable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1264,9 +1264,9 @@ export const products: Product[] = [
       features: ["Soft foam", "Durable", "Easy to clean"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1291,9 +1291,9 @@ export const products: Product[] = [
       features: ["Shell toe", "Classic design", "Durable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1319,9 +1319,9 @@ export const products: Product[] = [
       features: ["Suede upper", "Comfortable", "Classic style"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1348,9 +1348,9 @@ export const products: Product[] = [
       features: ["Air cushioning", "Durable", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1376,9 +1376,9 @@ export const products: Product[] = [
       features: ["Durable", "Classic design", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1404,9 +1404,9 @@ export const products: Product[] = [
       features: ["Lightweight", "Flexible sole", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1432,9 +1432,9 @@ export const products: Product[] = [
       features: ["Classic design", "Comfortable", "Durable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1460,9 +1460,9 @@ export const products: Product[] = [
       features: ["Classic design", "Canvas upper", "Easy to wear"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1488,9 +1488,9 @@ export const products: Product[] = [
       features: ["GuideRails support", "Plush cushioning", "Stable ride"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1516,9 +1516,9 @@ export const products: Product[] = [
       features: ["Chunky design", "Comfortable", "Bold style"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1544,9 +1544,9 @@ export const products: Product[] = [
       features: ["Wave technology", "Smooth ride", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1573,9 +1573,9 @@ export const products: Product[] = [
       features: ["Trail design", "Durable", "Outdoor style"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1600,9 +1600,9 @@ export const products: Product[] = [
       features: ["Memory foam", "Comfortable", "Lightweight"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1628,9 +1628,9 @@ export const products: Product[] = [
       features: ["Wave technology", "Stability", "Support"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1655,9 +1655,9 @@ export const products: Product[] = [
       features: ["Trail design", "Durable", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1683,9 +1683,9 @@ export const products: Product[] = [
       features: ["Balanced cushioning", "Durable", "Comfortable"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1712,9 +1712,9 @@ export const products: Product[] = [
       features: ["Soft foam", "Comfortable", "Water resistant"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1739,9 +1739,9 @@ export const products: Product[] = [
       features: ["Cloud foam", "Comfortable", "Lightweight"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1767,9 +1767,9 @@ export const products: Product[] = [
       features: ["Lightweight", "Comfortable", "Water friendly"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
   {
@@ -1796,9 +1796,9 @@ export const products: Product[] = [
       features: ["Durable", "Traction", "Outdoor ready"],
     },
     images: [
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
-      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788176827/adfadf_1_1_fne8j9.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
+      "https://res.cloudinary.com/cfffj6t3/image/upload/v1788181905/adfadf-1-1.png",
     ],
   },
 ];
