@@ -34,16 +34,41 @@ const getFileHash = async (file: File): Promise<string> => {
     .join("");
 };
 
+const CLOUDINARY_IMAGE_CACHE_KEY = "cloudinary-image-cache";
+
+interface CloudinaryImageCache {
+  [hash: string]: string;
+}
+
+const getCloudinaryImageCache = (): CloudinaryImageCache => {
+  const storedCache = localStorage.getItem(CLOUDINARY_IMAGE_CACHE_KEY);
+
+  if (!storedCache) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(storedCache);
+  } catch {
+    localStorage.removeItem(CLOUDINARY_IMAGE_CACHE_KEY);
+    return {};
+  }
+};
+
+const saveCloudinaryImageCache = (cache: CloudinaryImageCache): void => {
+  localStorage.setItem(CLOUDINARY_IMAGE_CACHE_KEY, JSON.stringify(cache));
+};
+
 export const uploadUniqueFilesToCloudinary = async (
   files: File[],
 ): Promise<string[]> => {
-  const uploadedImageUrls = new Map<string, string>();
+  const cache = getCloudinaryImageCache();
   const imageUrls: string[] = [];
 
   for (const file of files) {
     const fileHash = await getFileHash(file);
 
-    const existingUrl = uploadedImageUrls.get(fileHash);
+    const existingUrl = cache[fileHash];
 
     if (existingUrl) {
       imageUrls.push(existingUrl);
@@ -52,7 +77,9 @@ export const uploadUniqueFilesToCloudinary = async (
 
     const url = await uploadToCloudinary(file);
 
-    uploadedImageUrls.set(fileHash, url);
+    cache[fileHash] = url;
+    saveCloudinaryImageCache(cache);
+
     imageUrls.push(url);
   }
 

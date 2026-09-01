@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { selectProducts } from "../../app/selectors/catalogSelectors";
+import {
+  selectCategories,
+  selectProducts,
+  selectSubCategories,
+} from "../../app/selectors/catalogSelectors";
 import {
   Check,
   ChevronLeft,
@@ -18,18 +22,22 @@ import {
   removeFromWishlist,
 } from "../../app/slices/wishlistSlice";
 import RatingStars from "../ui/RatingStars";
+import ProductFormModal from "../admin/AdminProducts/ProductFormModal";
 
 export default function ProductDetailsSection() {
   const [selectedImage, setSelectedimage] = useState(0);
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [isAdded, setIsAdded] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const { slug } = useParams();
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectProducts);
   const wishlistProductIds = useAppSelector(selectWishlistProductIds);
   const product = products.find((product) => product.slug === slug);
 
+  const categories = useAppSelector(selectCategories);
+  const subCategories = useAppSelector(selectSubCategories);
   const isAdmin = window.location.pathname.startsWith("/admin/");
 
   if (!product) {
@@ -234,6 +242,7 @@ export default function ProductDetailsSection() {
             <div className="mt-8">
               <Button
                 type="button"
+                onClick={() => setIsEditModalOpen(true)}
                 className="flex items-center gap-2 bg-neutral-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-800"
               >
                 <Pencil size={16} /> Edit Product
@@ -242,6 +251,15 @@ export default function ProductDetailsSection() {
           )}
         </div>
       </div>
+      {isEditModalOpen && (
+        <ProductFormModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          categories={categories}
+          subCategories={subCategories}
+          product={product}
+        />
+      )}
     </div>
   );
 }

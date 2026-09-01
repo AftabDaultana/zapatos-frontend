@@ -1,4 +1,5 @@
 import { Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface AdminHeaderProps {
   onToggleSidebar: () => void;
@@ -17,9 +18,9 @@ export default function AdminHeader({ onToggleSidebar }: AdminHeaderProps) {
           <Menu size={24} />
         </button>
 
-        <h1 className="text-lg font-semibold text-neutral-50">
+        <Link to="/admin" className="text-lg font-semibold text-neutral-50">
           Admin Dashboard
-        </h1>
+        </Link>
       </div>
 
       <div className="flex items-center gap-3">

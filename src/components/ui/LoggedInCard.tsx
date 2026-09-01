@@ -49,6 +49,19 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
           ) : null}
         </div>
         <div className="flex flex-col gap-2 h-px w-full bg-neutral-700" />
+
+        {currentUser.role === "admin" && (
+          <Link to="/admin" onClick={onClose}>
+            {" "}
+            <Button
+              type="button"
+              className="hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950 bg-neutral-950 text-neutral-50 w-40 h-10"
+            >
+              {" "}
+              Admin Dashboard{" "}
+            </Button>{" "}
+          </Link>
+        )}
         <Link to={"/orders"} onClick={onClose}>
           <Button
             type="button"

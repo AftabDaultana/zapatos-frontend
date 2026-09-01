@@ -13,6 +13,9 @@ import Contact from "../pages/Contact/Contact";
 import AdminLayout from "../components/layout/AdminLayout";
 import Dashboard from "../pages/Admin/DashBoard/Dashboard";
 import ListProducts from "../pages/Admin/ListProducts/ListProduct";
+import AdminCategories from "../pages/Admin/AdminCategories/AdminCategories";
+import AdminSubCategories from "../pages/Admin/AdminSubCategories/AdminSubCategories";
+import AdminProtectedRoute from "../components/auth/AdminProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -133,23 +136,36 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: <AdminProtectedRoute />,
     children: [
       {
-        index: true,
-        element: <Dashboard />,
-      },
-      {
-        path: "orders/:orderId",
-        element: <OrderDetails />,
-      },
-      {
-        path: "products",
-        element: <ListProducts />,
-      },
-      {
-        path: "products/:slug",
-        element: <ProductDetails />,
+        element: <AdminLayout />,
+        children: [
+          {
+            index: true,
+            element: <Dashboard />,
+          },
+          {
+            path: "orders/:orderId",
+            element: <OrderDetails />,
+          },
+          {
+            path: "products",
+            element: <ListProducts />,
+          },
+          {
+            path: "products/:slug",
+            element: <ProductDetails />,
+          },
+          {
+            path: "categories",
+            element: <AdminCategories />,
+          },
+          {
+            path: "subcategories",
+            element: <AdminSubCategories />,
+          },
+        ],
       },
     ],
   },

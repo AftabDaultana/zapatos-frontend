@@ -40,7 +40,7 @@ const navigationItems: NavigationItem[] = [
         children: [
           {
             label: "SubCategory",
-            path: "/admin/categories/subcategory",
+            path: "/admin/subcategories",
           },
         ],
       },
@@ -170,7 +170,7 @@ export default function AdminSidebar({ isOpen }: AdminSidebarProps) {
     >
       <div className="flex h-full flex-col">
         <div className="border-b border-neutral-800 px-6 py-5">
-          <Logo variant="light" link="/admin" />
+          <Logo variant="light" link="/" />
         </div>
 
         <nav className="flex flex-1 flex-col px-4 py-6">
