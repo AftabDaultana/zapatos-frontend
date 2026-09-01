@@ -5,7 +5,7 @@ export default function AdminProtectedRoute() {
   const currentUser = useAppSelector((state) => state.user.currentUser);
 
   if (!currentUser?.isLoggedIn) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   if (currentUser.role !== "admin") {

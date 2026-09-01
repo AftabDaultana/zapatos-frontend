@@ -5,6 +5,7 @@ import { logoutUser } from "../../app/slices/userSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import EditProfile from "./EditProfile";
+import UserDetailsContent from "../../components/sections/UserDetailsContent";
 
 export default function Profile() {
   const dispatch = useAppDispatch();
@@ -31,36 +32,8 @@ export default function Profile() {
             )}
           </div>
 
-          <div className="h-px w-full bg-neutral-950" />
-          <div>
-            <h2 className="text-2xl leading-7 px-4">Personal Information</h2>
-          </div>
-          <div className="h-px w-full bg-neutral-950" />
-          <div className="flex flex-col gap-3 px-4">
-            <p>Name: {currentUser.name}</p>
-            <p>Email: {currentUser.email}</p>
-            <p>Phone: {currentUser.phoneNumber}</p>
-          </div>
-          <div className="h-px w-full bg-neutral-950" />
-          <h2 className="text-2xl leading-7 px-4">Shipping Address</h2>
-          <div className="h-px w-full bg-neutral-950" />
-          <div className="flex flex-col gap-3 px-4">
-            <p>Street: {currentUser.shippingAddress.street}</p>
-            <p>City: {currentUser.shippingAddress.city}</p>
-            <p>State: {currentUser.shippingAddress.state}</p>
-            <p>Country: {currentUser.shippingAddress.country}</p>
-            <p>Postal Code: {currentUser.shippingAddress.postalCode}</p>
-          </div>
-          <div className="h-px w-full bg-neutral-950" />
-          <h2 className="text-2xl leading-7 px-4">Billing Address</h2>
-          <div className="h-px w-full bg-neutral-950" />
-          <div className="flex flex-col gap-3 px-4">
-            <p>Street: {currentUser.billingAddress.street}</p>
-            <p>City: {currentUser.billingAddress.city}</p>
-            <p>State: {currentUser.billingAddress.state}</p>
-            <p>Country: {currentUser.billingAddress.country}</p>
-            <p>Postal Code: {currentUser.billingAddress.postalCode}</p>
-          </div>
+          <UserDetailsContent user={currentUser} />
+
           <div className="h-px w-full bg-neutral-950" />
           <h2 className="text-2xl leading-7 px-4">Account Actions</h2>
           <div className="h-px w-full bg-neutral-950" />
@@ -72,14 +45,28 @@ export default function Profile() {
             >
               Edit Profile
             </Button>
-            <Link to={"/orders"} onClick={() => window.scrollTo(0, 0)}>
-              <Button
-                type="button"
-                className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
+            {currentUser.role === "admin" ? (
+              <Link
+                to={"/admin/orders?mine=true"}
+                onClick={() => window.scrollTo(0, 0)}
               >
-                My Orders
-              </Button>
-            </Link>
+                <Button
+                  type="button"
+                  className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
+                >
+                  My Orders
+                </Button>
+              </Link>
+            ) : (
+              <Link to={"/orders"} onClick={() => window.scrollTo(0, 0)}>
+                <Button
+                  type="button"
+                  className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
+                >
+                  My Orders
+                </Button>
+              </Link>
+            )}
             <Link to={"/"}>
               <Button
                 type="button"

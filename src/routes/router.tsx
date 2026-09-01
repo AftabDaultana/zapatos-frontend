@@ -16,6 +16,8 @@ import ListProducts from "../pages/Admin/ListProducts/ListProduct";
 import AdminCategories from "../pages/Admin/AdminCategories/AdminCategories";
 import AdminSubCategories from "../pages/Admin/AdminSubCategories/AdminSubCategories";
 import AdminProtectedRoute from "../components/auth/AdminProtectedRoute";
+import AdminCustomers from "../pages/Admin/AdminCustomers/AdminCustomers";
+import AdminOrders from "../pages/Admin/AdminOrders/AdminOrders";
 
 const router = createBrowserRouter([
   {
@@ -164,6 +166,18 @@ const router = createBrowserRouter([
           {
             path: "subcategories",
             element: <AdminSubCategories />,
+          },
+          {
+            path: "customers",
+            element: <AdminCustomers />,
+          },
+          {
+            path: "orders",
+            element: <AdminOrders />,
+          },
+          {
+            path: "profile",
+            element: <Profile />,
           },
         ],
       },

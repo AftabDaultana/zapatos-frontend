@@ -97,8 +97,14 @@ const userSlice = createSlice({
       state.currentUser = null;
       localStorage.removeItem("currentUser");
     },
+    deleteUser: (state, action: PayloadAction<number>) => {
+      state.users = state.users.filter((user) => user.id !== action.payload);
+
+      localStorage.setItem("users", JSON.stringify(state.users));
+    },
   },
 });
 
-export const { addUser, setUser, logoutUser, updateUser } = userSlice.actions;
+export const { addUser, setUser, logoutUser, updateUser, deleteUser } =
+  userSlice.actions;
 export default userSlice.reducer;

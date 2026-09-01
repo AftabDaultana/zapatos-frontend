@@ -1,11 +1,13 @@
-import { Menu } from "lucide-react";
+import { Menu, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../hooks/reduxHooks";
 
 interface AdminHeaderProps {
   onToggleSidebar: () => void;
 }
 
 export default function AdminHeader({ onToggleSidebar }: AdminHeaderProps) {
+  const currentUser = useAppSelector((state) => state.user.currentUser);
   return (
     <header className="flex h-16 w-full items-center justify-between border-b border-neutral-200 bg-neutral-950 px-6">
       <div className="flex items-center gap-4">
@@ -23,9 +25,26 @@ export default function AdminHeader({ onToggleSidebar }: AdminHeaderProps) {
         </Link>
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="h-9 w-9 rounded-full bg-neutral-200" />
-      </div>
+      <Link
+        to="/admin/profile"
+        aria-label="View admin profile"
+        className="block h-9 w-9 overflow-hidden rounded-full bg-neutral-200"
+      >
+        <div className="h-9 w-9 overflow-hidden rounded-full bg-neutral-200">
+          {currentUser?.profilePicture ? (
+            <img
+              src={currentUser.profilePicture}
+              alt={currentUser.name}
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm font-medium text-neutral-600">
+              <User size={24} />
+            </div>
+          )}
+        </div>
+      </Link>
     </header>
   );
 }

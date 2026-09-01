@@ -11,6 +11,8 @@ import {
 import { NavLink, useLocation } from "react-router-dom";
 import Button from "../../ui/Button";
 import Logo from "../../shared/Logo";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { logoutUser } from "../../../app/slices/userSlice";
 
 interface NavigationItem {
   label: string;
@@ -62,7 +64,7 @@ const bottomNavigationItems: NavigationItem[] = [
   {
     label: "Settings",
     icon: Settings,
-    path: "/admin/settings",
+    path: "/admin/profile",
   },
   {
     label: "Log out",
@@ -73,12 +75,15 @@ const bottomNavigationItems: NavigationItem[] = [
 function NavigationList({
   items,
   level = 0,
+  onLogout,
 }: {
   items: NavigationItem[];
   level?: number;
+  onLogout?: () => void;
 }) {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const location = useLocation();
+
   const toggleItem = (label: string) => {
     setOpenItems((prev) => ({
       ...prev,
@@ -143,6 +148,7 @@ function NavigationList({
             ) : (
               <Button
                 type="button"
+                onClick={item.label === "Log out" ? onLogout : undefined}
                 className="flex w-full items-center justify-start gap-3 rounded-md px-3 py-2 text-neutral-400 transition hover:bg-neutral-900 hover:text-white"
                 style={{ paddingLeft: `${12 + level * 16}px` }}
               >
@@ -152,7 +158,11 @@ function NavigationList({
             )}
 
             {item.children && openItems[item.label] && (
-              <NavigationList items={item.children} level={level + 1} />
+              <NavigationList
+                items={item.children}
+                level={level + 1}
+                onLogout={onLogout}
+              />
             )}
           </div>
         );
@@ -162,6 +172,11 @@ function NavigationList({
 }
 
 export default function AdminSidebar({ isOpen }: AdminSidebarProps) {
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-40 h-screen w-64 bg-neutral-950 text-neutral-50 transition-transform duration-300 ${
@@ -177,7 +192,10 @@ export default function AdminSidebar({ isOpen }: AdminSidebarProps) {
           <NavigationList items={navigationItems} />
 
           <div className="mt-auto border-t border-neutral-800 pt-4">
-            <NavigationList items={bottomNavigationItems} />
+            <NavigationList
+              items={bottomNavigationItems}
+              onLogout={handleLogout}
+            />
           </div>
         </nav>
       </div>
