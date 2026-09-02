@@ -24,6 +24,7 @@ interface BannerCardProps {
 
   buttonContainerClassName?: string;
   buttonClassName?: string;
+  buttonVariant?: "none" | "dark" | "light";
 }
 
 export default function BannerCard({
@@ -43,27 +44,45 @@ export default function BannerCard({
   buttonInsideContent,
   buttonContainerClassName = "",
   buttonClassName = "",
+  buttonVariant,
 }: BannerCardProps) {
+  const resolvedButtonVariant =
+    buttonVariant ??
+    (buttonClassName.includes("bg-neutral-950") ||
+    buttonClassName.includes("bg-black")
+      ? "dark"
+      : buttonClassName.includes("bg-white") ||
+          buttonClassName.includes("border")
+        ? "light"
+        : "none");
+
   return (
-    <div className={`group relative ${cardClassName} overflow-hidden`}>
+    <div className={`group relative overflow-hidden ${cardClassName}`}>
       <img
         src={image}
         alt={title ?? buttonText}
-        className={`h-full w-full object-cover ${imageClassName}`}
+        className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${imageClassName}`}
         loading="lazy"
       />
-      <div className={`absolute inset-0 ${overlayClassName}`} />
+
+      <div
+        className={`absolute inset-0 transition-opacity duration-300 group-hover:opacity-90 ${overlayClassName}`}
+      />
+
       <div className={contentContainerClassName}>
         <div className={textContainerClassName}>
           {title && <h5 className={titleClassName}>{title}</h5>}
+
           {description && (
             <span className={descriptionClassName}>{description}</span>
           )}
         </div>
+
         {buttonInsideContent && buttonText && (
           <div className={buttonContainerClassName}>
             <Button
               type="button"
+              variant={resolvedButtonVariant}
               className={buttonClassName}
               onClick={onButtonClick}
             >
@@ -73,10 +92,12 @@ export default function BannerCard({
           </div>
         )}
       </div>
+
       {!buttonInsideContent && buttonText && (
         <div className={buttonContainerClassName}>
           <Button
             type="button"
+            variant={resolvedButtonVariant}
             className={buttonClassName}
             onClick={onButtonClick}
           >

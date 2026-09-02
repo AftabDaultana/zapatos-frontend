@@ -232,6 +232,7 @@ export default function AdminProducts() {
       <section className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <Button
           type="button"
+          variant="none"
           onClick={() => setIsFilterModalOpen(true)}
           className="flex w-fit items-center gap-2 rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700"
         >
@@ -255,6 +256,7 @@ export default function AdminProducts() {
 
             <Button
               type="button"
+              variant="none"
               aria-label="Search products"
               className="px-4 py-2 text-neutral-500 transition hover:text-neutral-950"
             >
@@ -265,13 +267,15 @@ export default function AdminProducts() {
 
         <Button
           type="button"
+          variant="dark"
           onClick={() => {
             setSelectedProduct(undefined);
             setIsProductsFormModalOpen(true);
           }}
-          className="rounded-lg bg-neutral-950 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-800 flex gap-2"
+          className="flex gap-2 px-5 py-2 text-sm font-medium"
         >
-          <Plus size={16} /> Add new product
+          <Plus size={16} />
+          Add new product
         </Button>
       </section>
 
@@ -397,6 +401,7 @@ export default function AdminProducts() {
 
                         <Button
                           type="button"
+                          variant="none"
                           aria-label={`Edit ${product.name}`}
                           onClick={() => {
                             setSelectedProduct(product);
@@ -410,6 +415,7 @@ export default function AdminProducts() {
                         <Button
                           type="button"
                           aria-label={`Delete ${product.name}`}
+                          variant="none"
                           onClick={() => handleDeleteProduct(product.id)}
                           className="transition hover:text-red-600"
                         >
@@ -455,6 +461,7 @@ export default function AdminProducts() {
               <Button
                 type="button"
                 disabled={currentPage === 1 || totalPages === 0}
+                variant="none"
                 onClick={() => handlePageChange(currentPage - 1)}
                 className="rounded-lg p-2 text-neutral-600 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
                 aria-label="Previous page"
@@ -478,6 +485,7 @@ export default function AdminProducts() {
                   <Button
                     key={page}
                     type="button"
+                    variant="none"
                     onClick={() => handlePageChange(page)}
                     className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                       currentPage === page
@@ -493,6 +501,7 @@ export default function AdminProducts() {
               <Button
                 type="button"
                 disabled={currentPage === totalPages || totalPages === 0}
+                variant="none"
                 onClick={() => handlePageChange(currentPage + 1)}
                 className="rounded-lg p-2 text-neutral-600 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
                 aria-label="Next page"

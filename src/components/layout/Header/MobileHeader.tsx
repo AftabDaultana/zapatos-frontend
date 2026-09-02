@@ -29,7 +29,11 @@ export default function MobileHeader() {
         </Link>
         <Divider />
         <div className="relative">
-          <Button type="button" onClick={() => setCartOpen(true)}>
+          <Button
+            type="button"
+            variant="none"
+            onClick={() => setCartOpen(true)}
+          >
             <ShoppingCart size={24} className="text-neutral-100" />
           </Button>
           {cartItemCount > 0 && (

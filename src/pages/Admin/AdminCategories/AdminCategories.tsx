@@ -57,11 +57,12 @@ export default function AdminCategories() {
 
         <Button
           type="button"
+          variant="dark"
           onClick={() => {
             setSelectedCategory(null);
             setIsCategoryFormModalOpen(true);
           }}
-          className="flex items-center gap-2 bg-neutral-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-800"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition"
         >
           <Plus size={18} />
           Add Category
@@ -116,6 +117,7 @@ export default function AdminCategories() {
                       <div className="flex items-center gap-5 text-neutral-500">
                         <Button
                           type="button"
+                          variant="none"
                           aria-label={`Edit ${category.name}`}
                           onClick={() => {
                             setSelectedCategory(category);
@@ -128,6 +130,7 @@ export default function AdminCategories() {
 
                         <Button
                           type="button"
+                          variant="none"
                           aria-label={`Delete ${category.name}`}
                           onClick={() => handleDeleteCategory(category.id)}
                           className="transition hover:text-red-600"
@@ -169,6 +172,7 @@ export default function AdminCategories() {
               <div className="flex items-center gap-1">
                 <Button
                   type="button"
+                  variant="none"
                   disabled={currentPage === 1}
                   onClick={() =>
                     setCurrentPage((page) => Math.max(page - 1, 1))
@@ -186,6 +190,7 @@ export default function AdminCategories() {
                   <Button
                     key={page}
                     type="button"
+                    variant="none"
                     onClick={() => setCurrentPage(page)}
                     className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                       currentPage === page
@@ -199,6 +204,7 @@ export default function AdminCategories() {
 
                 <Button
                   type="button"
+                  variant="none"
                   disabled={currentPage === totalPages}
                   onClick={() =>
                     setCurrentPage((page) => Math.min(page + 1, totalPages))

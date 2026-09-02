@@ -269,6 +269,7 @@ export default function ProductFormModal({
 
           <Button
             type="button"
+            variant="none"
             onClick={onClose}
             className="rounded-lg p-2 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-950"
             aria-label="Close modal"
@@ -724,6 +725,7 @@ export default function ProductFormModal({
 
                 <Button
                   type="button"
+                  variant="dark"
                   onClick={() => {
                     const feature = featureInput.trim();
 
@@ -832,6 +834,7 @@ export default function ProductFormModal({
 
                       <Button
                         type="button"
+                        variant="none"
                         onClick={() => {
                           if (index < existingImages.length) {
                             setExistingImages((previous) =>
@@ -954,6 +957,7 @@ export default function ProductFormModal({
         <div className="flex shrink-0 items-center justify-end gap-3 border-t border-neutral-200 bg-white px-6 py-4">
           <Button
             type="button"
+            variant="light"
             onClick={onClose}
             className="rounded-lg border border-neutral-200 bg-white px-5 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100"
           >
@@ -962,6 +966,7 @@ export default function ProductFormModal({
 
           <Button
             type="submit"
+            variant="dark"
             form="product-form"
             className="rounded-lg bg-neutral-950 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-800"
           >

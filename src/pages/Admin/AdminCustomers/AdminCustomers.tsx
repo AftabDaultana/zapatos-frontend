@@ -164,6 +164,7 @@ export default function AdminCustomers() {
                       <div className="flex items-center gap-5 text-neutral-500">
                         <Button
                           type="button"
+                          variant="none"
                           aria-label={`View ${user.name} details`}
                           onClick={() => {
                             setSelectedUser(user);
@@ -176,6 +177,7 @@ export default function AdminCustomers() {
 
                         <Button
                           type="button"
+                          variant="none"
                           aria-label={`Delete ${user.name}`}
                           disabled={user.role === "admin"}
                           onClick={() => handleDeleteUser(user.id)}
@@ -219,6 +221,7 @@ export default function AdminCustomers() {
               <div className="flex items-center gap-1">
                 <Button
                   type="button"
+                  variant="none"
                   disabled={currentPage === 1}
                   onClick={() =>
                     setCurrentPage((page) => Math.max(page - 1, 1))
@@ -236,6 +239,7 @@ export default function AdminCustomers() {
                   <Button
                     key={page}
                     type="button"
+                    variant="none"
                     onClick={() => setCurrentPage(page)}
                     className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                       currentPage === page
@@ -249,6 +253,7 @@ export default function AdminCustomers() {
 
                 <Button
                   type="button"
+                  variant="none"
                   disabled={currentPage === totalPages}
                   onClick={() =>
                     setCurrentPage((page) => Math.min(page + 1, totalPages))

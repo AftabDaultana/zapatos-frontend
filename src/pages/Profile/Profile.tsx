@@ -40,8 +40,9 @@ export default function Profile() {
           <div className="flex gap-3 px-4 items-center">
             <Button
               type="button"
+              variant="dark"
               onClick={() => setIsEditProfileOpen(true)}
-              className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
+              className="w-25 h-10"
             >
               Edit Profile
             </Button>
@@ -52,6 +53,7 @@ export default function Profile() {
               >
                 <Button
                   type="button"
+                  variant="dark"
                   className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
                 >
                   My Orders
@@ -61,6 +63,7 @@ export default function Profile() {
               <Link to={"/orders"} onClick={() => window.scrollTo(0, 0)}>
                 <Button
                   type="button"
+                  variant="dark"
                   className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
                 >
                   My Orders
@@ -70,8 +73,9 @@ export default function Profile() {
             <Link to={"/"}>
               <Button
                 type="button"
+                variant="dark"
                 onClick={() => dispatch(logoutUser())}
-                className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
+                className="w-25 h-10"
               >
                 Log Out
               </Button>

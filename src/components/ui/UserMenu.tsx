@@ -27,10 +27,11 @@ export default function UserMenu() {
     <div ref={userMenuRef} className="relative">
       <Button
         type="button"
+        variant="none"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Open user menu"
         aria-expanded={isOpen}
-        className="md:text-neutral-50 xl:text-neutral-950"
+        className="group flex items-center gap-2 rounded-lg px-3 py-2 text-neutral-700 transition-all duration-200 hover:bg-gray-300 hover:text-neutral-950 md:text-neutral-50 xl:text-neutral-950"
       >
         <User size={24} />
         <ChevronDown size={24} />

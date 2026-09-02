@@ -7,7 +7,10 @@ export default function BlogSection() {
     <section className="flex flex-col px-4 md:px-6 xl:px-8 gap-8 md:gap-12 items-center">
       <div className="flex flex-col gap-3 items-center">
         <h4 className="text-3xl leading-9 font-bold">Blogs</h4>
-        <Button className="py-3 h-10 gap-1.5 text-lg leading-7 text-neutral-950 bg-transparent">
+        <Button
+          variant="none"
+          className="h-10 gap-1.5 py-3 text-lg leading-7 text-neutral-950"
+        >
           See all <ArrowRight size={16} />
         </Button>
       </div>

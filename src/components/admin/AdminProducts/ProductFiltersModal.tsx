@@ -54,14 +54,14 @@ export default function ProductFiltersModal({
             Filter Products
           </h2>
 
-          <button
+          <Button
             type="button"
             onClick={onClose}
             aria-label="Close filters"
             className="rounded-lg p-2 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-950"
           >
             <X size={20} />
-          </button>
+          </Button>
         </div>
 
         <div className="flex flex-col gap-5 px-6 py-6">
@@ -182,16 +182,18 @@ export default function ProductFiltersModal({
         <div className="flex items-center justify-between border-t border-neutral-200 px-6 py-4">
           <Button
             type="button"
+            variant="light"
             onClick={onClearFilters}
-            className="rounded-lg border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100"
+            className="px-4 py-2 text-sm font-medium transition"
           >
             Clear Filters
           </Button>
 
           <Button
             type="button"
+            variant="dark"
             onClick={onClose}
-            className="rounded-lg bg-neutral-950 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-800"
+            className="px-5 py-2 text-sm font-medium transition"
           >
             Apply Filters
           </Button>

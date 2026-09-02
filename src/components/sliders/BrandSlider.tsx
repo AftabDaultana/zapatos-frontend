@@ -35,7 +35,7 @@ export default function BrandSlider() {
                     (window.scrollTo(0, 0),
                       navigate(`/category/brands/${brand.name}`));
                   }}
-                  className={brand.logoClassName}
+                  className={`${brand.logoClassName} cursor-pointer transition-transform duration-300 hover:scale-105`}
                   loading="lazy"
                 />
               </div>

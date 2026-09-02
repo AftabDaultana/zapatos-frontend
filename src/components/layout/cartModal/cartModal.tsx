@@ -48,6 +48,7 @@ export default function CartModal({ onClose }: CartModalProps) {
           <h2 className="text-xl font-medium text-neutral-950">Your Cart</h2>
           <Button
             type="button"
+            variant="none"
             onClick={handleClose}
             className="text-neutral-700"
           >
@@ -86,6 +87,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                     <div className="flex items-center gap-2">
                       <Button
                         type="button"
+                        variant="none"
                         onClick={() =>
                           dispatch(
                             decreaseQuantity({
@@ -95,7 +97,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                             }),
                           )
                         }
-                        className="flex items-center justify-center w-8 h-8 text-neutral-950 border border-neutral-500"
+                        className="flex h-8 w-8 items-center justify-center border border-neutral-500 text-neutral-950"
                       >
                         <Minus size={18} />
                       </Button>
@@ -104,6 +106,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                       </span>
                       <Button
                         type="button"
+                        variant="none"
                         onClick={() =>
                           dispatch(
                             increaseQuantity({
@@ -113,7 +116,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                             }),
                           )
                         }
-                        className="flex items-center justify-center w-8 h-8 text-neutral-950 border border-neutral-500"
+                        className="flex h-8 w-8 items-center justify-center border border-neutral-500 text-neutral-950"
                       >
                         <Plus size={18} />
                       </Button>
@@ -123,6 +126,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                     </p>
                     <Button
                       type="button"
+                      variant="none"
                       onClick={() =>
                         dispatch(
                           removeFromCart({

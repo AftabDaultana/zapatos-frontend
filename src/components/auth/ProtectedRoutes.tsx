@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import AuthModal from "../ui/Auth/AuthModal";
+import Button from "../ui/Button";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -24,13 +25,13 @@ export default function ProtectedRoutes({ children }: ProtectedRouteProps) {
             Please log in to access this page.
           </p>
 
-          <button
+          <Button
             type="button"
             onClick={() => setShowAuth(true)}
             className="mt-6 border border-neutral-950 bg-neutral-950 px-6 py-3 text-sm font-medium text-neutral-50"
           >
             Login
-          </button>
+          </Button>
         </div>
       </div>
 

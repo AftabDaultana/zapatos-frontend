@@ -190,6 +190,7 @@ export default function SubCategoryFormModal({
 
           <Button
             type="button"
+            variant="none"
             onClick={onClose}
             aria-label="Close subcategory form"
             className="rounded-lg p-2 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-950"
@@ -353,17 +354,19 @@ export default function SubCategoryFormModal({
           <div className="mt-2 flex justify-end gap-3 border-t border-neutral-200 pt-5">
             <Button
               type="button"
+              variant="light"
               onClick={onClose}
               disabled={isUploading}
-              className="rounded-lg border border-neutral-300 px-5 py-3 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+              className="px-5 py-3 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50"
             >
               Cancel
             </Button>
 
             <Button
               type="submit"
+              variant="dark"
               disabled={isUploading}
-              className="rounded-lg bg-neutral-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="px-5 py-3 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isUploading
                 ? "Uploading..."

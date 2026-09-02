@@ -47,6 +47,7 @@ export default function UserDetailsModal({
 
           <Button
             type="button"
+            variant="none"
             onClick={onClose}
             aria-label="Close user details"
             className="rounded-lg p-2 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-950"

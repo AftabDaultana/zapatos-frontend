@@ -20,7 +20,7 @@ export default function TrendingDesktop() {
           textContainerClassName="flex flex-col"
           image={banner1}
           cardClassName="w-full xl:h-[613px] lg:h-100 overflow-hidden relative group"
-          overlayClassName="bg-[#EDEDED]/20"
+          overlayClassName="bg-[#EDEDED]/20 hover:bg-[#000000]/20"
           buttonInsideContent
           buttonContainerClassName="flex w-full justify-end"
           buttonClassName="bg-neutral-950 text-neutral-50 w-[141px] h-11 text-lg font-medium gap-1.5"
@@ -33,7 +33,7 @@ export default function TrendingDesktop() {
         />
       </div>
       <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-3 gap-4 relative group">
+        <div className="grid grid-cols-3 gap-4 relative">
           <BannerCard
             title="Performance Running Shoes"
             titleClassName="text-2xl text-neutral-100 leading-8 font-bold"
@@ -43,7 +43,7 @@ export default function TrendingDesktop() {
             textContainerClassName="flex flex-col"
             image={performanceShoes}
             cardClassName="hidden md:block w-full xl:h-[613px] lg:h-100 overflow-hidden relative group"
-            overlayClassName="bg-[#EDEDED]/20"
+            overlayClassName="bg-[#EDEDED]/20 hover:bg-[#000000]/20"
             buttonContainerClassName="absolute top-[541px] right-12"
             buttonClassName="bg-neutral-950 text-neutral-50 w-[141px] h-11 text-lg font-medium gap-1.5"
             buttonText="SEE MORE"
@@ -62,7 +62,7 @@ export default function TrendingDesktop() {
             textContainerClassName="flex flex-col"
             image={sneakers}
             cardClassName="hidden md:block w-full xl:h-[613px] lg:h-100 overflow-hidden relative group"
-            overlayClassName="bg-[#EDEDED]/20"
+            overlayClassName="bg-[#EDEDED]/20 hover:bg-[#000000]/20"
             buttonContainerClassName="absolute top-[541px] right-12"
             buttonClassName="bg-neutral-950 text-neutral-50 w-[141px] h-11 text-lg font-medium gap-1.5"
             buttonText="SEE MORE"
@@ -81,7 +81,7 @@ export default function TrendingDesktop() {
             textContainerClassName="flex flex-col"
             image={highTops}
             cardClassName="hidden md:block w-full xl:h-[613px] lg:h-100 overflow-hidden relative group"
-            overlayClassName="bg-[#EDEDED]/20"
+            overlayClassName="bg-[#EDEDED]/20 hover:bg-[#000000]/20"
             buttonContainerClassName="absolute top-[541px] right-12"
             buttonClassName="bg-neutral-950 text-neutral-50 w-[141px] h-11 text-lg font-medium gap-1.5"
             buttonText="SEE MORE"

@@ -70,44 +70,60 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
   };
 
   return (
-    <main className="fixed inset-0 z-100 bg-black/50 flex items-center justify-center p-6">
-      <div className="relative flex max-h-[calc(100dvh-3rem)] w-full max-w-125 flex-col gap-4 overflow-y-auto bg-white p-6 md:gap-10">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold leading-7 text-neutral-950">
+    <main className="fixed inset-0 z-100 flex items-center justify-center bg-black/50 p-4">
+      <div className="relative flex max-h-[calc(100dvh-2rem)] w-full max-w-md flex-col overflow-y-auto rounded-xl bg-white p-5 sm:p-6">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
+          <h2 className="text-xl font-semibold leading-6 text-neutral-950">
             JOIN US
           </h2>
+
           <Button
             type="button"
+            variant="none"
             onClick={onClose}
             aria-label="Close register"
-            className="bg-transparent text-neutral-950"
+            className="flex h-8 w-8 items-center justify-center p-0 text-neutral-950 transition-colors duration-200 hover:bg-gray-300"
           >
-            <X size={24} />
+            <X size={20} />
           </Button>
         </div>
+
+        {/* Form */}
         <form
           id="register-form"
           onSubmit={handleRegister}
-          className="flex flex-col gap-5"
+          className="mt-4 flex flex-col gap-4"
         >
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="name" className="text-lg text-neutral-900">
+          {/* Name */}
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="name"
+              className="text-sm font-medium text-neutral-900"
+            >
               Name *
             </label>
+
             <input
               id="name"
               name="name"
-              type="string"
+              type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Name"
-              className="h-12 w-full p-4 border border-[#e7e7e7] text-sm text-neutral-700 outline-none placeholder:text-neutral-500 focus:border-neutral-950"
+              className="h-11 w-full rounded-lg border border-neutral-200 px-3 text-sm text-neutral-700 outline-none placeholder:text-neutral-500 transition-colors duration-200 focus:border-neutral-950"
             />
           </div>
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="email" className="text-lg text-neutral-900">
+
+          {/* Email */}
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="email"
+              className="text-sm font-medium text-neutral-900"
+            >
               Email *
             </label>
+
             <input
               id="email"
               name="email"
@@ -115,13 +131,19 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
-              className="h-12 w-full p-4 border border-[#e7e7e7] text-sm text-neutral-700 outline-none placeholder:text-neutral-500 focus:border-neutral-950"
+              className="h-11 w-full rounded-lg border border-neutral-200 px-3 text-sm text-neutral-700 outline-none placeholder:text-neutral-500 transition-colors duration-200 focus:border-neutral-950"
             />
           </div>
-          <div className="flex flex-col gap-1.5 items-start">
-            <label htmlFor="password" className="text-lg text-neutral-900">
+
+          {/* Password */}
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="password"
+              className="text-sm font-medium text-neutral-900"
+            >
               Password *
             </label>
+
             <div className="relative w-full">
               <input
                 id="password"
@@ -130,55 +152,57 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="h-12 w-full border border-[#e7e7e7] px-4 pr-12 text-sm text-neutral-700 outline-none placeholder:text-neutral-500 focus:border-neutral-950"
+                className="h-11 w-full rounded-lg border border-neutral-200 px-3 pr-11 text-sm text-neutral-700 outline-none placeholder:text-neutral-500 transition-colors duration-200 focus:border-neutral-950"
               />
-              {error && <p className="text-red-500">{error}</p>}
-              <button
+
+              <Button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
-                className="absolute right-0 top-0 flex h-12 w-12 items-center justify-center text-neutral-500"
+                className="absolute right-0 top-0 flex h-11 w-11 items-center justify-center text-neutral-500 transition-colors duration-200 hover:text-neutral-950"
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </Button>
             </div>
+
+            {error && <p className="mt-0.5 text-xs text-red-500">{error}</p>}
           </div>
         </form>
+
+        {/* Register */}
         <Button
           type="submit"
+          variant="dark"
           form="register-form"
-          className="bg-neutral-950 text-neutral-50 w-full h-10 hover:bg-neutral-50 hover:text-neutral-950 hover:border hover:border-neutral-950"
+          className="mt-4 w-full px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-neutral-50 hover:text-neutral-950 hover:ring-1 hover:ring-neutral-950"
         >
           REGISTER
         </Button>
-        <div className="flex flex-col gap-4">
-          <span className="text-neutral-950 text-lg leading-7.5 font-light">
-            Create an account and you will get:
-            <span>
-              <ul>
-                <li className="text-neutral-950 text-sm leading-7.5 font-light">
-                  Sale promotions!
-                </li>
-                <li className="text-neutral-950 text-sm leading-7.5 font-light">
-                  Bonus offers!
-                </li>
-                <li className="text-neutral-950 text-sm leading-7.5 font-light">
-                  Update for all new product releases!
-                </li>
-              </ul>
-            </span>
-          </span>
+
+        {/* Benefits */}
+        <div className="mt-5 border-t border-neutral-100 pt-4">
+          <p className="text-sm font-medium text-neutral-950">
+            Create an account and get:
+          </p>
+
+          <ul className="mt-2 space-y-1 pl-4 text-xs leading-4 text-neutral-600">
+            <li className="list-disc">Sale promotions!</li>
+            <li className="list-disc">Bonus offers!</li>
+            <li className="list-disc">Updates for all new product releases!</li>
+          </ul>
         </div>
-        <span>
+
+        {/* Login */}
+        <div className="mt-4 text-center text-xs text-neutral-500">
           Already have an account?{" "}
-          <button
+          <Button
             type="button"
             onClick={onLogin}
-            className="text-neutral-950 underline underline-offset-2"
+            className="font-medium text-neutral-950 underline underline-offset-2 transition-colors duration-200 hover:text-neutral-600"
           >
             LOGIN
-          </button>
-        </span>
+          </Button>
+        </div>
       </div>
     </main>
   );

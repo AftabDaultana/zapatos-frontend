@@ -10,10 +10,11 @@ export default function BrandSection() {
       <div className="flex flex-col gap-3 items-center">
         <h4 className="text-3xl leading-9 font-bold">BRANDS</h4>
         <Button
+          variant="none"
           onClick={() => {
             (window.scrollTo(0, 0), navigate("/category/brands"));
           }}
-          className="py-3 h-10 gap-1.5 text-lg leading-7 text-neutral-950 bg-transparent"
+          className="h-10 gap-1.5 py-3 text-lg leading-7 text-neutral-950"
         >
           See all <ArrowRight size={16} />
         </Button>

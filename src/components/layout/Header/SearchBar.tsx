@@ -86,6 +86,7 @@ export default function SearchBar() {
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center border-t border-neutral-100 p-2 gap-2">
                   <Button
                     type="button"
+                    variant="none"
                     disabled={currentPage === 1}
                     onClick={() => setCurrentPage((page) => page - 1)}
                     className="px-3 py-1 text-sm text-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
@@ -99,6 +100,7 @@ export default function SearchBar() {
 
                   <Button
                     type="button"
+                    variant="none"
                     disabled={currentPage === totalPages}
                     onClick={() => setCurrentPage((page) => page + 1)}
                     className="px-3 py-1 text-sm text-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"

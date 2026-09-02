@@ -534,7 +534,8 @@ export default function Checkout() {
               </div>
               <Button
                 type="submit"
-                className="mt-8 w-full bg-neutral-950 px-6 py-4 text-sm font-medium text-neutral-50 transition hover:bg-neutral-800"
+                variant="dark"
+                className="mt-8 w-full px-6 py-4 text-sm font-medium transition"
               >
                 PLACE ORDER
               </Button>
@@ -575,6 +576,7 @@ export default function Checkout() {
                       </div>
                       <Button
                         type="button"
+                        variant="none"
                         onClick={() =>
                           dispatch(
                             removeFromCart({

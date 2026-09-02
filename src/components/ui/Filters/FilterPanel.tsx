@@ -41,6 +41,7 @@ export default function FilterPanel() {
     <aside className="flex flex-col gap-4">
       <Button
         type="button"
+        variant="none"
         onClick={() => dispatch(clearAllFilters())}
         className="self-start text-sm font-medium text-neutral-950 underline underline-offset-4"
       >

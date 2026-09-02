@@ -115,6 +115,7 @@ export default function CategoryFormModal({
             type="button"
             onClick={onClose}
             aria-label="Close category form"
+            variant="none"
             className="rounded-lg p-2 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-950"
           >
             <X size={20} />
@@ -228,6 +229,7 @@ export default function CategoryFormModal({
             <Button
               type="button"
               onClick={onClose}
+              variant="none"
               className="rounded-lg border border-neutral-300 px-5 py-3 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100"
             >
               Cancel
@@ -235,7 +237,8 @@ export default function CategoryFormModal({
 
             <Button
               type="submit"
-              className="rounded-lg bg-neutral-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-800"
+              variant="dark"
+              className="px-5 py-3 text-sm font-medium"
             >
               {isEditing ? "Save Changes" : "Add Category"}
             </Button>

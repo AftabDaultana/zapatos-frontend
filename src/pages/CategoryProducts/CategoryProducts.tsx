@@ -100,8 +100,9 @@ export default function CategoryProducts() {
       <div className="flex items-center justify-between border border-neutral-300 p-4">
         <Button
           type="button"
+          variant="light"
           onClick={() => setIsFilterOpen((prev) => !prev)}
-          className="border border-neutral-950 px-5 py-3 text-sm font-medium text-neutral-950"
+          className="px-5 py-3 text-sm font-medium"
         >
           {isFilterOpen ? "HIDE FILTERS" : "FILTER"}
         </Button>
@@ -109,6 +110,7 @@ export default function CategoryProducts() {
           <span className="text-sm text-neutral-700">No active filters</span>
           <Button
             type="button"
+            variant="none"
             className="text-sm font-medium text-neutral-950"
           >
             CLEAR ALL
@@ -128,10 +130,11 @@ export default function CategoryProducts() {
         <div className="flex justify-center">
           <Button
             type="button"
+            variant="light"
             onClick={() =>
               setProductsPerPage((prev) => prev + PRODUCTS_PER_PAGE)
             }
-            className="border border-neutral-950 px-8 py-3 text-sm font-medium text-neutral-950"
+            className="px-8 py-3 text-sm font-medium"
           >
             SHOW MORE
           </Button>
@@ -151,6 +154,7 @@ export default function CategoryProducts() {
 
               <Button
                 type="button"
+                variant="none"
                 onClick={() => setIsFilterOpen(false)}
                 className="text-sm font-medium text-neutral-950"
               >

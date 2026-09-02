@@ -104,6 +104,7 @@ export default function EditProfile({ onClose }: EditProfileProps) {
           </h2>
           <Button
             type="button"
+            variant="none"
             onClick={onClose}
             aria-label="Close edit profile"
             className="bg-transparent text-neutral-950"
@@ -185,15 +186,13 @@ export default function EditProfile({ onClose }: EditProfileProps) {
           <div className="flex gap-3">
             <Button
               type="button"
+              variant="light"
               onClick={onClose}
-              className="h-10 w-full border border-neutral-950 text-neutral-950 hover:bg-neutral-950 hover:text-neutral-50"
+              className="h-10 w-full text-neutral-950"
             >
               CANCEL
             </Button>
-            <Button
-              type="submit"
-              className="h-10 w-full bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
-            >
+            <Button type="submit" variant="dark" className="h-10 w-full">
               SAVE CHANGES
             </Button>
           </div>

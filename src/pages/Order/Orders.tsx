@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { selectOrdersByUserId } from "../../app/selectors/orderSelectors";
 import { useAppSelector } from "../../hooks/reduxHooks";
+import Button from "../../components/ui/Button";
 
 export default function Orders() {
   const currentUser = useAppSelector((state) => state.user.currentUser);
@@ -111,7 +112,7 @@ export default function Orders() {
                   </span>
                 </p>
                 <div className="mt-8 flex items-center justify-center gap-1">
-                  <button
+                  <Button
                     type="button"
                     disabled={currentPage === 1}
                     onClick={() => setCurrentPage((page) => page - 1)}
@@ -119,13 +120,13 @@ export default function Orders() {
                     aria-label="Previous page"
                   >
                     <ChevronLeft size={18} />
-                  </button>
+                  </Button>
 
                   {Array.from(
                     { length: totalPages },
                     (_, index) => index + 1,
                   ).map((page) => (
-                    <button
+                    <Button
                       key={page}
                       type="button"
                       onClick={() => setCurrentPage(page)}
@@ -136,10 +137,10 @@ export default function Orders() {
                       }`}
                     >
                       {page}
-                    </button>
+                    </Button>
                   ))}
 
-                  <button
+                  <Button
                     type="button"
                     disabled={currentPage === totalPages}
                     onClick={() => setCurrentPage((page) => page + 1)}
@@ -147,7 +148,7 @@ export default function Orders() {
                     aria-label="Next page"
                   >
                     <ChevronRight size={18} />
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}

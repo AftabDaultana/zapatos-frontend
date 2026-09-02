@@ -34,16 +34,18 @@ export default function OrderDetails() {
           <div className="flex items-center justify-between">
             <Button
               type="button"
+              variant="light"
               onClick={() => navigate("/admin")}
-              className="flex gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-700 hover:text-neutral-50"
+              className="flex gap-2 px-4 py-2 text-sm font-medium transition"
             >
               <ArrowLeft size={24} /> Back to Dashboard
             </Button>
             <Button
               type="button"
+              variant="light"
               aria-label="Print invoice"
               title="Print invoice"
-              className="rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-700 hover:text-neutral-50"
+              className="px-4 py-2 text-sm font-medium transition"
             >
               <Printer size={24} />
             </Button>

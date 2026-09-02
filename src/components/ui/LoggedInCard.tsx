@@ -65,7 +65,8 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
             <Link to="/admin" onClick={onClose}>
               <Button
                 type="button"
-                className="h-10 w-full rounded-lg bg-neutral-950 text-sm font-medium text-neutral-50 transition-all duration-200 hover:bg-neutral-800"
+                variant="dark"
+                className="h-10 w-full text-sm font-medium transition-all duration-200"
               >
                 Admin Dashboard
               </Button>
@@ -75,7 +76,8 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
           <Link to="/orders" onClick={onClose}>
             <Button
               type="button"
-              className="h-10 w-full rounded-lg bg-neutral-950 text-sm font-medium text-neutral-50 transition-all duration-200 hover:bg-neutral-800"
+              variant="dark"
+              className="h-10 w-full text-sm font-medium transition-all duration-200"
             >
               View Orders
             </Button>
@@ -84,7 +86,8 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
           <Link to="/profile" onClick={onClose}>
             <Button
               type="button"
-              className="h-10 w-full rounded-lg bg-neutral-950 text-sm font-medium text-neutral-50 transition-all duration-200 hover:bg-neutral-800"
+              variant="dark"
+              className="h-10 w-full text-sm font-medium transition-all duration-200"
             >
               View Profile
             </Button>
@@ -95,11 +98,12 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
         <div className="mt-4 border-t border-neutral-200 pt-4">
           <Button
             type="button"
+            variant="light"
             onClick={() => {
               dispatch(logoutUser());
               onLogOut();
             }}
-            className="h-10 w-full rounded-lg border border-neutral-950 text-sm font-medium text-neutral-950 transition-all duration-200 hover:bg-neutral-950 hover:text-neutral-50"
+            className="h-10 w-full text-sm font-medium transition-all duration-200"
           >
             Log Out
           </Button>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ReactCountryFlag from "react-country-flag";
+import Button from "./Button";
 
 interface Country {
   code: string;
@@ -72,7 +73,7 @@ export default function CountrySelect({
   return (
     <div ref={containerRef} className="relative">
       {/* Selected Country */}
-      <button
+      <Button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex w-full items-center justify-between border border-neutral-300 bg-white px-4 py-3 text-left outline-none focus:border-neutral-950"
@@ -95,7 +96,7 @@ export default function CountrySelect({
         )}
 
         <span className="text-sm">▼</span>
-      </button>
+      </Button>
 
       {/* Dropdown */}
       {isOpen && (
@@ -116,7 +117,7 @@ export default function CountrySelect({
           <div className="max-h-60 overflow-y-auto">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
-                <button
+                <Button
                   key={country.code}
                   type="button"
                   onClick={() => handleSelect(country)}
@@ -132,7 +133,7 @@ export default function CountrySelect({
                   />
 
                   <span>{country.name}</span>
-                </button>
+                </Button>
               ))
             ) : (
               <p className="px-4 py-3 text-sm text-neutral-500">

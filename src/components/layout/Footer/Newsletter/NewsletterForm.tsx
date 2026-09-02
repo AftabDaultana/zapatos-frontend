@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Button from "../../../ui/Button";
 
 export default function NewsletterForm() {
   return (
@@ -8,12 +9,12 @@ export default function NewsletterForm() {
           placeholder="Your Email"
           className="flex-1 min-w-0 px-3 py-3 text-sm leading-6 text-neutral-900 placeholder:text-neutral-700 outline-none"
         />
-        <button
+        <Button
           type="submit"
           className="flex w-27.5 items-center justify-center gap-1.5 bg-neutral-900 py-2 text-base leading-7 text-neutral-100 sm:2-29.5 sm:text-lg lg:w-32"
         >
           SIGN UP <ArrowRight size={16} />
-        </button>
+        </Button>
       </div>
     </div>
   );

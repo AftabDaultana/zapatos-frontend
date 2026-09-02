@@ -11,11 +11,12 @@ export default function FeaturedProducts() {
         <h4 className="text-3xl leading-9 font-bold">HAPPENING NOW!</h4>
         <Button
           type="button"
+          variant="none"
           onClick={() => {
             window.scrollTo(0, 0);
             navigate("/featured");
           }}
-          className="py-3 h-10 gap-1.5 text-lg leading-7 text-neutral-950 bg-transparent"
+          className="h-10 gap-1.5 py-3 text-lg leading-7 text-neutral-950"
         >
           See all <ArrowRight size={16} />
         </Button>

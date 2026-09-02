@@ -111,7 +111,7 @@ export default function HeroSection() {
                     <img
                       src={slide.image}
                       alt={slide.title}
-                      className="w-70 md:w-160 xl:w-180 h-auto z-10 relative"
+                      className="relative z-10 h-auto w-70 transition-transform duration-500 hover:scale-105 hover:rotate-2 md:w-160 xl:w-180"
                       loading="eager"
                     />
                   </motion.div>
@@ -138,8 +138,9 @@ export default function HeroSection() {
                     className="absolute left-1/2 top-1/2 -translate-x-1/2  md:translate-y-[500%] translate-y-[300%] flex flex-col items-center"
                   >
                     <Button
+                      variant="dark"
                       onClick={() => navigate(slide.buttonPath)}
-                      className="z-20 gap-6 px-4 py-2 md:py-3 xl:p-4 text-lg leading-7 xl:text-2xl xl:leading-8 font-semibold bg-neutral-950 text-neutral-50 whitespace-nowrap"
+                      className="z-20 gap-6 px-4 py-2 md:py-3 xl:p-4 text-lg leading-7 xl:text-2xl xl:leading-8 font-semibold whitespace-nowrap"
                     >
                       {slide.buttonText}{" "}
                       <ArrowRight className="w-4 h-4 xl:w-6 xl:h-6" />
@@ -201,22 +202,25 @@ export default function HeroSection() {
           </motion.div>
         </AnimatePresence>
         <div className="flex items-center justify-between">
-          <button
+          <Button
             aria-label="Previous slide"
             type="button"
             onClick={handlePreviousSlide}
-            className="absolute left-4 md:left-8 xl:left-12 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center text-white bg-[#767676] cursor-pointer"
+            variant="none"
+            className="absolute left-4 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center bg-[#767676] text-white transition-all duration-300 hover:scale-105 hover:bg-neutral-950 md:left-8 xl:left-12"
           >
-            <ChevronLeft className="w-6 h-6 md:w-12 md:h-12" />
-          </button>
-          <button
+            <ChevronLeft className="h-6 w-6 md:h-12 md:w-12" />
+          </Button>
+
+          <Button
             aria-label="Next slide"
             type="button"
             onClick={handleNextSlide}
-            className="absolute right-4 md:right-8 xl:right-12 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center text-white bg-[#767676] cursor-pointer"
+            variant="none"
+            className="absolute right-4 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center bg-[#767676] text-white transition-all duration-300 hover:scale-105 hover:bg-neutral-950 md:right-8 xl:right-12"
           >
-            <ChevronRight className="w-6 h-6 md:w-12 md:h-12" />
-          </button>
+            <ChevronRight className="h-6 w-6 md:h-12 md:w-12" />
+          </Button>
         </div>
       </section>
     </>

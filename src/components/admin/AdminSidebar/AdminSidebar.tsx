@@ -117,6 +117,7 @@ function NavigationList({
 
                 <Button
                   type="button"
+                  variant="none"
                   onClick={() => toggleItem(item.label)}
                   className="rounded-md p-2 text-neutral-400 transition hover:bg-neutral-700 hover:text-white"
                   aria-label={`Toggle ${item.label} submenu`}
@@ -148,6 +149,7 @@ function NavigationList({
             ) : (
               <Button
                 type="button"
+                variant="none"
                 onClick={item.label === "Log out" ? onLogout : undefined}
                 className="flex w-full items-center justify-start gap-3 rounded-md px-3 py-2 text-neutral-400 transition hover:bg-neutral-900 hover:text-white"
                 style={{ paddingLeft: `${12 + level * 16}px` }}

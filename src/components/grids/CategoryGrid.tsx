@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const cardClasses = {
   cardClassName:
     "w-full aspect-[165.5/160] md:aspect-[251.33/240] xl:aspect-[551.33/376] overflow-hidden relative group",
-  overlayClassName: "bg-[#ECECEC]/10",
+  overlayClassName: "bg-[#ECECEC]/10 hover:bg-[#000000]/20",
   buttonContainerClassName:
     "absolute left-1/2 -translate-x-1/2 md:left-0 md:-translate-x-0 bottom-0 p-6",
   buttonClassName: "px-4 py-3 gap-1.5 bg-white text-neutral-950",

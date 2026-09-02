@@ -364,6 +364,7 @@ export default function OrdersTable({
               <Button
                 type="button"
                 disabled={currentPage === 1}
+                variant="none"
                 onClick={() => handlePageChange(currentPage - 1)}
               >
                 <ChevronLeft size={16} />
@@ -385,6 +386,7 @@ export default function OrdersTable({
                   <Button
                     key={page}
                     type="button"
+                    variant="none"
                     onClick={() => handlePageChange(page)}
                     className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                       currentPage === page
@@ -399,6 +401,7 @@ export default function OrdersTable({
 
               <Button
                 type="button"
+                variant="none"
                 disabled={currentPage === totalPages || totalPages === 0}
                 onClick={() => handlePageChange(currentPage + 1)}
               >

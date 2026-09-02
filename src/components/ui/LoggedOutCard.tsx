@@ -29,11 +29,12 @@ export default function LoggedOutCard() {
 
           <Button
             type="button"
+            variant="dark"
             onClick={() => {
               setAuthView("login");
               setShowAuth(true);
             }}
-            className="h-10 w-full rounded-lg bg-neutral-950 text-sm font-medium text-neutral-50 transition-all duration-200 hover:bg-neutral-800"
+            className="h-10 w-full text-sm font-medium transition-all duration-200"
           >
             Login
           </Button>
@@ -56,11 +57,12 @@ export default function LoggedOutCard() {
 
           <Button
             type="button"
+            variant="light"
             onClick={() => {
               setAuthView("register");
               setShowAuth(true);
             }}
-            className="group flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-neutral-950 transition-all duration-200 hover:bg-gray-300"
+            className="group flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-all duration-200"
           >
             <span>Register</span>
 

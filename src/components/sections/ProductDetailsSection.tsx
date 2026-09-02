@@ -87,6 +87,7 @@ export default function ProductDetailsSection() {
             />
             <Button
               type="button"
+              variant="none"
               aria-label="Previous Image"
               onClick={() => handlePreviousImage()}
               className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white/90 text-neutral-950"
@@ -95,6 +96,7 @@ export default function ProductDetailsSection() {
             </Button>
             <Button
               type="button"
+              variant="none"
               aria-label="Next Image"
               onClick={() => handleNextImage()}
               className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white/90 text-neutral-950"
@@ -107,6 +109,7 @@ export default function ProductDetailsSection() {
               <Button
                 key={image}
                 type="button"
+                variant="none"
                 onClick={() => setSelectedimage(index)}
                 className={`h-20 w-20 shrink-0 overflow-hidden border ${
                   selectedImage === index
@@ -184,6 +187,7 @@ export default function ProductDetailsSection() {
                 <Button
                   key={size}
                   type="button"
+                  variant={selectedSize === size ? "dark" : "light"}
                   onClick={() => setSelectedSize(size)}
                   className={`border px-4 py-2 text-sm ${selectedSize === size ? "border-neutral-950 bg-neutral-950 text-neutral-50" : "border-neutral-300 text-neutral-950"}`}
                 >
@@ -210,6 +214,7 @@ export default function ProductDetailsSection() {
             <div className="mt-8 flex gap-3">
               <Button
                 type="button"
+                variant="none"
                 onClick={() => {
                   if (isWishlisted) {
                     dispatch(removeFromWishlist(product.id));
@@ -230,6 +235,7 @@ export default function ProductDetailsSection() {
               </Button>
               <Button
                 type="button"
+                variant="none"
                 disabled={product.quantity === 0}
                 onClick={() => handleAddToCart()}
                 className="border border-neutral-950 px-1 py-1 disabled:cursor-not-allowed disabled:opacity-50"
@@ -242,8 +248,9 @@ export default function ProductDetailsSection() {
             <div className="mt-8">
               <Button
                 type="button"
+                variant="dark"
                 onClick={() => setIsEditModalOpen(true)}
-                className="flex items-center gap-2 bg-neutral-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-800"
+                className="flex items-center gap-2 px-5 py-3 text-sm font-medium transition"
               >
                 <Pencil size={16} /> Edit Product
               </Button>
