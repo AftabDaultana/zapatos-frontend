@@ -11,7 +11,8 @@ export default function NewsletterForm() {
         />
         <Button
           type="submit"
-          className="flex w-27.5 items-center justify-center gap-1.5 bg-neutral-900 py-2 text-base leading-7 text-neutral-100 sm:2-29.5 sm:text-lg lg:w-32"
+          variant="dark"
+          className="flex w-27.5 rounded-none items-center justify-center gap-1.5 py-2 text-base leading-7 sm:2-29.5 sm:text-lg lg:w-32"
         >
           SIGN UP <ArrowRight size={16} />
         </Button>

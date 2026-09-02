@@ -25,7 +25,7 @@ export default function AnnouncementBar({
             : "text-sm leading-6 text-neutral-900"
         }
       >
-        Spend $150 or more and get{" "}
+        Spend PKR 15,000 or more and get{" "}
         <span className="underline">FREE SHIPPING</span> on your order!
       </p>
     </header>
