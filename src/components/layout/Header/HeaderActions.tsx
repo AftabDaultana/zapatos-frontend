@@ -101,38 +101,56 @@ export default function HeaderActions() {
           )}
 
           {index === 2 && infoOpen && (
-            <div className="absolute left-auto right-0 top-full z-50 mt-2 w-64 bg-[#e7e7e7] shadow-lg p-6">
-              <div className="flex flex-col gap-4">
+            <div className="absolute right-0 top-full z-50 mt-3 w-72 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.10)]">
+              <div className="border-b border-neutral-100 px-5 py-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">
+                  Information
+                </p>
+              </div>
+
+              <div className="p-2">
                 <Link
                   to="/about"
                   onClick={() => setInfoOpen(false)}
-                  className="text-sm text-neutral-700 hover:text-neutral-950"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm text-neutral-700 transition-all duration-200 hover:bg-gray-300 hover:text-neutral-950"
                 >
-                  About Us
+                  <span>About Us</span>
+                  <span className="translate-x-0 text-neutral-400 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                    →
+                  </span>
                 </Link>
 
                 <Link
                   to="/shipping"
                   onClick={() => setInfoOpen(false)}
-                  className="text-sm text-neutral-700 hover:text-neutral-950"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm text-neutral-700 transition-all duration-200 hover:bg-gray-300 hover:text-neutral-950"
                 >
-                  Shipping & Delivery
+                  <span>Shipping & Delivery</span>
+                  <span className="translate-x-0 text-neutral-400 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                    →
+                  </span>
                 </Link>
 
                 <Link
                   to="/returns"
                   onClick={() => setInfoOpen(false)}
-                  className="text-sm text-neutral-700 hover:text-neutral-950"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm text-neutral-700 transition-all duration-200 hover:bg-gray-300 hover:text-neutral-950"
                 >
-                  Returns & Exchanges
+                  <span>Returns & Exchanges</span>
+                  <span className="translate-x-0 text-neutral-400 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                    →
+                  </span>
                 </Link>
 
                 <Link
                   to="/contact"
                   onClick={() => setInfoOpen(false)}
-                  className="text-sm text-neutral-700 hover:text-neutral-950"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm text-neutral-700 transition-all duration-200 hover:bg-gray-300 hover:text-neutral-950"
                 >
-                  Contact Us
+                  <span>Contact Us</span>
+                  <span className="translate-x-0 text-neutral-400 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                    →
+                  </span>
                 </Link>
               </div>
             </div>

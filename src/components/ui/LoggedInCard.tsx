@@ -16,78 +16,94 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
   if (!currentUser) return null;
 
   return (
-    <div className="flex flex-col gap-5 p-4 items-center">
-      <div className="flex flex-col items-center gap-3">
-        <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full ">
-          {currentUser.profilePicture ? (
-            <img
-              src={currentUser.profilePicture}
-              alt={currentUser.name}
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-          ) : (
-            <User size={24} className="m-auto text-neutral-500" />
-          )}
-        </div>
-        <div className="h-px w-full bg-neutral-700" />
-        <div className="flex flex-col gap-1.5">
-          <span className="block truncate text-lg font-medium text-neutral-700">
-            {currentUser.name}
-          </span>
-          <div className="h-px w-full bg-neutral-700" />
-          <span className="block truncate text-lg font-medium text-neutral-700">
-            {currentUser.email}
-          </span>
-          {currentUser.phoneNumber ? (
-            <>
-              <div className="h-px w-full bg-neutral-700" />
-              <span className="block truncate text-lg font-medium text-neutral-700">
-                {currentUser.phoneNumber}
-              </span>
-            </>
-          ) : null}
-        </div>
-        <div className="flex flex-col gap-2 h-px w-full bg-neutral-700" />
+    <div className="w-72 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.10)]">
+      {/* Header */}
+      <div className="border-b border-neutral-100 px-5 py-4">
+        <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">
+          My Account
+        </p>
+      </div>
 
-        {currentUser.role === "admin" && (
-          <Link to="/admin" onClick={onClose}>
-            {" "}
+      <div className="p-4">
+        {/* User Information */}
+        <div className="flex flex-col items-center rounded-lg bg-neutral-50 px-4 py-5 text-center">
+          <div className="h-14 w-14 overflow-hidden rounded-full bg-neutral-200">
+            {currentUser.profilePicture ? (
+              <img
+                src={currentUser.profilePicture}
+                alt={currentUser.name}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center">
+                <User size={24} className="text-neutral-500" />
+              </div>
+            )}
+          </div>
+
+          <div className="mt-3 min-w-0 w-full">
+            <p className="truncate text-sm font-medium text-neutral-950">
+              {currentUser.name}
+            </p>
+
+            <p className="mt-1 truncate text-xs text-neutral-500">
+              {currentUser.email}
+            </p>
+
+            {currentUser.phoneNumber && (
+              <p className="mt-1 truncate text-xs text-neutral-500">
+                {currentUser.phoneNumber}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Account Actions */}
+        <div className="mt-4 flex flex-col gap-2">
+          {currentUser.role === "admin" && (
+            <Link to="/admin" onClick={onClose}>
+              <Button
+                type="button"
+                className="h-10 w-full rounded-lg bg-neutral-950 text-sm font-medium text-neutral-50 transition-all duration-200 hover:bg-neutral-800"
+              >
+                Admin Dashboard
+              </Button>
+            </Link>
+          )}
+
+          <Link to="/orders" onClick={onClose}>
             <Button
               type="button"
-              className="hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950 bg-neutral-950 text-neutral-50 w-40 h-10"
+              className="h-10 w-full rounded-lg bg-neutral-950 text-sm font-medium text-neutral-50 transition-all duration-200 hover:bg-neutral-800"
             >
-              {" "}
-              Admin Dashboard{" "}
-            </Button>{" "}
+              View Orders
+            </Button>
           </Link>
-        )}
-        <Link to={"/orders"} onClick={onClose}>
+
+          <Link to="/profile" onClick={onClose}>
+            <Button
+              type="button"
+              className="h-10 w-full rounded-lg bg-neutral-950 text-sm font-medium text-neutral-50 transition-all duration-200 hover:bg-neutral-800"
+            >
+              View Profile
+            </Button>
+          </Link>
+        </div>
+
+        {/* Logout */}
+        <div className="mt-4 border-t border-neutral-200 pt-4">
           <Button
             type="button"
-            className="hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950 bg-neutral-950 text-neutral-50 w-40 h-10"
+            onClick={() => {
+              dispatch(logoutUser());
+              onLogOut();
+            }}
+            className="h-10 w-full rounded-lg border border-neutral-950 text-sm font-medium text-neutral-950 transition-all duration-200 hover:bg-neutral-950 hover:text-neutral-50"
           >
-            View Orders
+            Log Out
           </Button>
-        </Link>
-        <Link to={"/profile"} onClick={onClose}>
-          <Button
-            type="button"
-            className="hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950 bg-neutral-950 text-neutral-50 w-40 h-10"
-          >
-            View Profile
-          </Button>
-        </Link>
-        <Button
-          type="button"
-          onClick={() => {
-            dispatch(logoutUser());
-            onLogOut();
-          }}
-          className="border border-neutral-950 text-neutral-950 hover:bg-neutral-950 hover:text-neutral-50 w-30 h-10"
-        >
-          Log Out
-        </Button>
+        </div>
       </div>
     </div>
   );

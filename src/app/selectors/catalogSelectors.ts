@@ -1,4 +1,5 @@
 import type { RootState } from "../store";
+import type { Product } from "../../data/products";
 
 export const selectProductsByFilters = (
   state: RootState,
@@ -52,7 +53,7 @@ export const selectCategoryById = (state: RootState, categoryId: number) => {
   );
 };
 
-export const selectProducts = (state: RootState) => {
+export const selectProducts = (state: RootState): Product[] => {
   return state.catalog.products;
 };
 
