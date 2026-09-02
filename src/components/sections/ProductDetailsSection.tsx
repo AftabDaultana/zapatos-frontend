@@ -23,6 +23,7 @@ import {
 } from "../../app/slices/wishlistSlice";
 import RatingStars from "../ui/RatingStars";
 import ProductFormModal from "../admin/AdminProducts/ProductFormModal";
+import AlertModal from "../ui/AlertModal";
 
 export default function ProductDetailsSection() {
   const [selectedImage, setSelectedimage] = useState(0);
@@ -30,6 +31,8 @@ export default function ProductDetailsSection() {
   const [selectedSize, setSelectedSize] = useState("");
   const [isAdded, setIsAdded] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+
   const { slug } = useParams();
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectProducts);
@@ -68,7 +71,7 @@ export default function ProductDetailsSection() {
     );
 
     setIsAdded(true);
-    alert(`${product.name} is Added to cart`);
+    setIsCartModalOpen(true);
 
     setTimeout(() => {
       setIsAdded(false);
@@ -267,6 +270,13 @@ export default function ProductDetailsSection() {
           product={product}
         />
       )}
+      <AlertModal
+        isOpen={isCartModalOpen}
+        type="success"
+        title="Added to Cart"
+        message={`"${product.name}" has been added to your cart.`}
+        onClose={() => setIsCartModalOpen(false)}
+      />
     </div>
   );
 }

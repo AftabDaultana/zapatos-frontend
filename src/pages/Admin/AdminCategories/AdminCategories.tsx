@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { deleteCategory } from "../../../app/slices/catalogSlice";
 import type { Category } from "../../../data/categories";
 import CategoryFormModal from "../../../components/admin/AdminCategories/CategoryFormModal";
+import AlertModal from "../../../components/ui/AlertModal";
 
 export default function AdminCategories() {
   const ITEMS_PER_PAGE = 10;
@@ -14,8 +15,13 @@ export default function AdminCategories() {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null,
   );
+  const [categoryToDelete, setCategoryToDelete] = useState<number | null>(null);
 
   const categories = useAppSelector((state) => state.catalog.categories);
+
+  const categoryToDeleteData = categories.find(
+    (category) => category.id === categoryToDelete,
+  );
 
   const dispatch = useAppDispatch();
 
@@ -37,13 +43,14 @@ export default function AdminCategories() {
 
     if (!category) return;
 
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${category.name}"? This will also delete its subcategories.`,
-    );
+    setCategoryToDelete(categoryId);
+  };
 
-    if (!confirmed) return;
+  const handleConfirmDeleteCategory = () => {
+    if (categoryToDelete === null) return;
 
-    dispatch(deleteCategory(categoryId));
+    dispatch(deleteCategory(categoryToDelete));
+    setCategoryToDelete(null);
   };
   return (
     <main className="p-6">
@@ -223,6 +230,20 @@ export default function AdminCategories() {
         isOpen={isCategoryFormModalOpen}
         onClose={() => setIsCategoryFormModalOpen(false)}
         category={selectedCategory}
+      />
+      <AlertModal
+        isOpen={categoryToDelete !== null}
+        type="confirmation"
+        title="Delete Category"
+        message={
+          categoryToDeleteData
+            ? `Are you sure you want to delete "${categoryToDeleteData.name}"? This will also delete its subcategories.`
+            : ""
+        }
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={handleConfirmDeleteCategory}
+        onClose={() => setCategoryToDelete(null)}
       />
     </main>
   );

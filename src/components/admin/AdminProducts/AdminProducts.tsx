@@ -22,6 +22,7 @@ import {
 import { deleteProduct } from "../../../app/slices/catalogSlice";
 import ProductFormModal from "./ProductFormModal";
 import type { Product } from "../../../data/products";
+import AlertModal from "../../ui/AlertModal";
 
 type PaginationPage = number | "...";
 
@@ -81,11 +82,16 @@ export default function AdminProducts() {
   const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
     undefined,
   );
+  const [productToDelete, setProductToDelete] = useState<number | null>(null);
 
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isProductsFormModalOpen, setIsProductsFormModalOpen] = useState(false);
 
   const dispatch = useAppDispatch();
+
+  const productToDeleteData = products.find(
+    (product) => product.id === productToDelete,
+  );
 
   const getProductCategories = (subCategoryIds: number[]) => {
     const categoryIds = subCategoryIds
@@ -219,8 +225,18 @@ export default function AdminProducts() {
   };
 
   const handleDeleteProduct = (productId: number) => {
-    dispatch(deleteProduct(productId));
-    console.log("Delete product:", productId);
+    const product = products.find((product) => product.id === productId);
+
+    if (!product) return;
+
+    setProductToDelete(productId);
+  };
+
+  const handleConfirmDeleteProduct = () => {
+    if (productToDelete === null) return;
+
+    dispatch(deleteProduct(productToDelete));
+    setProductToDelete(null);
   };
 
   return (
@@ -536,6 +552,20 @@ export default function AdminProducts() {
         categories={categories}
         subCategories={subCategories}
         product={selectedProduct}
+      />
+      <AlertModal
+        isOpen={productToDelete !== null}
+        type="confirmation"
+        title="Delete Product"
+        message={
+          productToDeleteData
+            ? `Are you sure you want to delete "${productToDeleteData.name}"?`
+            : ""
+        }
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={handleConfirmDeleteProduct}
+        onClose={() => setProductToDelete(null)}
       />
     </main>
   );

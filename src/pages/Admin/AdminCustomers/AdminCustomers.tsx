@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { deleteUser } from "../../../app/slices/userSlice";
 import UserDetailsModal from "./UserProfileModal";
 import type { User } from "../../../types/user";
+import AlertModal from "../../../components/ui/AlertModal";
 
 export default function AdminCustomers() {
   const ITEMS_PER_PAGE = 10;
@@ -18,11 +19,14 @@ export default function AdminCustomers() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isUserDetailsModalOpen, setIsUserDetailsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [userToDelete, setUserToDelete] = useState<number | null>(null);
 
   const dispatch = useAppDispatch();
 
   const users = useAppSelector((state) => state.user.users);
   const orders = useAppSelector((state) => state.order.orders);
+
+  const userToDeleteData = users.find((user) => user.id === userToDelete);
 
   const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
 
@@ -46,13 +50,14 @@ export default function AdminCustomers() {
 
     if (!user || user.role === "admin") return;
 
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${user.name}"?`,
-    );
+    setUserToDelete(userId);
+  };
 
-    if (!confirmed) return;
+  const handleConfirmDeleteUser = () => {
+    if (userToDelete === null) return;
 
-    dispatch(deleteUser(userId));
+    dispatch(deleteUser(userToDelete));
+    setUserToDelete(null);
   };
 
   return (
@@ -272,6 +277,20 @@ export default function AdminCustomers() {
         isOpen={isUserDetailsModalOpen}
         onClose={() => setIsUserDetailsModalOpen(false)}
         user={selectedUser}
+      />
+      <AlertModal
+        isOpen={userToDelete !== null}
+        type="confirmation"
+        title="Delete User"
+        message={
+          userToDeleteData
+            ? `Are you sure you want to delete "${userToDeleteData.name}"?`
+            : ""
+        }
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={handleConfirmDeleteUser}
+        onClose={() => setUserToDelete(null)}
       />
     </main>
   );

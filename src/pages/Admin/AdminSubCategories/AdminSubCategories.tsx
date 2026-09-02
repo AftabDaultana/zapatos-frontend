@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { deleteSubCategory } from "../../../app/slices/catalogSlice";
 import type { SubCategory } from "../../../data/subCategories";
 import SubCategoryFormModal from "../../../components/admin/AdminSubCategories/SubCategoryFormModal";
+import AlertModal from "../../../components/ui/AlertModal";
 
 export default function AdminSubCategories() {
   const ITEMS_PER_PAGE = 10;
@@ -14,8 +15,15 @@ export default function AdminSubCategories() {
     useState(false);
   const [selectedSubCategory, setSelectedSubCategory] =
     useState<SubCategory | null>(null);
+  const [subCategoryToDelete, setSubCategoryToDelete] = useState<number | null>(
+    null,
+  );
 
   const subCategories = useAppSelector((state) => state.catalog.subCategories);
+
+  const subCategoryToDeleteData = subCategories.find(
+    (subCategory) => subCategory.id === subCategoryToDelete,
+  );
 
   const categories = useAppSelector((state) => state.catalog.categories);
 
@@ -48,13 +56,14 @@ export default function AdminSubCategories() {
 
     if (!subCategory) return;
 
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${subCategory.name}"?`,
-    );
+    setSubCategoryToDelete(subCategoryId);
+  };
 
-    if (!confirmed) return;
+  const handleConfirmDeleteSubCategory = () => {
+    if (subCategoryToDelete === null) return;
 
-    dispatch(deleteSubCategory(subCategoryId));
+    dispatch(deleteSubCategory(subCategoryToDelete));
+    setSubCategoryToDelete(null);
   };
 
   return (
@@ -255,6 +264,20 @@ export default function AdminSubCategories() {
         isOpen={isSubCategoryFormModalOpen}
         onClose={() => setIsSubCategoryFormModalOpen(false)}
         subCategory={selectedSubCategory}
+      />
+      <AlertModal
+        isOpen={subCategoryToDelete !== null}
+        type="confirmation"
+        title="Delete Subcategory"
+        message={
+          subCategoryToDeleteData
+            ? `Are you sure you want to delete "${subCategoryToDeleteData.name}"?`
+            : ""
+        }
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={handleConfirmDeleteSubCategory}
+        onClose={() => setSubCategoryToDelete(null)}
       />
     </main>
   );

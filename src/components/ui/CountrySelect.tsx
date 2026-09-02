@@ -121,7 +121,7 @@ export default function CountrySelect({
                   key={country.code}
                   type="button"
                   onClick={() => handleSelect(country)}
-                  className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-neutral-100"
+                  className="flex w-full items-center justify-start gap-3 px-4 py-3 text-left hover:bg-neutral-100"
                 >
                   <ReactCountryFlag
                     countryCode={country.code}
