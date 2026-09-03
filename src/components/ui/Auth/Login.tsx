@@ -9,9 +9,14 @@ import type { SubmitEvent } from "react";
 interface LoginProps {
   onClose: () => void;
   onRegister: () => void;
+  onForgotPassword: () => void;
 }
 
-export default function Login({ onClose, onRegister }: LoginProps) {
+export default function Login({
+  onClose,
+  onRegister,
+  onForgotPassword,
+}: LoginProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -135,6 +140,7 @@ export default function Login({ onClose, onRegister }: LoginProps) {
 
             <Button
               type="button"
+              onClick={onForgotPassword}
               className="text-xs text-neutral-700 underline-offset-2 transition-colors duration-200 hover:text-neutral-950 hover:underline"
             >
               Forgot password?
@@ -147,7 +153,7 @@ export default function Login({ onClose, onRegister }: LoginProps) {
           type="submit"
           variant="dark"
           form="login-form"
-          className="mt-4 w-full px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-neutral-50 hover:text-neutral-950 hover:ring-1 hover:ring-neutral-950"
+          className="mt-4 w-full px-4 py-2 text-sm font-medium transition-all duration-200  hover:ring-1 hover:ring-neutral-950"
         >
           SIGN IN
         </Button>
