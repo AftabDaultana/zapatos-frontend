@@ -216,36 +216,36 @@ export default function OrdersTable({
         </div>
       </div>
 
-      <div className="rounded-2xl bg-white">
+      <div className="overflow-hidden rounded-2xl bg-white">
         <div className="overflow-x-auto">
           <table className="w-full min-w-225">
             <thead>
-              <tr className="border-b border-neutral-100 text-left">
-                <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
+              <tr className="border-b border-neutral-300 text-left">
+                <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
                   Order ID
                 </th>
 
-                <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
+                <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
                   Order Time
                 </th>
 
-                <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
+                <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
                   Customer
                 </th>
 
-                <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
+                <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
                   Method
                 </th>
 
-                <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
+                <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
                   Amount
                 </th>
 
-                <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
+                <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
                   Status
                 </th>
 
-                <th className="px-6 py-4 text-sm font-semibold text-neutral-500">
+                <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
                   Actions
                 </th>
               </tr>
@@ -256,7 +256,7 @@ export default function OrdersTable({
                 currentOrders.map((order) => (
                   <tr
                     key={order.id}
-                    className="border-b border-neutral-100 last:border-b-0"
+                    className="border-b border-neutral-300 last:border-b-0"
                   >
                     <td className="px-6 py-4">
                       <Link
@@ -277,8 +277,10 @@ export default function OrdersTable({
                       })}
                     </td>
 
-                    <td className="px-6 py-4 text-sm font-medium text-neutral-950">
-                      {order.customer.name}
+                    <td className="px-6 py-4">
+                      <p className="text-sm font-medium text-neutral-950">
+                        {order.customer.name}
+                      </p>
                     </td>
 
                     <td className="px-6 py-4 text-sm text-neutral-600">
@@ -347,15 +349,15 @@ export default function OrdersTable({
           <div className="flex items-center justify-between border-t border-neutral-300 px-6 py-4">
             <p className="text-sm text-neutral-500">
               Showing{" "}
-              <span className="font-medium text-neutral-500">
+              <span className="font-medium text-neutral-950">
                 {totalOrders === 0 ? 0 : startIndex + 1}
               </span>{" "}
               -{" "}
-              <span className="font-medium text-neutral-500">
+              <span className="font-medium text-neutral-950">
                 {Math.min(startIndex + ordersPerPage, totalOrders)}
               </span>{" "}
               of{" "}
-              <span className="font-medium text-neutral-500">
+              <span className="font-medium text-neutral-950">
                 {totalOrders}
               </span>
             </p>
@@ -366,8 +368,10 @@ export default function OrdersTable({
                 disabled={currentPage === 1}
                 variant="none"
                 onClick={() => handlePageChange(currentPage - 1)}
+                className="rounded-lg p-2 text-neutral-600 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Previous page"
               >
-                <ChevronLeft size={16} />
+                <ChevronLeft size={18} />
               </Button>
 
               {paginationPages.map((page, index) => {
@@ -404,8 +408,10 @@ export default function OrdersTable({
                 variant="none"
                 disabled={currentPage === totalPages || totalPages === 0}
                 onClick={() => handlePageChange(currentPage + 1)}
+                className="rounded-lg p-2 text-neutral-600 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Next page"
               >
-                <ChevronRight size={16} />
+                <ChevronRight size={18} />
               </Button>
             </div>
           </div>
