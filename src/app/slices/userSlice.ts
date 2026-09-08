@@ -49,21 +49,8 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    addUser: (state, action: PayloadAction<User>) => {
-      state.users.push(action.payload);
-      localStorage.setItem("users", JSON.stringify(state.users));
-    },
     setUser: (state, action: PayloadAction<User>) => {
-      const storedUsers = getStoredUsers();
-      const updatedUsers = storedUsers.map((user) =>
-        user.id === action.payload.id ? { ...user, isLoggedIn: true } : user,
-      );
-
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
-
-      const updatedCurrentUser = { ...action.payload, isLoggedIn: true };
-      state.currentUser = updatedCurrentUser;
-      localStorage.setItem("currentUser", JSON.stringify(updatedCurrentUser));
+      state.currentUser = action.payload;
     },
     updateUser: (state, action: PayloadAction<Partial<User>>) => {
       if (!state.currentUser) return;
@@ -78,7 +65,7 @@ const userSlice = createSlice({
       const storedUsers = getStoredUsers();
 
       const updatedUsers = storedUsers.map((user) =>
-        user.id === updatedCurrentUser.id ? updatedCurrentUser : user,
+        user._id === updatedCurrentUser._id ? updatedCurrentUser : user,
       );
 
       localStorage.setItem("users", JSON.stringify(updatedUsers));
@@ -88,7 +75,7 @@ const userSlice = createSlice({
       if (state.currentUser) {
         const storedUsers = getStoredUsers();
         const updatedUsers = storedUsers.map((user) =>
-          user.id === state.currentUser?.id
+          user._id === state.currentUser?._id
             ? { ...user, isLoggedIn: false }
             : user,
         );
@@ -98,13 +85,13 @@ const userSlice = createSlice({
       localStorage.removeItem("currentUser");
     },
     deleteUser: (state, action: PayloadAction<number>) => {
-      state.users = state.users.filter((user) => user.id !== action.payload);
+      state.users = state.users.filter((user) => user._id !== action.payload);
 
       localStorage.setItem("users", JSON.stringify(state.users));
     },
   },
 });
 
-export const { addUser, setUser, logoutUser, updateUser, deleteUser } =
+export const { setUser, logoutUser, updateUser, deleteUser } =
   userSlice.actions;
 export default userSlice.reducer;

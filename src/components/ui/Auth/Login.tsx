@@ -2,9 +2,9 @@ import { X, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import Button from "../Button";
 import { useAppDispatch } from "../../../hooks/reduxHooks";
-import { setUser, getStoredUsers } from "../../../app/slices/userSlice";
-
 import type { SubmitEvent } from "react";
+import { loginUser } from "../../../services/authServices";
+import { setUser } from "../../../app/slices/userSlice";
 
 interface LoginProps {
   onClose: () => void;
@@ -20,34 +20,36 @@ export default function Login({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (e: SubmitEvent) => {
+  const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
     setError("");
 
-    const storedUsers = getStoredUsers();
+    try {
+      const response = await loginUser({
+        email: email.trim(),
+        password,
+        rememberMe,
+      });
 
-    const user = storedUsers.find(
-      (user) =>
-        user.email.toLowerCase() === email.trim().toLowerCase() &&
-        user.password === password,
-    );
+      console.log("Login response: ", response);
+      console.log("Login user: ", response.user);
 
-    if (user) {
-      dispatch(setUser(user));
-      onClose();
-    } else {
-      setError("Invalid Email or Password");
+      dispatch(setUser(response.user));
+    } catch (error: any) {
+      setError(
+        error.response?.data?.message || "Login failed. Please try again.",
+      );
     }
   };
 
   return (
     <main className="fixed inset-0 z-100 flex items-center justify-center bg-black/50 p-4">
       <div className="relative flex max-h-[calc(100dvh-2rem)] w-full max-w-md flex-col overflow-y-auto rounded-xl bg-white p-5 sm:p-6">
-        {/* Header */}
         <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
           <h2 className="text-xl font-semibold leading-6 text-neutral-950">
             SIGN IN
@@ -64,13 +66,11 @@ export default function Login({
           </Button>
         </div>
 
-        {/* Form */}
         <form
           id="login-form"
           onSubmit={handleSubmit}
           className="mt-4 flex flex-col gap-4"
         >
-          {/* Email */}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="email"
@@ -90,7 +90,6 @@ export default function Login({
             />
           </div>
 
-          {/* Password */}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="password"
@@ -123,12 +122,13 @@ export default function Login({
             {error && <p className="mt-0.5 text-xs text-red-500">{error}</p>}
           </div>
 
-          {/* Remember / Forgot */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <input
                 id="rememberMe"
                 name="rememberMe"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
                 type="checkbox"
                 className="h-3.5 w-3.5 accent-neutral-950"
               />
@@ -148,7 +148,6 @@ export default function Login({
           </div>
         </form>
 
-        {/* Sign In */}
         <Button
           type="submit"
           variant="dark"
@@ -158,7 +157,6 @@ export default function Login({
           SIGN IN
         </Button>
 
-        {/* Register Information */}
         <div className="mt-5 border-t border-neutral-100 pt-4">
           <p className="text-sm font-medium text-neutral-950">
             Don't have an account?
@@ -175,7 +173,6 @@ export default function Login({
           </ul>
         </div>
 
-        {/* Register */}
         <Button
           type="button"
           variant="light"

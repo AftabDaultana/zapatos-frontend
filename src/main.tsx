@@ -6,11 +6,14 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routes/router.tsx";
 import { store } from "./app/store.ts";
 
+import AuthInitializer from "./components/AuthInitializer.tsx";
+
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
+      <AuthInitializer />
       <RouterProvider router={router} />
     </Provider>
   </StrictMode>,

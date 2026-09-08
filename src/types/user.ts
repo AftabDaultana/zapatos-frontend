@@ -7,18 +7,14 @@ export interface Address {
 }
 
 export interface User {
-  id: number;
+  _id: string;
   name: string;
   email: string;
+  phoneNumber?: string;
   password: string;
-  phoneNumber: string;
-
-  profilePicture: string;
-
+  profilePicture?: string;
   role: "user" | "admin";
-
-  isLoggedIn: boolean;
-
-  billingAddress: Address;
-  shippingAddress: Address;
+  status: "active" | "inactive";
+  billingAddress?: Address;
+  shippingAddress?: Address;
 }

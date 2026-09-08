@@ -81,7 +81,7 @@ export default function OrdersTable({
 
     return orders.filter((order) => {
       const matchesCurrentUser =
-        !onlyCurrentUser || order.userId === currentUser?.id;
+        !onlyCurrentUser || order.userId === currentUser?._id;
 
       const matchesStatus =
         selectedStatus === "all" || order.status === selectedStatus;

@@ -1,14 +1,8 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../../hooks/reduxHooks";
-import {
-  addUser,
-  getStoredUsers,
-  setUser,
-} from "../../../app/slices/userSlice";
 import Button from "../Button";
 import { Eye, EyeOff, X } from "lucide-react";
 import type { SubmitEvent } from "react";
-import type { User } from "../../../types/user";
+import { registerUser } from "../../../services/authServices";
 
 interface RegisterProps {
   onClose: () => void;
@@ -22,57 +16,29 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const dispatch = useAppDispatch();
-
-  const handleRegister = (e: SubmitEvent) => {
+  const handleRegister = async (e: SubmitEvent) => {
     e.preventDefault();
     setError("");
 
-    const storedUsers = getStoredUsers();
+    try {
+      await registerUser({
+        name: name.trim(),
+        email: email.trim(),
+        password,
+      });
 
-    const existingUser = storedUsers.find(
-      (user) => user.email.toLowerCase() === email.trim().toLowerCase(),
-    );
-
-    if (existingUser) {
-      setError("User with this email already exists");
-      return;
+      onClose();
+    } catch (error: any) {
+      setError(
+        error.response?.data?.message ||
+          "Registration failed. Please try again.",
+      );
     }
-
-    const newUser: User = {
-      id: Math.max(...storedUsers.map((user) => user.id), 0) + 1,
-      name: name.trim(),
-      email: email.trim(),
-      password,
-      phoneNumber: "",
-      profilePicture: "",
-      role: "user",
-      isLoggedIn: false,
-      shippingAddress: {
-        street: "",
-        city: "",
-        state: "",
-        postalCode: "",
-        country: "",
-      },
-      billingAddress: {
-        street: "",
-        city: "",
-        state: "",
-        postalCode: "",
-        country: "",
-      },
-    };
-
-    dispatch(addUser(newUser));
-    dispatch(setUser(newUser));
-    onClose();
   };
 
   return (
     <main className="fixed inset-0 z-100 flex items-center justify-center bg-black/50 p-4">
       <div className="relative flex max-h-[calc(100dvh-2rem)] w-full max-w-md flex-col overflow-y-auto rounded-xl bg-white p-5 sm:p-6">
-        {/* Header */}
         <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
           <h2 className="text-xl font-semibold leading-6 text-neutral-950">
             JOIN US
@@ -89,13 +55,11 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
           </Button>
         </div>
 
-        {/* Form */}
         <form
           id="register-form"
           onSubmit={handleRegister}
           className="mt-4 flex flex-col gap-4"
         >
-          {/* Name */}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="name"
@@ -115,7 +79,6 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
             />
           </div>
 
-          {/* Email */}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="email"
@@ -135,7 +98,6 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
             />
           </div>
 
-          {/* Password */}
           <div className="flex flex-col gap-1">
             <label
               htmlFor="password"
@@ -169,7 +131,6 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
           </div>
         </form>
 
-        {/* Register */}
         <Button
           type="submit"
           variant="dark"
@@ -179,7 +140,6 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
           REGISTER
         </Button>
 
-        {/* Benefits */}
         <div className="mt-5 border-t border-neutral-100 pt-4">
           <p className="text-sm font-medium text-neutral-950">
             Create an account and get:
@@ -192,13 +152,13 @@ export default function Register({ onClose, onLogin }: RegisterProps) {
           </ul>
         </div>
 
-        {/* Login */}
         <div className="mt-4 text-center text-xs text-neutral-500">
           Already have an account?{" "}
           <Button
             type="button"
+            variant="light"
             onClick={onLogin}
-            className="font-medium text-neutral-950 underline underline-offset-2 transition-colors duration-200 hover:text-neutral-600"
+            className="mt-4 w-full px-4 py-2 text-sm font-medium transition-all duration-200"
           >
             LOGIN
           </Button>
