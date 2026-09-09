@@ -30,11 +30,11 @@ export default function UserDetailsContent({ user }: UserDetailsContentProps) {
       <div className="h-px w-full bg-neutral-950" />
 
       <div className="flex flex-col gap-3 px-4">
-        <p>Street: {user.shippingAddress.street}</p>
-        <p>City: {user.shippingAddress.city}</p>
-        <p>State: {user.shippingAddress.state}</p>
-        <p>Country: {user.shippingAddress.country}</p>
-        <p>Postal Code: {user.shippingAddress.postalCode}</p>
+        <p>Street: {user.shippingAddress?.street}</p>
+        <p>City: {user.shippingAddress?.city}</p>
+        <p>State: {user.shippingAddress?.state}</p>
+        <p>Country: {user.shippingAddress?.country}</p>
+        <p>Postal Code: {user.shippingAddress?.postalCode}</p>
       </div>
 
       {/* Billing Address */}
@@ -45,11 +45,11 @@ export default function UserDetailsContent({ user }: UserDetailsContentProps) {
       <div className="h-px w-full bg-neutral-950" />
 
       <div className="flex flex-col gap-3 px-4">
-        <p>Street: {user.billingAddress.street}</p>
-        <p>City: {user.billingAddress.city}</p>
-        <p>State: {user.billingAddress.state}</p>
-        <p>Country: {user.billingAddress.country}</p>
-        <p>Postal Code: {user.billingAddress.postalCode}</p>
+        <p>Street: {user.billingAddress?.street}</p>
+        <p>City: {user.billingAddress?.city}</p>
+        <p>State: {user.billingAddress?.state}</p>
+        <p>Country: {user.billingAddress?.country}</p>
+        <p>Postal Code: {user.billingAddress?.postalCode}</p>
       </div>
     </>
   );

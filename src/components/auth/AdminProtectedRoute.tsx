@@ -4,7 +4,7 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 export default function AdminProtectedRoute() {
   const currentUser = useAppSelector((state) => state.user.currentUser);
 
-  if (!currentUser?.isLoggedIn) {
+  if (!currentUser) {
     return <Navigate to="/" replace />;
   }
 

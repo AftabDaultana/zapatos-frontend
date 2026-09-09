@@ -49,9 +49,9 @@ export default function CategoryProducts() {
     } else if (isHighTops) {
       return selectHighTops(state);
     } else if (subCategory) {
-      return selectProductsBySubCategoryId(state, subCategory.id);
+      return selectProductsBySubCategoryId(state, subCategory._id);
     }
-    return selectProductsByCategoryId(state, category?.id);
+    return selectProductsByCategoryId(state, category?._id);
   });
 
   const filteredProducts = useAppSelector((state) =>
@@ -92,9 +92,9 @@ export default function CategoryProducts() {
       </h1>
       {category && !isNewArrivals && !isFeatured && !isHighTops && (
         <SubCategoryBanner
-          categoryId={category.id}
+          categoryId={category._id!}
           categorySlug={category.slug}
-          activeSubCategoryId={subCategory?.id}
+          activeSubCategoryId={subCategory?._id!}
         />
       )}
       <div className="flex items-center justify-between border border-neutral-300 p-4">

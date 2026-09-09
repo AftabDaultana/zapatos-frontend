@@ -25,7 +25,7 @@ export default function BrandSlider() {
           return (
             <div
               className="shrink-0 basis-1/3 lg:basis-1/5 xl:basis-1/6 px-4"
-              key={brand.id}
+              key={brand._id}
             >
               <div className="h-full w-full flex items-center justify-center">
                 <img

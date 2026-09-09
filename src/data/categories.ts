@@ -1,32 +1,32 @@
 export interface Category {
-  id: number;
+  _id?: string;
   name: string;
   slug: string;
 }
 
 export const categories: Category[] = [
   {
-    id: 1,
+    _id: "1",
     name: "MEN",
     slug: "men",
   },
   {
-    id: 2,
+    _id: "2",
     name: "WOMEN",
     slug: "women",
   },
   {
-    id: 3,
+    _id: "3",
     name: "KIDS",
     slug: "kids",
   },
   {
-    id: 4,
+    _id: "4",
     name: "BRANDS",
     slug: "brands",
   },
   {
-    id: 5,
+    _id: "5",
     name: "SANDALS",
     slug: "sandals",
   },

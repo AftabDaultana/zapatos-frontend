@@ -4,7 +4,7 @@ import blog3 from "../assets/blogs images/blog-4.jpg?format=webp";
 import blog4 from "../assets/blogs images/blog-3.jpg?format=webp";
 
 export interface Blog {
-  id: number;
+  _id?: string;
 
   title: string;
   slug: string;
@@ -20,7 +20,7 @@ export interface Blog {
 
 export const blogs: Blog[] = [
   {
-    id: 1,
+    _id: "1",
     title: "Step Into Style: The Hottest Sneaker Trends of the Season",
     slug: "step-into-style-the-hottest-sneaker-trends-of-the-season",
     excerpt:
@@ -32,7 +32,7 @@ export const blogs: Blog[] = [
     author: "Aftab",
   },
   {
-    id: 2,
+    _id: "2",
     title: "Running on Clouds: Best Performance Shoes for Every Athlete",
     slug: "running-on-clouds-best-performance-shoes-for-every-athlete",
     excerpt:
@@ -44,7 +44,7 @@ export const blogs: Blog[] = [
     author: "Aftab",
   },
   {
-    id: 3,
+    _id: "3",
     title: "From Courts to Streets: How High-Tops Became a Fashion Staple",
     slug: "from-courts-to-streets-how-high-tops-became-a-fashion-staple",
     excerpt:
@@ -56,7 +56,7 @@ export const blogs: Blog[] = [
     author: "Aftab",
   },
   {
-    id: 4,
+    _id: "4",
     title: "Sustainable Kicks: Eco-Friendly Sneakers You’ll Love",
     slug: "sustainable-kicks-eco-friendly-sneakers-you’ll-love",
     excerpt:

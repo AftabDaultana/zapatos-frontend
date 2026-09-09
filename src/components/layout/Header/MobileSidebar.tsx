@@ -12,9 +12,9 @@ interface MobileSidebarProps {
 }
 
 export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
-  const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-  const toggleCategory = (categoryId: number) => {
+  const toggleCategory = (categoryId: string) => {
     setExpandedCategory((prev) => {
       return prev === categoryId ? null : categoryId;
     });
@@ -44,10 +44,10 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             <ul className="flex flex-col gap-6 py-5">
               {categories.map((category) => {
                 const categoryItems = subCategories.filter(
-                  (item) => item.categoryId === category.id,
+                  (item) => item.categoryId === category._id,
                 );
                 return (
-                  <li key={category.id}>
+                  <li key={category._id}>
                     <Button className="flex gap-2 items-center cursor-pointer">
                       <Link
                         to={`/category/${category.name.toLowerCase()}`}
@@ -57,13 +57,13 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                       </Link>
                       <ChevronDown
                         className={`transition-transform duration-200 ${
-                          expandedCategory === category.id ? "rotate-180" : ""
+                          expandedCategory === category._id ? "rotate-180" : ""
                         }`}
                         size={18}
-                        onClick={() => toggleCategory(category.id)}
+                        onClick={() => toggleCategory(category._id!)}
                       />
                     </Button>
-                    {expandedCategory === category.id &&
+                    {expandedCategory === category._id &&
                       categoryItems.length > 0 && (
                         <ul className="flex flex-col gap-2 p-2">
                           {categoryItems.map((subCategory) => {
@@ -71,7 +71,7 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                               <Link
                                 to={`/category/${category.name.toLowerCase()}/${subCategory.name.toLowerCase()}`}
                               >
-                                <li key={subCategory.id}>
+                                <li key={subCategory._id}>
                                   <Button className="cursor-pointer">
                                     {subCategory.name}
                                   </Button>

@@ -14,6 +14,6 @@ export const selectWishlistProducts = (state: RootState) => {
   );
 
   return state.catalog.products.filter((product) =>
-    wishlistProductsIds.includes(product.id),
+    wishlistProductsIds.includes(product._id!),
   );
 };

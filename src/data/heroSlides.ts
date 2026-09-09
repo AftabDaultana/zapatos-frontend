@@ -5,7 +5,7 @@ import shield from "../assets/shield-check.svg";
 import info from "../assets/information.svg";
 
 export interface HeroSlide {
-  id: number;
+  _id: string;
   title: string;
   description: string;
   buttonText: string;
@@ -20,7 +20,7 @@ export interface HeroSlide {
 
 export const heroSlides: readonly HeroSlide[] = [
   {
-    id: 1,
+    _id: "1",
     title: "Zapatos",
     description:
       "Discover the latest drops, limited editions, and classic styles designed for every step of your journey",
@@ -48,7 +48,7 @@ export const heroSlides: readonly HeroSlide[] = [
     ],
   },
   {
-    id: 2,
+    _id: "2",
     title: "Zapatos",
     description:
       "Discover the latest drops, limited editions, and classic styles designed for every step of your journey",

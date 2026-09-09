@@ -47,9 +47,9 @@ export const selectCategories = (state: RootState) => {
   return state.catalog.categories;
 };
 
-export const selectCategoryById = (state: RootState, categoryId: number) => {
+export const selectCategoryById = (state: RootState, categoryId: string) => {
   return state.catalog.categories.find(
-    (category) => category.id === categoryId,
+    (category) => category._id === categoryId,
   );
 };
 
@@ -79,7 +79,7 @@ export const selectSubCategoryBySlug = (
 
 export const selectSubCategoriesByCategoryId = (
   state: RootState,
-  categoryId: number | undefined,
+  categoryId: string | undefined,
 ) => {
   if (categoryId === undefined) {
     return [];
@@ -91,7 +91,7 @@ export const selectSubCategoriesByCategoryId = (
 
 export const selectProductsBySubCategoryId = (
   state: RootState,
-  subCategoryId: number | undefined,
+  subCategoryId: string | undefined,
 ) => {
   if (subCategoryId === undefined) return [];
   return state.catalog.products.filter((product) =>
@@ -101,15 +101,15 @@ export const selectProductsBySubCategoryId = (
 
 export const selectProductsByCategoryId = (
   state: RootState,
-  categoryId: number | undefined,
+  categoryId: string | undefined,
 ) => {
   if (categoryId === undefined) return [];
   const subCategoryIds = state.catalog.subCategories
     .filter((subCategory) => subCategory.categoryId === categoryId)
-    .map((subCategory) => subCategory.id);
+    .map((subCategory) => subCategory._id);
 
   return state.catalog.products.filter((product) =>
-    product.subCategoryId.some((id) => subCategoryIds.includes(id)),
+    product.subCategoryId.some((_id) => subCategoryIds.includes(_id)),
   );
 };
 

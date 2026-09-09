@@ -61,7 +61,7 @@ export default function HeroSection() {
                 <div className="hidden xl:block xl:z-40 relative w-137 h-24 overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.p
-                      key={slide.id}
+                      key={slide._id}
                       initial={{
                         opacity: 0,
                         x: -40,
@@ -86,7 +86,7 @@ export default function HeroSection() {
                 </div>
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={slide.id}
+                    key={slide._id}
                     initial={{
                       opacity: 0,
                       scale: 0.9,
@@ -118,7 +118,7 @@ export default function HeroSection() {
                 </AnimatePresence>
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={slide.id}
+                    key={slide._id}
                     initial={{
                       opacity: 0,
                       y: 20,
@@ -150,7 +150,7 @@ export default function HeroSection() {
                 <div className="hidden xl:block xl:z-40 relative w-auto h-24">
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={slide.id}
+                      key={slide._id}
                       initial={{
                         opacity: 0,
                         x: 40,

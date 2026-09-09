@@ -1,7 +1,7 @@
 import type { Address } from "./user";
 
 export interface OrderItem {
-  productId: number;
+  productId: string;
   name: string;
   image: string;
   price: number;
@@ -11,8 +11,8 @@ export interface OrderItem {
 }
 
 export interface Order {
-  id: string;
-  userId: number | null;
+  _id: string;
+  userId: string | null;
   customer: {
     name: string;
     email: string;

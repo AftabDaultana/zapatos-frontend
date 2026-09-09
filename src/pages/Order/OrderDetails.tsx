@@ -58,7 +58,7 @@ export default function OrderDetails() {
             </h1>
 
             <p className="mt-2 text-base text-neutral-600 text-center">
-              View information and items for order #{order.id}
+              View information and items for order #{order._id}
             </p>
           </div>
         </div>
@@ -72,7 +72,7 @@ export default function OrderDetails() {
                 </p>
 
                 <p className="mt-2 font-semibold text-neutral-950">
-                  #{order.id}
+                  #{order._id}
                 </p>
               </div>
 
@@ -97,7 +97,7 @@ export default function OrderDetails() {
                     onChange={(event) =>
                       dispatch(
                         updateOrderStatus({
-                          orderId: order.id,
+                          orderId: order._id,
                           status: event.target.value as Order["status"],
                         }),
                       )

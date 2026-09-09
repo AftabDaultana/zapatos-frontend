@@ -73,7 +73,7 @@ export default function EditProfile({ onClose }: EditProfileProps) {
 
     const emailAlreadyExists = storedUsers.some((user) => {
       return (
-        user.id !== currentUser?.id &&
+        user._id !== currentUser?._id &&
         user.email.trim().toLowerCase() === email.trim().toLowerCase()
       );
     });

@@ -19,7 +19,7 @@ interface SubCategoryFormModalProps {
 interface SubCategoryFormData {
   name: string;
   slug: string;
-  categoryId: number | "";
+  categoryId: string | "";
   image: string;
 }
 
@@ -68,7 +68,7 @@ export default function SubCategoryFormModal({
       setFormData({
         name: "",
         slug: "",
-        categoryId: categories[0]?.id ?? "",
+        categoryId: categories[0]?._id ?? "",
         image: "",
       });
     }
@@ -138,7 +138,7 @@ export default function SubCategoryFormModal({
           .trim()
           .replace(/\b\w/g, (char) => char.toUpperCase()),
         slug: slugify(formData.slug),
-        categoryId: Number(formData.categoryId),
+        categoryId: formData.categoryId,
         image: imageUrl,
       };
 
@@ -247,7 +247,7 @@ export default function SubCategoryFormModal({
                 setFormData((prev) => ({
                   ...prev,
                   categoryId:
-                    event.target.value === "" ? "" : Number(event.target.value),
+                    event.target.value === "" ? "" : event.target.value,
                 }))
               }
               className="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-950 outline-none transition focus:border-neutral-950"
@@ -255,7 +255,7 @@ export default function SubCategoryFormModal({
               <option value="">Select a category</option>
 
               {categories.map((category) => (
-                <option key={category.id} value={category.id}>
+                <option key={category._id} value={category._id}>
                   {category.name}
                 </option>
               ))}

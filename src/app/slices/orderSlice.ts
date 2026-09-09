@@ -43,7 +43,7 @@ const orderSlice = createSlice({
       }>,
     ) => {
       const { orderId, status } = action.payload;
-      const order = state.orders.find((order) => order.id === orderId);
+      const order = state.orders.find((order) => order._id === orderId);
       if (order) {
         order.status = status;
         localStorage.setItem("orders", JSON.stringify(state.orders));

@@ -30,9 +30,9 @@ const catalogSlice = createSlice({
   name: "catalog",
   initialState,
   reducers: {
-    deleteProduct: (state, action: PayloadAction<number>) => {
+    deleteProduct: (state, action: PayloadAction<string>) => {
       state.products = state.products.filter(
-        (product) => product.id !== action.payload,
+        (product) => product._id !== action.payload,
       );
 
       localStorage.setItem("products", JSON.stringify(state.products));
@@ -43,7 +43,7 @@ const catalogSlice = createSlice({
     },
     editProduct: (state, action: PayloadAction<Product>) => {
       const index = state.products.findIndex(
-        (product) => product.id === action.payload.id,
+        (product) => product._id === action.payload._id,
       );
 
       if (index !== -1) {
@@ -59,7 +59,7 @@ const catalogSlice = createSlice({
 
     editCategory: (state, action: PayloadAction<Category>) => {
       const index = state.categories.findIndex(
-        (category) => category.id === action.payload.id,
+        (category) => category._id === action.payload._id,
       );
 
       if (index !== -1) {
@@ -68,11 +68,11 @@ const catalogSlice = createSlice({
         localStorage.setItem("categories", JSON.stringify(state.categories));
       }
     },
-    deleteCategory: (state, action: PayloadAction<number>) => {
+    deleteCategory: (state, action: PayloadAction<string>) => {
       const categoryId = action.payload;
 
       state.categories = state.categories.filter(
-        (category) => category.id !== categoryId,
+        (category) => category._id !== categoryId,
       );
 
       state.subCategories = state.subCategories.filter(
@@ -87,16 +87,8 @@ const catalogSlice = createSlice({
       );
     },
 
-    addSubCategory: (state, action: PayloadAction<Omit<SubCategory, "id">>) => {
-      const nextId =
-        state.subCategories.length > 0
-          ? Math.max(
-              ...state.subCategories.map((subCategory) => subCategory.id),
-            ) + 1
-          : 1;
-
+    addSubCategory: (state, action: PayloadAction<SubCategory>) => {
       state.subCategories.push({
-        id: nextId,
         ...action.payload,
       });
 
@@ -108,7 +100,7 @@ const catalogSlice = createSlice({
 
     editSubCategory: (state, action: PayloadAction<SubCategory>) => {
       const index = state.subCategories.findIndex(
-        (subCategory) => subCategory.id === action.payload.id,
+        (subCategory) => subCategory._id === action.payload._id,
       );
 
       if (index !== -1) {
@@ -121,9 +113,9 @@ const catalogSlice = createSlice({
       }
     },
 
-    deleteSubCategory: (state, action: PayloadAction<number>) => {
+    deleteSubCategory: (state, action: PayloadAction<string>) => {
       state.subCategories = state.subCategories.filter(
-        (subCategory) => subCategory.id !== action.payload,
+        (subCategory) => subCategory._id !== action.payload,
       );
 
       localStorage.setItem(

@@ -20,7 +20,7 @@ export default function UserDetailsModal({
 
   const orders = useAppSelector(selectOrders);
 
-  const orderCount = orders.filter((order) => order.userId === user.id).length;
+  const orderCount = orders.filter((order) => order.userId === user._id).length;
 
   return (
     <div
@@ -30,7 +30,6 @@ export default function UserDetailsModal({
       aria-labelledby="user-details-title"
     >
       <div className="w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl">
-        {/* Header */}
         <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5">
           <div>
             <h2
@@ -56,9 +55,7 @@ export default function UserDetailsModal({
           </Button>
         </div>
 
-        {/* Content */}
         <div className="flex max-h-[75vh] flex-col gap-5 overflow-y-auto px-6 py-6">
-          {/* User Summary */}
           <div className="flex items-center gap-4">
             <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-neutral-100">
               {user.profilePicture ? (

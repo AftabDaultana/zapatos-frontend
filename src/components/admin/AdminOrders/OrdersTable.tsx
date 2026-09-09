@@ -88,7 +88,7 @@ export default function OrdersTable({
 
       const matchesSearch =
         !normalizedQuery ||
-        order.id.toLowerCase().includes(normalizedQuery) ||
+        order._id.toLowerCase().includes(normalizedQuery) ||
         order.customer.name.toLowerCase().includes(normalizedQuery) ||
         order.customer.email.toLowerCase().includes(normalizedQuery) ||
         order.customer.phoneNumber.toLowerCase().includes(normalizedQuery);
@@ -255,15 +255,15 @@ export default function OrdersTable({
               {currentOrders.length > 0 ? (
                 currentOrders.map((order) => (
                   <tr
-                    key={order.id}
+                    key={order._id}
                     className="border-b border-neutral-300 last:border-b-0"
                   >
                     <td className="px-6 py-4">
                       <Link
-                        to={`/admin/orders/${order.id}`}
+                        to={`/admin/orders/${order._id}`}
                         className="text-sm font-medium text-neutral-950 hover:underline"
                       >
-                        {order.id}
+                        {order._id}
                       </Link>
                     </td>
 
@@ -308,7 +308,7 @@ export default function OrdersTable({
                           onChange={(event) =>
                             dispatch(
                               updateOrderStatus({
-                                orderId: order.id,
+                                orderId: order._id,
                                 status: event.target.value as Order["status"],
                               }),
                             )
@@ -323,8 +323,8 @@ export default function OrdersTable({
                         </select>
 
                         <Link
-                          to={`/admin/orders/${order.id}`}
-                          aria-label={`View order ${order.id}`}
+                          to={`/admin/orders/${order._id}`}
+                          aria-label={`View order ${order._id}`}
                           className="text-neutral-500 transition hover:text-neutral-950"
                         >
                           <Search size={18} />

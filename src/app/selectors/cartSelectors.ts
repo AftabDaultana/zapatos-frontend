@@ -8,7 +8,7 @@ export const selectCartItemCount = (state: RootState) => {
 export const selectCartProducts = (state: RootState) => {
   return state.cart.items.map((cartItem) => {
     const product = state.catalog.products.find(
-      (product) => product.id === cartItem.productId,
+      (product) => product._id === cartItem.productId,
     );
     return {
       product,
@@ -22,7 +22,7 @@ export const selectCartProducts = (state: RootState) => {
 export const selectCartSubTotal = (state: RootState) => {
   return state.cart.items.reduce((total, cartItem) => {
     const product = state.catalog.products.find(
-      (product) => product.id === cartItem.productId,
+      (product) => product._id === cartItem.productId,
     );
     if (!product) return total;
     return total + product.discountedPrice * cartItem.quantity;

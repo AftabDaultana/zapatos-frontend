@@ -15,12 +15,12 @@ export default function AdminCategories() {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null,
   );
-  const [categoryToDelete, setCategoryToDelete] = useState<number | null>(null);
+  const [categoryToDelete, setCategoryToDelete] = useState<string | null>(null);
 
   const categories = useAppSelector((state) => state.catalog.categories);
 
   const categoryToDeleteData = categories.find(
-    (category) => category.id === categoryToDelete,
+    (category) => category._id === categoryToDelete,
   );
 
   const dispatch = useAppDispatch();
@@ -38,8 +38,8 @@ export default function AdminCategories() {
 
   const endItem = Math.min(currentPage * ITEMS_PER_PAGE, categories.length);
 
-  const handleDeleteCategory = (categoryId: number) => {
-    const category = categories.find((category) => category.id === categoryId);
+  const handleDeleteCategory = (categoryId: string) => {
+    const category = categories.find((category) => category._id === categoryId);
 
     if (!category) return;
 
@@ -103,11 +103,11 @@ export default function AdminCategories() {
               {paginatedCategories.length > 0 ? (
                 paginatedCategories.map((category) => (
                   <tr
-                    key={category.id}
+                    key={category._id}
                     className="border-b border-neutral-300 last:border-b-0"
                   >
                     <td className="px-6 py-4 text-sm text-neutral-600">
-                      {category.id}
+                      {category._id}
                     </td>
 
                     <td className="px-6 py-4">
@@ -139,7 +139,7 @@ export default function AdminCategories() {
                           type="button"
                           variant="none"
                           aria-label={`Delete ${category.name}`}
-                          onClick={() => handleDeleteCategory(category.id)}
+                          onClick={() => handleDeleteCategory(category._id!)}
                           className="transition hover:text-red-600"
                         >
                           <Trash2 size={20} />

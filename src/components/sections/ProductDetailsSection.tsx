@@ -46,7 +46,7 @@ export default function ProductDetailsSection() {
   if (!product) {
     return <Navigate to={"/"} replace />;
   }
-  const isWishlisted = wishlistProductIds.includes(product.id);
+  const isWishlisted = wishlistProductIds.includes(product._id!);
   useEffect(() => {
     setSelectedColor(product.specifications.color[0] ?? "");
     setSelectedSize(product.specifications.sizeRange[0] ?? "");
@@ -64,7 +64,7 @@ export default function ProductDetailsSection() {
   const handleAddToCart = () => {
     dispatch(
       addToCart({
-        productId: product.id,
+        productId: product._id!,
         color: selectedColor,
         size: selectedSize,
       }),
@@ -220,9 +220,9 @@ export default function ProductDetailsSection() {
                 variant="none"
                 onClick={() => {
                   if (isWishlisted) {
-                    dispatch(removeFromWishlist(product.id));
+                    dispatch(removeFromWishlist(product._id!));
                   } else {
-                    dispatch(addToWishlist(product.id));
+                    dispatch(addToWishlist(product._id!));
                   }
                 }}
                 className={`border border-neutral-950 px-1 py-1 ${

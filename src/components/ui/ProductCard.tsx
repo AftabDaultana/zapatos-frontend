@@ -22,16 +22,16 @@ export default function ProductCard({ product }: ProductCardProps) {
   const dispatch = useAppDispatch();
 
   const wishlistProductIds = useAppSelector(selectWishlistProductIds);
-  const isWishlisted = wishlistProductIds.includes(product.id);
+  const isWishlisted = wishlistProductIds.includes(product._id!);
 
   const hadnleWishlistClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
 
     if (isWishlisted) {
-      dispatch(removeFromWishlist(product.id));
+      dispatch(removeFromWishlist(product._id!));
     } else {
-      dispatch(addToWishlist(product.id));
+      dispatch(addToWishlist(product._id!));
     }
   };
 
@@ -41,7 +41,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
     dispatch(
       addToCart({
-        productId: product.id,
+        productId: product._id!,
         color: product.specifications.color[0],
         size: product.specifications.sizeRange[0],
       }),

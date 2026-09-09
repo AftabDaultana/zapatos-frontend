@@ -7,9 +7,9 @@ import { selectSubCategoriesByCategoryId } from "../../../app/selectors/catalogS
 import SubCategoryCard from "../../ui/SubCategoryCard";
 
 interface SubCateggoryBannerProps {
-  categoryId: number;
+  categoryId: string;
   categorySlug: string;
-  activeSubCategoryId?: number;
+  activeSubCategoryId?: string;
 }
 
 export default function SubCategoryBanner({
@@ -54,12 +54,12 @@ export default function SubCategoryBanner({
       <div className="hidden xl:flex items-center justify-center gap-6">
         {subCategories.map((subCategory) => (
           <SubCategoryCard
-            key={subCategory.id}
+            key={subCategory._id!}
             title={subCategory.name}
             imageUrl={subCategory.image}
-            imageFit={subCategory.categoryId === 4 ? "contain" : "cover"}
-            isActive={subCategory.id === activeSubCategoryId}
-            variant={subCategory.categoryId === 4 ? "brand" : "default"}
+            imageFit={subCategory.categoryId === "4" ? "contain" : "cover"}
+            isActive={subCategory._id === activeSubCategoryId}
+            variant={subCategory.categoryId === "4" ? "brand" : "default"}
             path={`/category/${categorySlug}/${subCategory.slug}`}
           />
         ))}
@@ -73,7 +73,7 @@ export default function SubCategoryBanner({
           <div className="-ml-4 flex">
             {subCategories.map((subCategory) => (
               <div
-                key={subCategory.id}
+                key={subCategory._id!}
                 className="
                   min-w-0
                   flex-[0_0_50%]
@@ -84,8 +84,10 @@ export default function SubCategoryBanner({
                 <SubCategoryCard
                   title={subCategory.name}
                   imageUrl={subCategory.image}
-                  imageFit={subCategory.categoryId === 4 ? "contain" : "cover"}
-                  isActive={subCategory.id === activeSubCategoryId}
+                  imageFit={
+                    subCategory.categoryId === "4" ? "contain" : "cover"
+                  }
+                  isActive={subCategory._id === activeSubCategoryId}
                   path={`/category/${categorySlug}/${subCategory.slug}`}
                 />
               </div>

@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import Button from "../../ui/Button";
 import type { Category } from "../../../data/categories";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
 import { addCategory, editCategory } from "../../../app/slices/catalogSlice";
-import { selectCategories } from "../../../app/selectors/catalogSelectors";
 
 interface CategoryFormModalProps {
   isOpen: boolean;
@@ -41,8 +40,6 @@ export default function CategoryFormModal({
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
   const isEditing = Boolean(category);
-
-  const categories = useAppSelector(selectCategories);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -151,11 +148,6 @@ export default function CategoryFormModal({
             } else {
               dispatch(
                 addCategory({
-                  id:
-                    categories.length > 0
-                      ? Math.max(...categories.map((category) => category.id)) +
-                        1
-                      : 1,
                   ...categoryData,
                   name: categoryData.name.toUpperCase(),
                 }),

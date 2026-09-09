@@ -19,14 +19,14 @@ export default function AdminCustomers() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isUserDetailsModalOpen, setIsUserDetailsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [userToDelete, setUserToDelete] = useState<number | null>(null);
+  const [userToDelete, setUserToDelete] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
 
   const users = useAppSelector((state) => state.user.users);
   const orders = useAppSelector((state) => state.order.orders);
 
-  const userToDeleteData = users.find((user) => user.id === userToDelete);
+  const userToDeleteData = users.find((user) => user._id === userToDelete);
 
   const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
 
@@ -41,12 +41,12 @@ export default function AdminCustomers() {
 
   const endItem = Math.min(currentPage * ITEMS_PER_PAGE, users.length);
 
-  const getOrderCount = (userId: number) => {
+  const getOrderCount = (userId: string) => {
     return orders.filter((order) => order.userId === userId).length;
   };
 
-  const handleDeleteUser = (userId: number) => {
-    const user = users.find((user) => user.id === userId);
+  const handleDeleteUser = (userId: string) => {
+    const user = users.find((user) => user._id === userId);
 
     if (!user || user.role === "admin") return;
 
@@ -62,7 +62,6 @@ export default function AdminCustomers() {
 
   return (
     <main className="p-6">
-      {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-neutral-950">CUSTOMERS</h1>
 
@@ -71,7 +70,6 @@ export default function AdminCustomers() {
         </p>
       </div>
 
-      {/* Table */}
       <section className="overflow-hidden rounded-2xl bg-white">
         <div className="overflow-x-auto">
           <table className="w-full min-w-225">
@@ -111,15 +109,13 @@ export default function AdminCustomers() {
               {paginatedUsers.length > 0 ? (
                 paginatedUsers.map((user) => (
                   <tr
-                    key={user.id}
+                    key={user._id}
                     className="border-b border-neutral-300 last:border-b-0"
                   >
-                    {/* ID */}
                     <td className="px-6 py-4 text-sm text-neutral-600">
-                      {user.id}
+                      {user._id}
                     </td>
 
-                    {/* Name */}
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-neutral-100">
@@ -144,27 +140,22 @@ export default function AdminCustomers() {
                       </div>
                     </td>
 
-                    {/* Email */}
                     <td className="px-6 py-4 text-sm text-neutral-600">
                       {user.email}
                     </td>
 
-                    {/* Phone */}
                     <td className="px-6 py-4 text-sm text-neutral-600">
                       {user.phoneNumber || "N/A"}
                     </td>
 
-                    {/* Role */}
                     <td className="px-6 py-4 text-sm text-neutral-600">
                       {user.role === "user" ? "Customer" : "Admin User"}
                     </td>
 
-                    {/* Orders */}
                     <td className="px-6 py-4 text-sm text-neutral-600">
-                      {getOrderCount(user.id)}
+                      {getOrderCount(user._id!)}
                     </td>
 
-                    {/* Actions */}
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-5 text-neutral-500">
                         <Button
@@ -185,7 +176,7 @@ export default function AdminCustomers() {
                           variant="none"
                           aria-label={`Delete ${user.name}`}
                           disabled={user.role === "admin"}
-                          onClick={() => handleDeleteUser(user.id)}
+                          onClick={() => handleDeleteUser(user._id!)}
                           className="transition hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:text-neutral-500"
                         >
                           <Trash2 size={20} />
@@ -207,7 +198,6 @@ export default function AdminCustomers() {
             </tbody>
           </table>
 
-          {/* Pagination */}
           {users.length > 0 && (
             <div className="flex items-center justify-between border-t border-neutral-100 px-6 py-4">
               <p className="text-sm text-neutral-500">

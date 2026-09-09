@@ -1,9 +1,9 @@
 export interface Product {
-  id: number;
+  _id?: string;
   name: string;
   slug: string;
 
-  subCategoryId: number[];
+  subCategoryId: string[];
 
   description: string;
 
@@ -37,10 +37,10 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: 1,
+    _id: "1",
     name: "Nike Air Max Pulse",
     slug: "nike-air-max-pulse",
-    subCategoryId: [1, 4, 16],
+    subCategoryId: ["1", "4", "16"],
     description:
       "Nike Air Max Pulse delivers a modern running-inspired design with responsive cushioning, breathable construction, and everyday comfort.",
     rating: 5,
@@ -75,10 +75,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 2,
+    _id: "2",
     name: "Adidas Ultraboost Light",
     slug: "adidas-ultraboost-light",
-    subCategoryId: [1, 4, 19],
+    subCategoryId: ["1", "4", "19"],
     description:
       "Adidas Ultraboost Light provides exceptional energy return and comfort with a premium lightweight running design.",
     rating: 4.8,
@@ -104,10 +104,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 3,
+    _id: "3",
     name: "Puma Suede Classic",
     slug: "puma-suede-classic",
-    subCategoryId: [2, 3],
+    subCategoryId: ["2", "3"],
     description:
       "A timeless casual sneaker featuring premium suede material and classic streetwear styling.",
     rating: 4.5,
@@ -133,10 +133,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 4,
+    _id: "4",
     name: "Nike Revolution 7 Kids",
     slug: "nike-revolution-7-kids",
-    subCategoryId: [1, 16],
+    subCategoryId: ["1", "16"],
     description:
       "Lightweight kids running shoes designed for active children with flexible cushioning and comfort.",
     rating: 4.6,
@@ -164,10 +164,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 5,
+    _id: "5",
     name: "New Balance 574 Classic",
     slug: "new-balance-574-classic",
-    subCategoryId: [3],
+    subCategoryId: ["3"],
     description:
       "Classic everyday sneakers combining retro styling with modern comfort.",
     rating: 4.6,
@@ -194,10 +194,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 6,
+    _id: "6",
     name: "Nike Dunk Low Panda",
     slug: "nike-dunk-low-panda",
-    subCategoryId: [2, 4, 16],
+    subCategoryId: ["2", "4", "16"],
     description:
       "Iconic low-top sneaker with classic basketball heritage and versatile styling.",
     rating: 4.9,
@@ -225,10 +225,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 7,
+    _id: "7",
     name: "Adidas Samba OG",
     slug: "adidas-samba-og",
-    subCategoryId: [3, 4, 19],
+    subCategoryId: ["3", "4", "19"],
     description:
       "A heritage sneaker inspired by football culture with a clean minimalist design.",
     rating: 4.8,
@@ -254,10 +254,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 8,
+    _id: "8",
     name: "Puma Future Rider",
     slug: "puma-future-rider",
-    subCategoryId: [3],
+    subCategoryId: ["3"],
     description:
       "Modern retro sneakers with lightweight cushioning and everyday versatility.",
     rating: 4.4,
@@ -284,10 +284,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 9,
+    _id: "9",
     name: "Converse Chuck Taylor",
     slug: "converse-chuck-taylor",
-    subCategoryId: [2],
+    subCategoryId: ["2"],
     description: "Classic canvas sneakers with timeless street style.",
     rating: 4.7,
     ratingCount: 620,
@@ -311,10 +311,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 10,
+    _id: "10",
     name: "Vans Old Skool",
     slug: "vans-old-skool",
-    subCategoryId: [2, 3, 14],
+    subCategoryId: ["2", "3", "14"],
     description:
       "Iconic skate shoes with signature side stripe and durable construction.",
     rating: 4.6,
@@ -344,10 +344,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 11,
+    _id: "11",
     name: "Nike Air Force 1 Low",
     slug: "nike-air-force-1-low",
-    subCategoryId: [2, 4, 16],
+    subCategoryId: ["2", "4", "16"],
     description:
       "Nike Air Force 1 Low is an iconic lifestyle sneaker featuring a clean silhouette, durable construction, and legendary comfort suitable for everyday wear.",
     rating: 4.9,
@@ -378,10 +378,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 12,
+    _id: "12",
     name: "Adidas Gazelle Indoor",
     slug: "adidas-gazelle-indoor",
-    subCategoryId: [2, 3, 19],
+    subCategoryId: ["2", "3", "19"],
     description:
       "Adidas Gazelle Indoor combines vintage styling with modern comfort, featuring premium materials and a timeless low-profile design.",
     rating: 4.7,
@@ -419,10 +419,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 13,
+    _id: "13",
     name: "ASICS Gel-Kayano 30",
     slug: "asics-gel-kayano-30",
-    subCategoryId: [1],
+    subCategoryId: ["1"],
     description:
       "ASICS Gel-Kayano 30 provides advanced stability and cushioning technology designed for long-distance runners.",
     rating: 4.8,
@@ -454,10 +454,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 14,
+    _id: "14",
     name: "Jordan 1 Retro High",
     slug: "jordan-1-retro-high",
-    subCategoryId: [3],
+    subCategoryId: ["3"],
     description:
       "Jordan 1 Retro High delivers basketball heritage with premium leather construction and iconic streetwear appeal.",
     rating: 4.9,
@@ -488,10 +488,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 15,
+    _id: "15",
     name: "Crocs Classic Clog",
     slug: "crocs-classic-clog",
-    subCategoryId: [2],
+    subCategoryId: ["2"],
     description:
       "Crocs Classic Clog offers lightweight comfort, water resistance, and a versatile design suitable for daily activities.",
     rating: 4.6,
@@ -522,10 +522,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 16,
+    _id: "16",
     name: "Nike Pegasus 41",
     slug: "nike-pegasus-41",
-    subCategoryId: [1, 16],
+    subCategoryId: ["1", "16"],
     description:
       "Nike Pegasus 41 offers responsive cushioning and reliable everyday running performance.",
     rating: 4.7,
@@ -552,10 +552,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 17,
+    _id: "17",
     name: "Adidas Superstar",
     slug: "adidas-superstar",
-    subCategoryId: [2, 3, 19],
+    subCategoryId: ["2", "3", "19"],
     description:
       "Adidas Superstar is a legendary sneaker featuring the signature shell toe and classic three-stripe design.",
     rating: 4.8,
@@ -584,10 +584,10 @@ export const products: Product[] = [
   },
 
   {
-    id: 18,
+    _id: "18",
     name: "Puma RS-X",
     slug: "puma-rs-x",
-    subCategoryId: [2, 3],
+    subCategoryId: ["2", "3"],
     description:
       "Puma RS-X features bold styling, layered construction, and modern cushioning for everyday comfort.",
     rating: 4.5,
@@ -617,10 +617,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 19,
+    _id: "19",
     name: "Skechers Go Walk 7",
     slug: "skechers-go-walk-7",
-    subCategoryId: [2],
+    subCategoryId: ["2"],
     description:
       "Skechers Go Walk 7 is designed for maximum walking comfort with lightweight construction and responsive cushioning.",
     rating: 4.6,
@@ -646,10 +646,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 20,
+    _id: "20",
     name: "Timberland Classic Boat Shoe",
     slug: "timberland-classic-boat-shoe",
-    subCategoryId: [2, 3],
+    subCategoryId: ["2", "3"],
     description:
       "Timberland Classic Boat Shoe offers premium craftsmanship, leather construction, and a timeless casual style.",
     rating: 4.5,
@@ -678,10 +678,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 21,
+    _id: "21",
     name: "Nike Air Zoom Pegasus 40",
     slug: "nike-air-zoom-pegasus-40",
-    subCategoryId: [1, 4, 16],
+    subCategoryId: ["1", "4", "16"],
     description:
       "Men's responsive running shoes with Air Zoom cushioning for daily training and speed.",
     rating: 4.8,
@@ -707,10 +707,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 22,
+    _id: "22",
     name: "Adidas Ultraboost 22",
     slug: "adidas-ultraboost-22",
-    subCategoryId: [1, 4, 19],
+    subCategoryId: ["1", "4", "19"],
     description:
       "Men's premium running shoes with energy-returning Boost foam and adaptive fit.",
     rating: 4.9,
@@ -735,10 +735,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 23,
+    _id: "23",
     name: "Nike Air Force 1 '07",
     slug: "nike-air-force-1-07",
-    subCategoryId: [2, 4, 16],
+    subCategoryId: ["2", "4", "16"],
     description:
       "Men's classic basketball-inspired sneaker with timeless design and comfort.",
     rating: 4.9,
@@ -763,10 +763,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 24,
+    _id: "24",
     name: "Puma RS-100",
     slug: "puma-rs-100",
-    subCategoryId: [2, 3],
+    subCategoryId: ["2", "3"],
     description:
       "Men's retro-inspired sneakers with modern cushioning and bold design.",
     rating: 4.5,
@@ -792,10 +792,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 25,
+    _id: "25",
     name: "New Balance 990v5",
     slug: "new-balance-990v5",
-    subCategoryId: [1, 3],
+    subCategoryId: ["1", "3"],
     description:
       "Men's premium lifestyle shoes with heritage design and superior comfort.",
     rating: 4.7,
@@ -820,10 +820,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 26,
+    _id: "26",
     name: "Converse Run Star Motion",
     slug: "converse-run-star-motion",
-    subCategoryId: [2, 4],
+    subCategoryId: ["2", "4"],
     description:
       "Men's elevated casual sneaker with platform sole and modern styling.",
     rating: 4.4,
@@ -847,10 +847,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 27,
+    _id: "27",
     name: "Asics Gel-Nimbus 25",
     slug: "asics-gel-nimbus-25",
-    subCategoryId: [1],
+    subCategoryId: ["1"],
     description:
       "Men's plush running shoes with maximum cushioning and smooth transitions.",
     rating: 4.8,
@@ -875,10 +875,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 28,
+    _id: "28",
     name: "Vans Sk8-Hi",
     slug: "vans-sk8-hi",
-    subCategoryId: [2, 3, 14],
+    subCategoryId: ["2", "3", "14"],
     description:
       "Men's iconic high-top skate shoes with signature side stripe and durability.",
     rating: 4.6,
@@ -903,10 +903,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 29,
+    _id: "29",
     name: "Adidas Campus 00s",
     slug: "adidas-campus-00s",
-    subCategoryId: [2, 3, 19],
+    subCategoryId: ["2", "3", "19"],
     description:
       "Men's retro sneaker with suede upper and classic 2000s style.",
     rating: 4.5,
@@ -931,10 +931,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 30,
+    _id: "30",
     name: "Nike React Infinity 3",
     slug: "nike-react-infinity-3",
-    subCategoryId: [1, 4, 16],
+    subCategoryId: ["1", "4", "16"],
     description:
       "Men's running shoes with soft React foam for long-distance comfort and injury prevention.",
     rating: 4.7,
@@ -960,10 +960,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 31,
+    _id: "31",
     name: "Nike Women's Air Max 2023",
     slug: "nike-womens-air-max-2023",
-    subCategoryId: [5, 8],
+    subCategoryId: ["5", "8"],
     description:
       "Women's lifestyle sneaker with visible Air unit and modern styling.",
     rating: 4.8,
@@ -989,10 +989,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 32,
+    _id: "32",
     name: "Adidas Women's Ultraboost Light",
     slug: "adidas-womens-ultraboost-light",
-    subCategoryId: [6, 8, 19],
+    subCategoryId: ["6", "8", "19"],
     description:
       "Women's responsive running shoes with energy-returning Boost cushioning.",
     rating: 4.9,
@@ -1017,10 +1017,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 33,
+    _id: "33",
     name: "New Balance Women's 574",
     slug: "new-balance-womens-574",
-    subCategoryId: [5, 7],
+    subCategoryId: ["5", "7"],
     description:
       "Women's classic sneaker with retro styling and everyday comfort.",
     rating: 4.6,
@@ -1045,10 +1045,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 34,
+    _id: "34",
     name: "Puma Women's Cali Sport",
     slug: "puma-womens-cali-sport",
-    subCategoryId: [5, 8],
+    subCategoryId: ["5", "8"],
     description:
       "Women's platform sneakers with clean lines and modern aesthetic.",
     rating: 4.5,
@@ -1073,10 +1073,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 35,
+    _id: "35",
     name: "Nike Women's Revolution 6",
     slug: "nike-womens-revolution-6",
-    subCategoryId: [6, 8],
+    subCategoryId: ["6", "8"],
     description:
       "Women's versatile running shoes with soft foam and breathable comfort.",
     rating: 4.4,
@@ -1101,10 +1101,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 36,
+    _id: "36",
     name: "Adidas Women's Nizza Platform",
     slug: "adidas-womens-nizza-platform",
-    subCategoryId: [5, 8, 19],
+    subCategoryId: ["5", "8", "19"],
     description:
       "Women's elevated canvas sneaker with platform sole and classic style.",
     rating: 4.5,
@@ -1128,10 +1128,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 37,
+    _id: "37",
     name: "Asics Women's Gel-Kayano 30",
     slug: "asics-womens-gel-kayano-30",
-    subCategoryId: [6, 7],
+    subCategoryId: ["6", "7"],
     description:
       "Women's stability running shoes with advanced cushioning and support.",
     rating: 4.8,
@@ -1156,10 +1156,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 38,
+    _id: "38",
     name: "Vans Women's Old Skool",
     slug: "vans-womens-old-skool",
-    subCategoryId: [5, 8, 14],
+    subCategoryId: ["5", "8", "14"],
     description:
       "Women's classic skate shoes with side stripe and durable construction.",
     rating: 4.6,
@@ -1184,10 +1184,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 39,
+    _id: "39",
     name: "Brooks Women's Ghost 15",
     slug: "brooks-womens-ghost-15",
-    subCategoryId: [6, 13],
+    subCategoryId: ["6", "13"],
     description:
       "Women's neutral running shoes with balanced cushioning and smooth ride.",
     rating: 4.7,
@@ -1212,10 +1212,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 40,
+    _id: "40",
     name: "Nike Women's Dunk Low",
     slug: "nike-womens-dunk-low",
-    subCategoryId: [5, 8, 16],
+    subCategoryId: ["5", "8", "16"],
     description:
       "Women's basketball-inspired sneaker with iconic silhouette and premium materials.",
     rating: 4.8,
@@ -1241,10 +1241,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 41,
+    _id: "41",
     name: "Nike Kids' Revolution 6",
     slug: "nike-kids-revolution-6",
-    subCategoryId: [9, 11, 16],
+    subCategoryId: ["9", "11", "16"],
     description:
       "Kids' versatile running shoes with soft foam and durable construction.",
     rating: 4.6,
@@ -1270,10 +1270,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 42,
+    _id: "42",
     name: "Adidas Kids' Superstar",
     slug: "adidas-kids-superstar",
-    subCategoryId: [9, 10, 19],
+    subCategoryId: ["9", "10", "19"],
     description:
       "Kids' classic sneaker with shell toe and iconic three-stripe design.",
     rating: 4.7,
@@ -1297,10 +1297,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 43,
+    _id: "43",
     name: "Puma Kids' Suede Classic",
     slug: "puma-kids-suede-classic",
-    subCategoryId: [9, 10],
+    subCategoryId: ["9", "10"],
     description:
       "Kids' retro sneakers with soft suede upper and comfortable fit.",
     rating: 4.5,
@@ -1325,10 +1325,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 44,
+    _id: "44",
     name: "Nike Kids' Air Max 90",
     slug: "nike-kids-air-max-90",
-    subCategoryId: [10, 11, 16],
+    subCategoryId: ["10", "11", "16"],
     description:
       "Kids' iconic Air Max sneaker with visible Air unit and durable construction.",
     rating: 4.8,
@@ -1354,10 +1354,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 45,
+    _id: "45",
     name: "Vans Kids' Old Skool",
     slug: "vans-kids-old-skool",
-    subCategoryId: [9, 10, 14],
+    subCategoryId: ["9", "10", "14"],
     description:
       "Kids' classic skate shoes with side stripe and durable canvas construction.",
     rating: 4.6,
@@ -1382,10 +1382,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 46,
+    _id: "46",
     name: "Adidas Kids' Racer TR",
     slug: "adidas-kids-racer-tr",
-    subCategoryId: [11, 12, 19],
+    subCategoryId: ["11", "12", "19"],
     description:
       "Kids' lightweight running shoes with cushioning and flexible sole.",
     rating: 4.4,
@@ -1410,10 +1410,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 47,
+    _id: "47",
     name: "New Balance Kids' 574",
     slug: "new-balance-kids-574",
-    subCategoryId: [9, 10],
+    subCategoryId: ["9", "10"],
     description:
       "Kids' classic sneaker with retro styling and everyday comfort.",
     rating: 4.6,
@@ -1438,10 +1438,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 48,
+    _id: "48",
     name: "Converse Kids' Chuck Taylor",
     slug: "converse-kids-chuck-taylor",
-    subCategoryId: [9, 10],
+    subCategoryId: ["9", "10"],
     description:
       "Kids' timeless canvas sneaker with iconic style and easy wear.",
     rating: 4.7,
@@ -1466,10 +1466,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 49,
+    _id: "49",
     name: "Brooks Adrenaline GTS 23",
     slug: "brooks-adrenaline-gts-23",
-    subCategoryId: [1, 13],
+    subCategoryId: ["1", "13"],
     description:
       "Men's stability running shoes with GuideRails support and plush cushioning.",
     rating: 4.8,
@@ -1494,10 +1494,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 50,
+    _id: "50",
     name: "Fila Disruptor II",
     slug: "fila-disruptor-ii",
-    subCategoryId: [2, 15],
+    subCategoryId: ["2", "15"],
     description:
       "Men's iconic chunky sneaker with bold styling and maximum comfort.",
     rating: 4.5,
@@ -1522,10 +1522,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 51,
+    _id: "51",
     name: "Mizuno Wave Rider 26",
     slug: "mizuno-wave-rider-26",
-    subCategoryId: [1, 17],
+    subCategoryId: ["1", "17"],
     description:
       "Men's running shoes with Wave technology for smooth transitions and comfort.",
     rating: 4.7,
@@ -1550,10 +1550,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 52,
+    _id: "52",
     name: "Salomon XT-6",
     slug: "salomon-xt-6",
-    subCategoryId: [2, 18],
+    subCategoryId: ["2", "18"],
     description:
       "Men's trail-inspired sneaker with rugged design and outdoor style.",
     rating: 4.6,
@@ -1579,10 +1579,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 53,
+    _id: "53",
     name: "Fila Women's Memory Revive",
     slug: "fila-womens-memory-revive",
-    subCategoryId: [5, 15],
+    subCategoryId: ["5", "15"],
     description:
       "Women's comfortable walking shoes with memory foam and casual style.",
     rating: 4.5,
@@ -1606,10 +1606,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 54,
+    _id: "54",
     name: "Mizuno Women's Wave Inspire 19",
     slug: "mizuno-womens-wave-inspire-19",
-    subCategoryId: [6, 17],
+    subCategoryId: ["6", "17"],
     description:
       "Women's stability running shoes with Wave technology and support.",
     rating: 4.7,
@@ -1634,10 +1634,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 55,
+    _id: "55",
     name: "Salomon Women's XT-6",
     slug: "salomon-womens-xt-6",
-    subCategoryId: [5, 18],
+    subCategoryId: ["5", "18"],
     description: "Women's trail sneaker with rugged style and premium comfort.",
     rating: 4.6,
     ratingCount: 145,
@@ -1661,10 +1661,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 56,
+    _id: "56",
     name: "Brooks Kids' Ghost 14",
     slug: "brooks-kids-ghost-14",
-    subCategoryId: [11, 13],
+    subCategoryId: ["11", "13"],
     description:
       "Kids' running shoes with balanced cushioning and durable construction.",
     rating: 4.6,
@@ -1689,10 +1689,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 57,
+    _id: "57",
     name: "Nike Calm Slide",
     slug: "nike-calm-slide",
-    subCategoryId: [20, 23, 16],
+    subCategoryId: ["20", "23", "16"],
     description:
       "Men's comfortable slides with soft foam and sleek design for everyday wear.",
     rating: 4.5,
@@ -1718,10 +1718,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 58,
+    _id: "58",
     name: "Adidas Adilette Comfort",
     slug: "adidas-adilette-comfort",
-    subCategoryId: [20, 23, 19],
+    subCategoryId: ["20", "23", "19"],
     description:
       "Men's slides with cloud foam cushioning and classic Adidas style.",
     rating: 4.6,
@@ -1745,10 +1745,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 59,
+    _id: "59",
     name: "Puma Women's Flip Flops",
     slug: "puma-womens-flip-flops",
-    subCategoryId: [21, 23],
+    subCategoryId: ["21", "23"],
     description:
       "Women's lightweight flip flops with comfortable footbed and simple design.",
     rating: 4.4,
@@ -1773,10 +1773,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 60,
+    _id: "60",
     name: "Timberland Outdoor Sandals",
     slug: "timberland-outdoor-sandals",
-    subCategoryId: [22, 23],
+    subCategoryId: ["22", "23"],
     description:
       "Men's rugged outdoor sandals with durable construction and traction.",
     rating: 4.6,

@@ -12,7 +12,7 @@ export default function Orders() {
   const ORDERS_PER_PAGE = 5;
 
   const orders = useAppSelector((state) =>
-    currentUser ? selectOrdersByUserId(state, currentUser.id) : undefined,
+    currentUser ? selectOrdersByUserId(state, currentUser._id!) : undefined,
   );
 
   const totalOrders = orders?.length ?? 0;
@@ -60,10 +60,12 @@ export default function Orders() {
           <>
             <div className="space-y-4">
               {currentOrders!.map((order) => (
-                <div key={order.id} className="border p-6">
+                <div key={order._id} className="border p-6">
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <p className="font-medium text-neutral-950">{order.id}</p>
+                      <p className="font-medium text-neutral-950">
+                        {order._id}
+                      </p>
                       <p className="mt-1 text-sm text-neutral-950">
                         {new Date(order.createdAt).toLocaleDateString()}
                       </p>
@@ -84,7 +86,7 @@ export default function Orders() {
                     </div>
 
                     <Link
-                      to={`/order/${order.id}`}
+                      to={`/order/${order._id}`}
                       onClick={() => window.scrollTo(0, 0)}
                       className="border border-neutral-950 px-5 py-3 text-center text-sm font-medium text-neutral-950 transition hover:bg-neutral-950 hover:text-neutral-50"
                     >

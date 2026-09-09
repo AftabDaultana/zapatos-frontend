@@ -28,7 +28,7 @@ type PaginationPage = number | "...";
 
 const PRODUCTS_PER_PAGE = 10;
 
-const getProductSku = (productId: number) =>
+const getProductSku = (productId: string) =>
   `SKU-${productId.toString().padStart(4, "0")}`;
 
 const getPaginationPages = (
@@ -82,7 +82,7 @@ export default function AdminProducts() {
   const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
     undefined,
   );
-  const [productToDelete, setProductToDelete] = useState<number | null>(null);
+  const [productToDelete, setProductToDelete] = useState<string | null>(null);
 
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isProductsFormModalOpen, setIsProductsFormModalOpen] = useState(false);
@@ -90,29 +90,29 @@ export default function AdminProducts() {
   const dispatch = useAppDispatch();
 
   const productToDeleteData = products.find(
-    (product) => product.id === productToDelete,
+    (product) => product._id === productToDelete,
   );
 
-  const getProductCategories = (subCategoryIds: number[]) => {
+  const getProductCategories = (subCategoryIds: string[]) => {
     const categoryIds = subCategoryIds
       .map(
         (subCategoryId) =>
-          subCategories.find((subCategory) => subCategory.id === subCategoryId)
+          subCategories.find((subCategory) => subCategory._id === subCategoryId)
             ?.categoryId,
       )
-      .filter((id): id is number => id !== undefined);
+      .filter((_id): _id is string => _id !== undefined);
 
     const uniqueCategoryIds = [...new Set(categoryIds)];
 
     return categories
-      .filter((category) => uniqueCategoryIds.includes(category.id))
+      .filter((category) => uniqueCategoryIds.includes(category._id!))
       .map((category) => category.name)
       .join(", ");
   };
 
   const filteredProducts = products.filter((product) => {
     const search = searchTerm.trim().toLowerCase();
-    const sku = getProductSku(product.id);
+    const sku = getProductSku(product._id!);
 
     const matchesSearch =
       search === "" ||
@@ -122,18 +122,18 @@ export default function AdminProducts() {
     const productCategoryIds = product.subCategoryId
       .map(
         (subCategoryId) =>
-          subCategories.find((subCategory) => subCategory.id === subCategoryId)
+          subCategories.find((subCategory) => subCategory._id === subCategoryId)
             ?.categoryId,
       )
-      .filter((id): id is number => id !== undefined);
+      .filter((_id): _id is string => _id !== undefined);
 
     const matchesCategory =
       selectedCategory === "all" ||
-      productCategoryIds.includes(Number(selectedCategory));
+      productCategoryIds.includes(selectedCategory);
 
     const matchesSubCategory =
       selectedSubCategory === "all" ||
-      product.subCategoryId.includes(Number(selectedSubCategory));
+      product.subCategoryId.includes(selectedSubCategory);
 
     const matchesStock =
       selectedStock === "all" ||
@@ -181,7 +181,7 @@ export default function AdminProducts() {
     selectedCategory === "all"
       ? subCategories
       : subCategories.filter(
-          (subCategory) => subCategory.categoryId === Number(selectedCategory),
+          (subCategory) => subCategory.categoryId === selectedCategory,
         );
 
   const handleClearFilters = () => {
@@ -224,8 +224,8 @@ export default function AdminProducts() {
     setCurrentPage(page);
   };
 
-  const handleDeleteProduct = (productId: number) => {
-    const product = products.find((product) => product.id === productId);
+  const handleDeleteProduct = (productId: string) => {
+    const product = products.find((product) => product._id === productId);
 
     if (!product) return;
 
@@ -346,7 +346,7 @@ export default function AdminProducts() {
               {currentProducts.length > 0 ? (
                 currentProducts.map((product) => (
                   <tr
-                    key={product.id}
+                    key={product._id}
                     className="border-b border-neutral-300 last:border-b-0"
                   >
                     <td className="px-6 py-4">
@@ -374,7 +374,7 @@ export default function AdminProducts() {
                     </td>
 
                     <td className="px-6 py-4 text-sm text-neutral-600">
-                      {getProductSku(product.id)}
+                      {getProductSku(product._id!)}
                     </td>
 
                     <td className="px-6 py-4 text-sm text-neutral-600">
@@ -432,12 +432,12 @@ export default function AdminProducts() {
                           type="button"
                           aria-label={`Delete ${product.name}`}
                           variant="none"
-                          onClick={() => handleDeleteProduct(product.id)}
+                          onClick={() => handleDeleteProduct(product._id!)}
                           className="transition hover:text-red-600"
                         >
                           <Trash2
                             size={20}
-                            onClick={() => handleDeleteProduct(product.id)}
+                            onClick={() => handleDeleteProduct(product._id!)}
                           />
                         </Button>
                       </div>

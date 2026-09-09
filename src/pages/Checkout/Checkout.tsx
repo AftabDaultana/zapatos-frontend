@@ -114,22 +114,22 @@ export default function Checkout() {
     setFormData({
       name: currentUser.name,
       email: currentUser.email,
-      phoneNumber: currentUser.phoneNumber,
+      phoneNumber: currentUser.phoneNumber || "",
 
       billingAddress: {
-        street: currentUser.billingAddress.street,
-        city: currentUser.billingAddress.city,
-        state: currentUser.billingAddress.state,
-        postalCode: currentUser.billingAddress.postalCode,
-        country: currentUser.billingAddress.country,
+        street: currentUser.billingAddress!.street,
+        city: currentUser.billingAddress!.city,
+        state: currentUser.billingAddress!.state,
+        postalCode: currentUser.billingAddress!.postalCode,
+        country: currentUser.billingAddress!.country,
       },
 
       shippingAddress: {
-        street: currentUser.shippingAddress.street,
-        city: currentUser.shippingAddress.city,
-        state: currentUser.shippingAddress.state,
-        postalCode: currentUser.shippingAddress.postalCode,
-        country: currentUser.shippingAddress.country,
+        street: currentUser.shippingAddress!.street,
+        city: currentUser.shippingAddress!.city,
+        state: currentUser.shippingAddress!.state,
+        postalCode: currentUser.shippingAddress!.postalCode,
+        country: currentUser.shippingAddress!.country,
       },
     });
   }, [currentUser]);
@@ -204,8 +204,8 @@ export default function Checkout() {
                     }
 
                     const order: Order = {
-                      id: `ORD_${Date.now().toString()}`,
-                      userId: currentUser?.id ?? null,
+                      _id: `ORD_${Date.now().toString()}`,
+                      userId: currentUser?._id ?? null,
 
                       customer: {
                         name: formData.name,
@@ -219,7 +219,7 @@ export default function Checkout() {
                       items: checkoutItems
                         .filter((item) => item.product)
                         .map(({ product, quantity, color, size }) => ({
-                          productId: product!.id,
+                          productId: product!._id!,
                           name: product!.name,
                           image: product!.images[0],
                           price: product!.price,
@@ -655,7 +655,7 @@ export default function Checkout() {
 
                       return (
                         <div
-                          key={product.id}
+                          key={product._id}
                           className="flex items-center gap-4"
                         >
                           <img
@@ -692,7 +692,7 @@ export default function Checkout() {
                             onClick={() =>
                               dispatch(
                                 removeFromCart({
-                                  productId: product.id,
+                                  productId: product._id!,
                                   color,
                                   size,
                                 }),

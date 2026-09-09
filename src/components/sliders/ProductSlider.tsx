@@ -58,7 +58,7 @@ export default function ProductSlider() {
           {featuredProducts.map((product) => {
             return (
               <div
-                key={product.id}
+                key={product._id}
                 className="shrink-0 basis-1/2 md:basis-1/3 xl:basis-1/4"
               >
                 <ProductCard product={product} />

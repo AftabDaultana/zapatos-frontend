@@ -82,7 +82,7 @@ export default function ProductFiltersModal({
               <option value="all">All Categories</option>
 
               {categories.map((category) => (
-                <option key={category.id} value={category.id}>
+                <option key={category._id} value={category._id}>
                   {category.name}
                 </option>
               ))}
@@ -106,7 +106,7 @@ export default function ProductFiltersModal({
               <option value="all">All Subcategories</option>
 
               {subCategories.map((subCategory) => (
-                <option key={subCategory.id} value={subCategory.id}>
+                <option key={subCategory._id} value={subCategory._id}>
                   {subCategory.name}
                 </option>
               ))}

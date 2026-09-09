@@ -68,7 +68,7 @@ export default function CartModal({ onClose }: CartModalProps) {
               const cartItemSubtotal = product.discountedPrice * quantity;
               return (
                 <div
-                  key={product.id}
+                  key={product._id}
                   className="flex gap-4 items-center border-b border-neutral-300 py-4"
                 >
                   <img
@@ -91,7 +91,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                         onClick={() =>
                           dispatch(
                             decreaseQuantity({
-                              productId: product.id,
+                              productId: product._id!,
                               color,
                               size,
                             }),
@@ -110,7 +110,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                         onClick={() =>
                           dispatch(
                             increaseQuantity({
-                              productId: product.id,
+                              productId: product._id!,
                               color,
                               size,
                             }),
@@ -130,7 +130,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                       onClick={() =>
                         dispatch(
                           removeFromCart({
-                            productId: product.id,
+                            productId: product._id!,
                             color,
                             size,
                           }),

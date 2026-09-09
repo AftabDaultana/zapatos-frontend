@@ -64,7 +64,7 @@ function BlogSlider() {
           {blogs.map((blog) => {
             return (
               <div
-                key={blog.id}
+                key={blog._id}
                 className="shrink-0 basis-1/2 lg:basis-1/3 xl:basis-1/4 px-2"
               >
                 <BlogCard

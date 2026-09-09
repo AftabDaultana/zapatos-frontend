@@ -21,8 +21,13 @@ export default function BestSellingProducts() {
   const categorySales = orders
     .filter((order) => order.status !== "cancelled")
     .flatMap((order) => order.items)
-    .reduce<Record<number, number>>((acc, item) => {
-      const product = products.find((product) => product.id === item.productId);
+    .reduce<Record<string, number>>((acc, item) => {
+      const product = products.find(
+        (product) => product._id === item.productId,
+      );
+
+      console.log("Product ID:", item.productId);
+      console.log("Product found:", product);
 
       if (!product) {
         return acc;
@@ -30,7 +35,7 @@ export default function BestSellingProducts() {
 
       product.subCategoryId.forEach((subCategoryId) => {
         const subCategory = subCategories.find(
-          (subCategory) => subCategory.id === subCategoryId,
+          (subCategory) => subCategory._id === subCategoryId,
         );
 
         if (!subCategory) {
@@ -50,13 +55,18 @@ export default function BestSellingProducts() {
     0,
   );
 
+  console.log("Orders:", orders);
+  console.log("Products:", products);
+  console.log("Category Sales:", categorySales);
+  console.log("Total Category Sales:", totalCategorySales);
+
   const bestSellingCategories: CategorySales[] = categories
     .map((category) => ({
       category: category.name,
       percentage:
         totalCategorySales > 0
           ? Math.round(
-              ((categorySales[category.id] || 0) / totalCategorySales) * 100,
+              ((categorySales[category._id!] || 0) / totalCategorySales) * 100,
             )
           : 0,
     }))

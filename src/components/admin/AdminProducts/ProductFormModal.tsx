@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { addProduct, editProduct } from "../../../app/slices/catalogSlice";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
 import type { Category } from "../../../data/categories";
 import type { SubCategory } from "../../../data/subCategories";
 import Button from "../../ui/Button";
 import { X } from "lucide-react";
-import { selectProducts } from "../../../app/selectors/catalogSelectors";
 import type { Product } from "../../../data/products";
 import { uploadUniqueFilesToCloudinary } from "../../../utils/cloudinary";
 
 interface AddProductForm {
   name: string;
   slug: string;
-  subCategoryId: number[];
+  subCategoryId: string[];
   description: string;
   price: string;
   discountedPrice: string;
@@ -114,7 +113,7 @@ export default function ProductFormModal({
       setFormErrors([]);
 
       const category = subCategories.find((subCategory) =>
-        product.subCategoryId.includes(subCategory.id),
+        product.subCategoryId.includes(subCategory._id!),
       );
 
       setSelectedCategory(category ? String(category.categoryId) : "all");
@@ -162,8 +161,6 @@ export default function ProductFormModal({
       setFormErrors([]);
     }
   }, [product, isOpen]);
-
-  const products = useAppSelector(selectProducts);
 
   const isEditMode = Boolean(product);
 
@@ -234,26 +231,21 @@ export default function ProductFormModal({
     selectedCategory === "all"
       ? subCategories
       : subCategories.filter(
-          (subCategory) => subCategory.categoryId === Number(selectedCategory),
+          (subCategory) => subCategory.categoryId === selectedCategory,
         );
 
-  const handleSubCategoryChange = (subCategoryId: number) => {
+  const handleSubCategoryChange = (subCategoryId: string) => {
     setFormData((previous) => {
       const alreadySelected = previous.subCategoryId.includes(subCategoryId);
 
       return {
         ...previous,
         subCategoryId: alreadySelected
-          ? previous.subCategoryId.filter((id) => id !== subCategoryId)
+          ? previous.subCategoryId.filter((_id) => _id !== subCategoryId)
           : [...previous.subCategoryId, subCategoryId],
       };
     });
   };
-
-  const nextProductId =
-    products.length > 0
-      ? Math.max(...products.map((product) => product.id)) + 1
-      : 1;
 
   if (!isOpen) {
     return null;
@@ -339,7 +331,7 @@ export default function ProductFormModal({
                   editProduct({
                     ...product,
                     ...productData,
-                    id: product.id,
+                    _id: product._id,
                     rating: product.rating,
                     ratingCount: product.ratingCount,
                   }),
@@ -348,7 +340,6 @@ export default function ProductFormModal({
                 dispatch(
                   addProduct({
                     ...productData,
-                    id: nextProductId,
                     rating: 0,
                     ratingCount: 0,
                   }),
@@ -422,7 +413,7 @@ export default function ProductFormModal({
                 <option value="all">Select Category</option>
 
                 {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
+                  <option key={category._id} value={category._id}>
                     {category.name}
                   </option>
                 ))}
@@ -441,16 +432,18 @@ export default function ProductFormModal({
                 ) : (
                   availableSubCategories.map((subCategory) => (
                     <label
-                      key={subCategory.id}
+                      key={subCategory._id}
                       className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 hover:bg-neutral-50"
                     >
                       <input
                         type="checkbox"
-                        value={subCategory.id}
+                        value={subCategory._id}
                         checked={formData.subCategoryId.includes(
-                          subCategory.id,
+                          subCategory._id!,
                         )}
-                        onChange={() => handleSubCategoryChange(subCategory.id)}
+                        onChange={() =>
+                          handleSubCategoryChange(subCategory._id!)
+                        }
                         className="h-4 w-4"
                       />
 

@@ -15,14 +15,14 @@ export default function AdminSubCategories() {
     useState(false);
   const [selectedSubCategory, setSelectedSubCategory] =
     useState<SubCategory | null>(null);
-  const [subCategoryToDelete, setSubCategoryToDelete] = useState<number | null>(
+  const [subCategoryToDelete, setSubCategoryToDelete] = useState<string | null>(
     null,
   );
 
   const subCategories = useAppSelector((state) => state.catalog.subCategories);
 
   const subCategoryToDeleteData = subCategories.find(
-    (subCategory) => subCategory.id === subCategoryToDelete,
+    (subCategory) => subCategory._id === subCategoryToDelete,
   );
 
   const categories = useAppSelector((state) => state.catalog.categories);
@@ -42,16 +42,16 @@ export default function AdminSubCategories() {
 
   const endItem = Math.min(currentPage * ITEMS_PER_PAGE, subCategories.length);
 
-  const getCategoryName = (categoryId: number) => {
+  const getCategoryName = (categoryId: string) => {
     return (
-      categories.find((category) => category.id === categoryId)?.name ??
+      categories.find((category) => category._id === categoryId)?.name ??
       "Unknown"
     );
   };
 
-  const handleDeleteSubCategory = (subCategoryId: number) => {
+  const handleDeleteSubCategory = (subCategoryId: string) => {
     const subCategory = subCategories.find(
-      (subCategory) => subCategory.id === subCategoryId,
+      (subCategory) => subCategory._id === subCategoryId,
     );
 
     if (!subCategory) return;
@@ -122,11 +122,11 @@ export default function AdminSubCategories() {
               {paginatedSubCategories.length > 0 ? (
                 paginatedSubCategories.map((subCategory) => (
                   <tr
-                    key={subCategory.id}
+                    key={subCategory._id}
                     className="border-b border-neutral-300 last:border-b-0"
                   >
                     <td className="px-6 py-4 text-sm text-neutral-600">
-                      {subCategory.id}
+                      {subCategory._id}
                     </td>
 
                     <td className="px-6 py-4">
@@ -171,7 +171,7 @@ export default function AdminSubCategories() {
                           variant="none"
                           aria-label={`Delete ${subCategory.name}`}
                           onClick={() =>
-                            handleDeleteSubCategory(subCategory.id)
+                            handleDeleteSubCategory(subCategory._id!)
                           }
                           className="transition hover:text-red-600"
                         >

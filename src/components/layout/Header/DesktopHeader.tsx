@@ -6,7 +6,7 @@ import MegaMenu from "../megaMenu/MegaMenu";
 
 export default function DesktopHeader() {
   const [activeMenu, setActiveMenu] = useState<{
-    id: number;
+    _id: string;
     name: string;
   } | null>(null);
 
@@ -22,7 +22,7 @@ export default function DesktopHeader() {
         <NavigationMenu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
         {activeMenu && (
           <div className="absolute left-0 top-full w-full z-40 border-t border-neutral-200 bg-white shadow-lg">
-            <MegaMenu categoryId={activeMenu.id} />
+            <MegaMenu categoryId={activeMenu._id} />
           </div>
         )}
       </div>

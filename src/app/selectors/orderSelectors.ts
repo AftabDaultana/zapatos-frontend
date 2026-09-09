@@ -5,10 +5,10 @@ export const selectOrders = (state: RootState) => {
 };
 
 export const selectOrderById = (state: RootState, orderId: string) => {
-  return state.order.orders.find((order) => order.id === orderId);
+  return state.order.orders.find((order) => order._id === orderId);
 };
 
-export const selectOrdersByUserId = (state: RootState, userId: number) => {
+export const selectOrdersByUserId = (state: RootState, userId: string) => {
   return state.order.orders
     .filter((order) => order.userId === userId)
     .sort(
