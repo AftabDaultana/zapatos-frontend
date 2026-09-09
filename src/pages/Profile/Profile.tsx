@@ -1,16 +1,16 @@
 import { User } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import Button from "../../components/ui/Button";
-import { logoutUser } from "../../app/slices/userSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import EditProfile from "./EditProfile";
 import UserDetailsContent from "../../components/sections/UserDetailsContent";
+import { useLogout } from "../../hooks/useLogout";
 
 export default function Profile() {
-  const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state) => state.user.currentUser);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const handleLogout = useLogout();
 
   return (
     <div>
@@ -74,7 +74,10 @@ export default function Profile() {
               <Button
                 type="button"
                 variant="dark"
-                onClick={() => dispatch(logoutUser())}
+                onClick={() => {
+                  handleLogout();
+                  window.scrollTo(0, 0);
+                }}
                 className="w-25 h-10"
               >
                 Log Out

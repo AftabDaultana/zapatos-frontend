@@ -11,8 +11,7 @@ import {
 import { NavLink, useLocation } from "react-router-dom";
 import Button from "../../ui/Button";
 import Logo from "../../shared/Logo";
-import { useAppDispatch } from "../../../hooks/reduxHooks";
-import { logoutUser } from "../../../app/slices/userSlice";
+import { useLogout } from "../../../hooks/useLogout";
 
 interface NavigationItem {
   label: string;
@@ -174,11 +173,7 @@ function NavigationList({
 }
 
 export default function AdminSidebar({ isOpen }: AdminSidebarProps) {
-  const dispatch = useAppDispatch();
-
-  const handleLogout = () => {
-    dispatch(logoutUser());
-  };
+  const handleLogout = useLogout();
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-40 h-screen w-64 bg-neutral-950 text-neutral-50 transition-transform duration-300 ${

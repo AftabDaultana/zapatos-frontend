@@ -1,8 +1,8 @@
 import { User } from "lucide-react";
-import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import Button from "./Button";
-import { logoutUser } from "../../app/slices/userSlice";
 import { Link } from "react-router-dom";
+import { useLogout } from "../../hooks/useLogout";
 
 interface LoggedInCardProps {
   onLogOut: () => void;
@@ -10,8 +10,8 @@ interface LoggedInCardProps {
 }
 
 export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
-  const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state) => state.user.currentUser);
+  const handleLogout = useLogout();
 
   if (!currentUser) return null;
 
@@ -100,7 +100,7 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
             type="button"
             variant="light"
             onClick={() => {
-              dispatch(logoutUser());
+              handleLogout();
               onLogOut();
             }}
             className="h-10 w-full text-sm font-medium transition-all duration-200"

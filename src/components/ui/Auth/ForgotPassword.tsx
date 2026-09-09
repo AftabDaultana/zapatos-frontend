@@ -3,6 +3,11 @@ import { useState } from "react";
 import Button from "../Button";
 
 import type { SubmitEvent } from "react";
+import {
+  forgotPasswordUser,
+  resetPasswordUser,
+  verifyOtpUser,
+} from "../../../services/authServices";
 
 interface ForgotPasswordProps {
   onClose: () => void;
@@ -25,18 +30,29 @@ export default function ForgotPassword({
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
+
     if (!email.trim()) {
       setError("Please enter your email address.");
       return;
     }
-    setForgotPasswordEmail(email.trim());
-    setStep("otp");
+
+    try {
+      await forgotPasswordUser({ email: email.trim() });
+
+      setForgotPasswordEmail(email.trim());
+      setStep("otp");
+    } catch (error: any) {
+      setError(
+        error.response?.data?.message ||
+          "Failed to send OTP. Please try again.",
+      );
+    }
   };
 
-  const handleOTPSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleOTPSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
@@ -45,10 +61,20 @@ export default function ForgotPassword({
       return;
     }
 
-    setStep("reset");
+    try {
+      await verifyOtpUser({
+        otp: otp.trim(),
+      });
+
+      setStep("reset");
+    } catch (error: any) {
+      setError(
+        error.response?.data?.message || "Invalid OTP. Please try again.",
+      );
+    }
   };
 
-  const handleResetPasswordSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleResetPasswordSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
@@ -66,7 +92,19 @@ export default function ForgotPassword({
       setError("Passwords do not match.");
       return;
     }
-    onResetSuccess();
+
+    try {
+      await resetPasswordUser({
+        newPassword: newPassword.trim(),
+        confirmNewPassword: confirmPassword.trim(),
+      });
+      onResetSuccess();
+    } catch (error: any) {
+      setError(
+        error.response?.data?.message ||
+          "Password reset failed. Please try again.",
+      );
+    }
   };
 
   return (
