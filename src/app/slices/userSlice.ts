@@ -6,6 +6,7 @@ import type { User } from "../../types/user";
 interface UserState {
   users: User[];
   currentUser: User | null;
+  authInitialized: boolean;
 }
 
 export const getStoredUsers = (): User[] => {
@@ -42,7 +43,8 @@ export const getStoredUser = (): User | null => {
 
 const initialState: UserState = {
   users: getStoredUsers(),
-  currentUser: getStoredUser(),
+  currentUser: null,
+  authInitialized: false,
 };
 
 const userSlice = createSlice({
@@ -89,9 +91,17 @@ const userSlice = createSlice({
 
       localStorage.setItem("users", JSON.stringify(state.users));
     },
+    setAuthInitialized: (state, action: PayloadAction<boolean>) => {
+      state.authInitialized = action.payload;
+    },
   },
 });
 
-export const { setUser, logoutUser, updateUser, deleteUser } =
-  userSlice.actions;
+export const {
+  setUser,
+  logoutUser,
+  updateUser,
+  deleteUser,
+  setAuthInitialized,
+} = userSlice.actions;
 export default userSlice.reducer;
