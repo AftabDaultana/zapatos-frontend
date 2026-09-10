@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { X, User as UserICon } from "lucide-react";
 import type { User } from "../../../types/user";
 import UserDetailsContent from "../../../components/sections/UserDetailsContent";
 import Button from "../../../components/ui/Button";
 import { useAppSelector } from "../../../hooks/reduxHooks";
 import { selectOrders } from "../../../app/selectors/orderSelectors";
+import { getUserByIdAdmin } from "../../../services/userServices";
 
 interface UserDetailsModalProps {
   isOpen: boolean;
@@ -16,9 +18,34 @@ export default function UserDetailsModal({
   onClose,
   user,
 }: UserDetailsModalProps) {
-  if (!isOpen || !user) return null;
+  const [userDetails, setUserDetails] = useState<User | null>(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!isOpen || !user) return;
+
+    const fetchUserDetails = async () => {
+      try {
+        setError("");
+
+        const response = await getUserByIdAdmin(user._id!);
+
+        setUserDetails(response.data);
+      } catch (error: any) {
+        setError(
+          error.response?.data?.message || "Failed to fetch user details.",
+        );
+      }
+    };
+
+    fetchUserDetails();
+  }, [isOpen, user]);
 
   const orders = useAppSelector(selectOrders);
+
+  if (!isOpen || !user) return null;
+
+  const displayedUser = userDetails ?? user;
 
   const orderCount = orders.filter((order) => order.userId === user._id).length;
 
@@ -43,6 +70,7 @@ export default function UserDetailsModal({
               View customer account information.
             </p>
           </div>
+          {error && <p className="text-sm text-red-500">{error}</p>}
 
           <Button
             type="button"
@@ -90,7 +118,7 @@ export default function UserDetailsModal({
             <span className="font-medium text-neutral-950">{orderCount}</span>
           </p>
 
-          <UserDetailsContent user={user} />
+          <UserDetailsContent user={displayedUser} />
         </div>
       </div>
     </div>

@@ -30,3 +30,26 @@ export const updateUser = async (data: UpdateUserData) => {
 
   return response.data;
 };
+
+export const getUserByIdAdmin = async (id: string) => {
+  const response = await api.get(`/users/admin/${id}`);
+
+  return response.data;
+};
+
+export const getAllUsersAdmin = async (page: number, limit: number) => {
+  const response = await api.get("users/admin", {
+    params: {
+      page,
+      limit,
+    },
+  });
+
+  return response.data;
+};
+
+export const updateUserStatusAdmin = async (id: string) => {
+  const response = await api.put(`/users/admin/${id}`);
+
+  return response.data;
+};

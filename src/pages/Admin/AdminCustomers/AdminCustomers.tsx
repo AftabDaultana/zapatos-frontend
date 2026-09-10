@@ -2,62 +2,91 @@ import {
   ChevronLeft,
   ChevronRight,
   Eye,
-  Trash2,
+  Pencil,
   User as UserIcon,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../components/ui/Button";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
-import { deleteUser } from "../../../app/slices/userSlice";
+import { useAppSelector } from "../../../hooks/reduxHooks";
 import UserDetailsModal from "./UserProfileModal";
 import type { User } from "../../../types/user";
 import AlertModal from "../../../components/ui/AlertModal";
+import {
+  updateUserStatusAdmin,
+  getAllUsersAdmin,
+} from "../../../services/userServices";
 
 export default function AdminCustomers() {
   const ITEMS_PER_PAGE = 10;
 
+  const [users, setUsers] = useState<User[]>([]);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [isUserDetailsModalOpen, setIsUserDetailsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [userToDelete, setUserToDelete] = useState<string | null>(null);
+  const [userStatusToUpdate, setUserStatusToUpdate] = useState<string | null>(
+    null,
+  );
 
-  const dispatch = useAppDispatch();
+  const fetchUsers = async () => {
+    setIsLoading(true);
 
-  const users = useAppSelector((state) => state.user.users);
+    try {
+      const response = await getAllUsersAdmin(currentPage, ITEMS_PER_PAGE);
+
+      setUsers(response.data);
+      setTotalUsers(response.pagination.totalUsers);
+      setTotalPages(response.pagination.totalPages);
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, [currentPage]);
+
   const orders = useAppSelector((state) => state.order.orders);
 
-  const userToDeleteData = users.find((user) => user._id === userToDelete);
-
-  const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
-
-  const paginatedUsers = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-
-    return users.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [currentPage, users]);
+  const userStatusToUpdateData = users.find(
+    (user) => user._id === userStatusToUpdate,
+  );
 
   const startItem =
-    users.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
+    totalUsers === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
 
-  const endItem = Math.min(currentPage * ITEMS_PER_PAGE, users.length);
-
+  const endItem = Math.min(currentPage * ITEMS_PER_PAGE, totalUsers);
   const getOrderCount = (userId: string) => {
     return orders.filter((order) => order.userId === userId).length;
   };
 
-  const handleDeleteUser = (userId: string) => {
+  const handleUpdateUserStatus = (userId: string) => {
     const user = users.find((user) => user._id === userId);
 
     if (!user || user.role === "admin") return;
 
-    setUserToDelete(userId);
+    setUserStatusToUpdate(userId);
   };
 
-  const handleConfirmDeleteUser = () => {
-    if (userToDelete === null) return;
+  const handleConfirmUpdateUserStatus = async () => {
+    if (userStatusToUpdate === null) return;
 
-    dispatch(deleteUser(userToDelete));
-    setUserToDelete(null);
+    try {
+      await updateUserStatusAdmin(userStatusToUpdate);
+      setUserStatusToUpdate(null);
+
+      await fetchUsers();
+    } catch (error: any) {
+      console.error(
+        "Failed to deactivate user: ",
+        error.response.data.message || error.message,
+      );
+    }
   };
 
   return (
@@ -100,14 +129,27 @@ export default function AdminCustomers() {
                 </th>
 
                 <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
+                  Status
+                </th>
+
+                <th className="px-6 py-4 text-sm font-semibold text-neutral-600">
                   Actions
                 </th>
               </tr>
             </thead>
 
             <tbody>
-              {paginatedUsers.length > 0 ? (
-                paginatedUsers.map((user) => (
+              {isLoading ? (
+                <tr>
+                  <td
+                    colSpan={8}
+                    className="px-6 py-12 text-center text-sm text-neutral-500"
+                  >
+                    Loading customers...
+                  </td>
+                </tr>
+              ) : users.length > 0 ? (
+                users.map((user) => (
                   <tr
                     key={user._id}
                     className="border-b border-neutral-300 last:border-b-0"
@@ -156,6 +198,18 @@ export default function AdminCustomers() {
                       {getOrderCount(user._id!)}
                     </td>
 
+                    <td className="px-6 py-4 text-sm">
+                      {user.status === "active" ? (
+                        <span className="font-medium text-green-600">
+                          Active
+                        </span>
+                      ) : (
+                        <span className="font-medium text-red-600">
+                          Inactive
+                        </span>
+                      )}
+                    </td>
+
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-5 text-neutral-500">
                         <Button
@@ -174,12 +228,12 @@ export default function AdminCustomers() {
                         <Button
                           type="button"
                           variant="none"
-                          aria-label={`Delete ${user.name}`}
+                          aria-label={`Update Status ${user.name}`}
                           disabled={user.role === "admin"}
-                          onClick={() => handleDeleteUser(user._id!)}
+                          onClick={() => handleUpdateUserStatus(user._id!)}
                           className="transition hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:text-neutral-500"
                         >
-                          <Trash2 size={20} />
+                          <Pencil size={20} />
                         </Button>
                       </div>
                     </td>
@@ -188,7 +242,7 @@ export default function AdminCustomers() {
               ) : (
                 <tr>
                   <td
-                    colSpan={7}
+                    colSpan={8}
                     className="px-6 py-12 text-center text-sm text-neutral-500"
                   >
                     No customers found.
@@ -198,7 +252,7 @@ export default function AdminCustomers() {
             </tbody>
           </table>
 
-          {users.length > 0 && (
+          {totalUsers > 0 && (
             <div className="flex items-center justify-between border-t border-neutral-100 px-6 py-4">
               <p className="text-sm text-neutral-500">
                 Showing{" "}
@@ -209,7 +263,7 @@ export default function AdminCustomers() {
                 <span className="font-medium text-neutral-950">{endItem}</span>{" "}
                 of{" "}
                 <span className="font-medium text-neutral-950">
-                  {users.length}
+                  {totalUsers}
                 </span>
               </p>
 
@@ -269,18 +323,18 @@ export default function AdminCustomers() {
         user={selectedUser}
       />
       <AlertModal
-        isOpen={userToDelete !== null}
+        isOpen={userStatusToUpdate !== null}
         type="confirmation"
-        title="Delete User"
+        title="Update User Status"
         message={
-          userToDeleteData
-            ? `Are you sure you want to delete "${userToDeleteData.name}"?`
+          userStatusToUpdateData
+            ? `Are you sure you want to update status of "${userStatusToUpdateData.name}"?`
             : ""
         }
-        confirmText="Delete"
+        confirmText="Update Status"
         cancelText="Cancel"
-        onConfirm={handleConfirmDeleteUser}
-        onClose={() => setUserToDelete(null)}
+        onConfirm={handleConfirmUpdateUserStatus}
+        onClose={() => setUserStatusToUpdate(null)}
       />
     </main>
   );
