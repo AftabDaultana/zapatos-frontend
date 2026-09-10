@@ -1,15 +1,17 @@
-import { User } from "lucide-react";
-import { useAppSelector } from "../../hooks/reduxHooks";
-import Button from "../../components/ui/Button";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { User } from "lucide-react";
+import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
-import UserDetailsContent from "../../components/sections/UserDetailsContent";
+import Button from "../../components/ui/Button";
 import { useLogout } from "../../hooks/useLogout";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import ChangePassword from "../../components/ui/Auth/ChangePassword";
+import UserDetailsContent from "../../components/sections/UserDetailsContent";
 
 export default function Profile() {
   const currentUser = useAppSelector((state) => state.user.currentUser);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const handleLogout = useLogout();
 
   return (
@@ -37,35 +39,35 @@ export default function Profile() {
           <div className="h-px w-full bg-neutral-950" />
           <h2 className="text-2xl leading-7 px-4">Account Actions</h2>
           <div className="h-px w-full bg-neutral-950" />
-          <div className="flex gap-3 px-4 items-center">
+          <div className="flex flex-col lg:flex-row gap-3 px-4 lg:items-center">
             <Button
               type="button"
               variant="dark"
               onClick={() => setIsEditProfileOpen(true)}
-              className="w-25 h-10"
+              className="w-40 h-10"
             >
               Edit Profile
+            </Button>
+            <Button
+              type="button"
+              variant="dark"
+              onClick={() => setIsChangePasswordOpen(true)}
+              className="w-40 h-10"
+            >
+              Change Password
             </Button>
             {currentUser.role === "admin" ? (
               <Link
                 to={"/admin/orders?mine=true"}
                 onClick={() => window.scrollTo(0, 0)}
               >
-                <Button
-                  type="button"
-                  variant="dark"
-                  className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
-                >
+                <Button type="button" variant="dark" className="w-40 h-10">
                   My Orders
                 </Button>
               </Link>
             ) : (
               <Link to={"/orders"} onClick={() => window.scrollTo(0, 0)}>
-                <Button
-                  type="button"
-                  variant="dark"
-                  className="w-25 h-10 bg-neutral-950 text-neutral-50 hover:border hover:border-neutral-950 hover:bg-transparent hover:text-neutral-950"
-                >
+                <Button type="button" variant="dark" className="w-40 h-10">
                   My Orders
                 </Button>
               </Link>
@@ -78,7 +80,7 @@ export default function Profile() {
                   handleLogout();
                   window.scrollTo(0, 0);
                 }}
-                className="w-25 h-10"
+                className="w-40 h-10"
               >
                 Log Out
               </Button>
@@ -90,6 +92,9 @@ export default function Profile() {
       )}
       {isEditProfileOpen && (
         <EditProfile onClose={() => setIsEditProfileOpen(false)} />
+      )}
+      {isChangePasswordOpen && (
+        <ChangePassword onClose={() => setIsChangePasswordOpen(false)} />
       )}
     </div>
   );
