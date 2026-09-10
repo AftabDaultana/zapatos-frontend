@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { getStoredUsers, updateUser } from "../../app/slices/userSlice";
+import { setUser } from "../../app/slices/userSlice";
+import { updateUser } from "../../services/userServices";
 import Button from "../../components/ui/Button";
 import { X, User } from "lucide-react";
 import { uploadToCloudinary } from "../../utils/cloudinary";
@@ -69,30 +70,24 @@ export default function EditProfile({ onClose }: EditProfileProps) {
       }
     }
 
-    const storedUsers = getStoredUsers();
-
-    const emailAlreadyExists = storedUsers.some((user) => {
-      return (
-        user._id !== currentUser?._id &&
-        user.email.trim().toLowerCase() === email.trim().toLowerCase()
-      );
-    });
-
-    if (emailAlreadyExists) {
-      setError("User with this email already exist");
-      return;
-    }
-
-    dispatch(
-      updateUser({
+    try {
+      const response = await updateUser({
         name: name.trim(),
         email: email.trim(),
         phoneNumber: phoneNumber.trim(),
         profilePicture: profilePictureUrl,
-      }),
-    );
-    setProfilePictureFile(null);
-    onClose();
+      });
+
+      dispatch(setUser(response.data));
+
+      setProfilePictureFile(null);
+      onClose();
+    } catch (error: any) {
+      setError(
+        error.response?.data?.message ||
+          "Failed to update profile. Please try again.",
+      );
+    }
   };
 
   return (

@@ -1,8 +1,9 @@
 import { User } from "lucide-react";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
+import { useViewProfile } from "../../hooks/useViewProfile";
 
 interface LoggedInCardProps {
   onLogOut: () => void;
@@ -10,8 +11,10 @@ interface LoggedInCardProps {
 }
 
 export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
+  const navigate = useNavigate();
   const currentUser = useAppSelector((state) => state.user.currentUser);
   const handleLogout = useLogout();
+  const handleViewProfile = useViewProfile();
 
   if (!currentUser) return null;
 
@@ -83,15 +86,21 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
             </Button>
           </Link>
 
-          <Link to="/profile" onClick={onClose}>
-            <Button
-              type="button"
-              variant="dark"
-              className="h-10 w-full text-sm font-medium transition-all duration-200"
-            >
-              View Profile
-            </Button>
-          </Link>
+          <Button
+            type="button"
+            variant="dark"
+            onClick={async () => {
+              const success = await handleViewProfile();
+
+              if (success) {
+                onClose();
+                navigate("/profile");
+              }
+            }}
+            className="h-10 w-full text-sm font-medium transition-all duration-200"
+          >
+            View Profile
+          </Button>
         </div>
 
         {/* Logout */}

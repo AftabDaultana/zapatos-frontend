@@ -8,10 +8,11 @@ import {
   LogOut,
   ChevronDown,
 } from "lucide-react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Button from "../../ui/Button";
 import Logo from "../../shared/Logo";
 import { useLogout } from "../../../hooks/useLogout";
+import { useViewProfile } from "../../../hooks/useViewProfile";
 
 interface NavigationItem {
   label: string;
@@ -75,10 +76,12 @@ function NavigationList({
   items,
   level = 0,
   onLogout,
+  onViewProfile,
 }: {
   items: NavigationItem[];
   level?: number;
   onLogout?: () => void;
+  onViewProfile?: () => void;
 }) {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const location = useLocation();
@@ -130,21 +133,34 @@ function NavigationList({
                 </Button>
               </div>
             ) : item.path ? (
-              <NavLink
-                to={item.path}
-                end
-                className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-md px-3 py-2 transition ${
-                    isActive
-                      ? "bg-neutral-800 text-white"
-                      : "text-neutral-400 hover:bg-neutral-900 hover:text-white"
-                  }`
-                }
-                style={{ paddingLeft: `${12 + level * 16}px` }}
-              >
-                {Icon && <Icon size={18} />}
-                <span>{item.label}</span>
-              </NavLink>
+              item.path === "/admin/profile" ? (
+                <Button
+                  type="button"
+                  variant="none"
+                  onClick={onViewProfile}
+                  className="flex items-center gap-3 rounded-md px-3 py-2 text-neutral-400 transition hover:bg-neutral-900 hover:text-white"
+                  style={{ paddingLeft: `${12 + level * 16}px` }}
+                >
+                  {Icon && <Icon size={18} />}
+                  <span>{item.label}</span>
+                </Button>
+              ) : (
+                <NavLink
+                  to={item.path}
+                  end
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 rounded-md px-3 py-2 transition ${
+                      isActive
+                        ? "bg-neutral-800 text-white"
+                        : "text-neutral-400 hover:bg-neutral-900 hover:text-white"
+                    }`
+                  }
+                  style={{ paddingLeft: `${12 + level * 16}px` }}
+                >
+                  {Icon && <Icon size={18} />}
+                  <span>{item.label}</span>
+                </NavLink>
+              )
             ) : (
               <Button
                 type="button"
@@ -163,6 +179,7 @@ function NavigationList({
                 items={item.children}
                 level={level + 1}
                 onLogout={onLogout}
+                onViewProfile={onViewProfile}
               />
             )}
           </div>
@@ -174,6 +191,16 @@ function NavigationList({
 
 export default function AdminSidebar({ isOpen }: AdminSidebarProps) {
   const handleLogout = useLogout();
+  const viewProfile = useViewProfile();
+  const navigate = useNavigate();
+
+  const handleViewProfile = async () => {
+    const success = await viewProfile();
+
+    if (success) {
+      navigate("/admin/profile");
+    }
+  };
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-40 h-screen w-64 bg-neutral-950 text-neutral-50 transition-transform duration-300 ${
@@ -192,6 +219,7 @@ export default function AdminSidebar({ isOpen }: AdminSidebarProps) {
             <NavigationList
               items={bottomNavigationItems}
               onLogout={handleLogout}
+              onViewProfile={handleViewProfile}
             />
           </div>
         </nav>

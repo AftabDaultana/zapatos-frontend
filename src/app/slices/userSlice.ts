@@ -54,25 +54,6 @@ const userSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       state.currentUser = action.payload;
     },
-    updateUser: (state, action: PayloadAction<Partial<User>>) => {
-      if (!state.currentUser) return;
-
-      const updatedCurrentUser = {
-        ...state.currentUser,
-        ...action.payload,
-      };
-
-      state.currentUser = updatedCurrentUser;
-
-      const storedUsers = getStoredUsers();
-
-      const updatedUsers = storedUsers.map((user) =>
-        user._id === updatedCurrentUser._id ? updatedCurrentUser : user,
-      );
-
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
-      localStorage.setItem("currentUser", JSON.stringify(updatedCurrentUser));
-    },
     logoutUser: (state) => {
       if (state.currentUser) {
         const storedUsers = getStoredUsers();
@@ -97,11 +78,6 @@ const userSlice = createSlice({
   },
 });
 
-export const {
-  setUser,
-  logoutUser,
-  updateUser,
-  deleteUser,
-  setAuthInitialized,
-} = userSlice.actions;
+export const { setUser, logoutUser, deleteUser, setAuthInitialized } =
+  userSlice.actions;
 export default userSlice.reducer;

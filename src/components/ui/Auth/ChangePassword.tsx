@@ -2,7 +2,7 @@ import { X, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import Button from "../Button";
 import type { SubmitEvent } from "react";
-import { changePasswordService } from "../../../services/userServices";
+import { changePasswordUser } from "../../../services/userServices";
 
 interface ChangePasswordProps {
   onClose: () => void;
@@ -44,7 +44,7 @@ export default function ChangePassword({ onClose }: ChangePasswordProps) {
     }
 
     try {
-      await changePasswordService({
+      await changePasswordUser({
         currentPassword,
         newPassword,
         confirmNewPassword,
