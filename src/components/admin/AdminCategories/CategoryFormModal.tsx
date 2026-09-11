@@ -36,6 +36,7 @@ export default function CategoryFormModal({
     name: "",
     slug: "",
   });
+  const [isSlugCustomized, setIsSlugCustomized] = useState(false);
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
@@ -49,11 +50,15 @@ export default function CategoryFormModal({
         name: category.name,
         slug: category.slug,
       });
+
+      setIsSlugCustomized(true);
     } else {
       setFormData({
         name: "",
         slug: "",
       });
+
+      setIsSlugCustomized(false);
     }
 
     setFormErrors([]);
@@ -65,7 +70,7 @@ export default function CategoryFormModal({
     setFormData((prev) => ({
       ...prev,
       name: value,
-      slug: isEditing ? prev.slug : slugify(value),
+      slug: isSlugCustomized ? prev.slug : slugify(value),
     }));
   };
 
@@ -201,12 +206,27 @@ export default function CategoryFormModal({
               id="category-slug"
               type="text"
               value={formData.slug}
-              onChange={(event) =>
+              onChange={(event) => {
+                const value = event.target.value;
+
+                if (!value.trim()) {
+                  setIsSlugCustomized(false);
+
+                  setFormData((prev) => ({
+                    ...prev,
+                    slug: slugify(prev.name),
+                  }));
+
+                  return;
+                }
+
+                setIsSlugCustomized(true);
+
                 setFormData((prev) => ({
                   ...prev,
-                  slug: event.target.value,
-                }))
-              }
+                  slug: value,
+                }));
+              }}
               placeholder="e.g. accessories"
               className="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950"
             />
