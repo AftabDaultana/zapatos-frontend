@@ -572,10 +572,10 @@ export default function ProductFormModal({
                 className="rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-950 outline-none focus:border-neutral-500"
               >
                 <option value="">Select Gender</option>
-                <option value="Men">Men</option>
-                <option value="Women">Women</option>
-                <option value="Unisex">Unisex</option>
-                <option value="Kids">Kids</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="unisex">Unisex</option>
+                <option value="kids">Kids</option>
               </select>
             </div>
             <div className="flex flex-col gap-2">
