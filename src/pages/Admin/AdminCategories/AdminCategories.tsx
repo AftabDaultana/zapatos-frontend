@@ -1,9 +1,9 @@
 import { ChevronLeft, ChevronRight, Pencil, Plus, Trash2 } from "lucide-react";
 import Button from "../../../components/ui/Button";
-import { useMemo, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
-import { deleteCategory } from "../../../app/slices/catalogSlice";
-import type { Category } from "../../../data/categories";
+import { useCallback, useEffect, useState } from "react";
+import { deleteCategory } from "../../../services/categoryServices";
+import { getAllPaginatedCategories } from "../../../services/categoryServices";
+import type { Category } from "../../../services/categoryServices";
 import CategoryFormModal from "../../../components/admin/AdminCategories/CategoryFormModal";
 import AlertModal from "../../../components/ui/AlertModal";
 
@@ -16,41 +16,52 @@ export default function AdminCategories() {
     null,
   );
   const [categoryToDelete, setCategoryToDelete] = useState<string | null>(null);
+  const [totalCategories, setTotalCategories] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [paginatedCategories, setPaginatedCategories] = useState<Category[]>(
+    [],
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  const fetchCategories = useCallback(async () => {
+    setIsLoading(true);
 
-  const categories = useAppSelector((state) => state.catalog.categories);
+    try {
+      const result = await getAllPaginatedCategories(
+        currentPage,
+        ITEMS_PER_PAGE,
+      );
 
-  const categoryToDeleteData = categories.find(
+      setPaginatedCategories(result.categories);
+      setTotalCategories(result.pagination.totalCategories);
+      setTotalPages(result.pagination.totalPages);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    fetchCategories();
+  }, [fetchCategories]);
+
+  const categoryToDeleteData = paginatedCategories.find(
     (category) => category._id === categoryToDelete,
   );
 
-  const dispatch = useAppDispatch();
-
-  const totalPages = Math.ceil(categories.length / ITEMS_PER_PAGE);
-
-  const paginatedCategories = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-
-    return categories.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [currentPage, categories]);
-
   const startItem =
-    categories.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
+    totalCategories === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
 
-  const endItem = Math.min(currentPage * ITEMS_PER_PAGE, categories.length);
+  const endItem = Math.min(currentPage * ITEMS_PER_PAGE, totalCategories);
 
   const handleDeleteCategory = (categoryId: string) => {
-    const category = categories.find((category) => category._id === categoryId);
-
-    if (!category) return;
-
     setCategoryToDelete(categoryId);
   };
 
-  const handleConfirmDeleteCategory = () => {
+  const handleConfirmDeleteCategory = async () => {
     if (categoryToDelete === null) return;
 
-    dispatch(deleteCategory(categoryToDelete));
+    await deleteCategory(categoryToDelete);
     setCategoryToDelete(null);
+    await fetchCategories();
   };
   return (
     <main className="p-6">
@@ -100,7 +111,16 @@ export default function AdminCategories() {
             </thead>
 
             <tbody>
-              {paginatedCategories.length > 0 ? (
+              {isLoading ? (
+                <tr>
+                  <td
+                    colSpan={4}
+                    className="px-6 py-12 text-center text-sm text-neutral-500"
+                  >
+                    Loading categories...
+                  </td>
+                </tr>
+              ) : paginatedCategories.length > 0 ? (
                 paginatedCategories.map((category) => (
                   <tr
                     key={category._id}
@@ -161,7 +181,7 @@ export default function AdminCategories() {
             </tbody>
           </table>
 
-          {categories.length > 0 && (
+          {totalCategories > 0 && (
             <div className="flex items-center justify-between border-t border-neutral-100 px-6 py-4">
               <p className="text-sm text-neutral-500">
                 Showing{" "}
@@ -172,7 +192,7 @@ export default function AdminCategories() {
                 <span className="font-medium text-neutral-950">{endItem}</span>{" "}
                 of{" "}
                 <span className="font-medium text-neutral-950">
-                  {categories.length}
+                  {totalCategories}
                 </span>
               </p>
 
@@ -230,6 +250,7 @@ export default function AdminCategories() {
         isOpen={isCategoryFormModalOpen}
         onClose={() => setIsCategoryFormModalOpen(false)}
         category={selectedCategory}
+        onSuccess={fetchCategories}
       />
       <AlertModal
         isOpen={categoryToDelete !== null}

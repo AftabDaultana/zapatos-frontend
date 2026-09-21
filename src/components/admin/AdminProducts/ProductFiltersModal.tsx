@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import Button from "../../ui/Button";
-import type { Category } from "../../../data/categories";
+import type { Category } from "../../../services/categoryServices";
 import type { SubCategory } from "../../../data/subCategories";
 
 interface ProductFiltersModalProps {

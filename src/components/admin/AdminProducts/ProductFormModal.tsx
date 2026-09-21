@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { addProduct, editProduct } from "../../../app/slices/catalogSlice";
 import { useAppDispatch } from "../../../hooks/reduxHooks";
-import type { Category } from "../../../data/categories";
+import type { Category } from "../../../services/categoryServices";
 import type { SubCategory } from "../../../data/subCategories";
 import Button from "../../ui/Button";
 import { X } from "lucide-react";

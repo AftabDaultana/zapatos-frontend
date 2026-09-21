@@ -4,7 +4,7 @@ import { categories } from "../../data/categories";
 import { subCategories } from "../../data/subCategories";
 
 import type { Product } from "../../data/products";
-import type { Category } from "../../data/categories";
+import type { Category } from "../../services/categoryServices";
 import type { SubCategory } from "../../data/subCategories";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -51,41 +51,6 @@ const catalogSlice = createSlice({
         localStorage.setItem("products", JSON.stringify(state.products));
       }
     },
-    addCategory: (state, action: PayloadAction<Category>) => {
-      state.categories.push(action.payload);
-
-      localStorage.setItem("categories", JSON.stringify(state.categories));
-    },
-
-    editCategory: (state, action: PayloadAction<Category>) => {
-      const index = state.categories.findIndex(
-        (category) => category._id === action.payload._id,
-      );
-
-      if (index !== -1) {
-        state.categories[index] = action.payload;
-
-        localStorage.setItem("categories", JSON.stringify(state.categories));
-      }
-    },
-    deleteCategory: (state, action: PayloadAction<string>) => {
-      const categoryId = action.payload;
-
-      state.categories = state.categories.filter(
-        (category) => category._id !== categoryId,
-      );
-
-      state.subCategories = state.subCategories.filter(
-        (subCategory) => subCategory.categoryId !== categoryId,
-      );
-
-      localStorage.setItem("categories", JSON.stringify(state.categories));
-
-      localStorage.setItem(
-        "subCategories",
-        JSON.stringify(state.subCategories),
-      );
-    },
 
     addSubCategory: (state, action: PayloadAction<SubCategory>) => {
       state.subCategories.push({
@@ -130,9 +95,6 @@ export const {
   deleteProduct,
   addProduct,
   editProduct,
-  addCategory,
-  editCategory,
-  deleteCategory,
   addSubCategory,
   editSubCategory,
   deleteSubCategory,

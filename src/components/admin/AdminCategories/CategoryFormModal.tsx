@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import Button from "../../ui/Button";
-import type { Category } from "../../../data/categories";
-import { useAppDispatch } from "../../../hooks/reduxHooks";
-import { addCategory, editCategory } from "../../../app/slices/catalogSlice";
+import type { Category } from "../../../services/categoryServices";
+import {
+  createCategory,
+  updateCategory,
+} from "../../../services/categoryServices";
 
 interface CategoryFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   category?: Category | null;
+  onSuccess: () => void;
 }
 
 interface CategoryFormData {
@@ -29,14 +32,12 @@ export default function CategoryFormModal({
   isOpen,
   onClose,
   category,
+  onSuccess,
 }: CategoryFormModalProps) {
-  const dispatch = useAppDispatch();
-
   const [formData, setFormData] = useState<CategoryFormData>({
     name: "",
     slug: "",
   });
-  const [isSlugCustomized, setIsSlugCustomized] = useState(false);
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
@@ -50,15 +51,11 @@ export default function CategoryFormModal({
         name: category.name,
         slug: category.slug,
       });
-
-      setIsSlugCustomized(true);
     } else {
       setFormData({
         name: "",
         slug: "",
       });
-
-      setIsSlugCustomized(false);
     }
 
     setFormErrors([]);
@@ -70,7 +67,7 @@ export default function CategoryFormModal({
     setFormData((prev) => ({
       ...prev,
       name: value,
-      slug: isSlugCustomized ? prev.slug : slugify(value),
+      slug: slugify(value),
     }));
   };
 
@@ -96,7 +93,6 @@ export default function CategoryFormModal({
       aria-labelledby="category-form-title"
     >
       <div className="w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl">
-        {/* Header */}
         <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5">
           <div>
             <h2
@@ -124,9 +120,8 @@ export default function CategoryFormModal({
           </Button>
         </div>
 
-        {/* Form */}
         <form
-          onSubmit={(event) => {
+          onSubmit={async (event) => {
             event.preventDefault();
 
             const errors = validateForm();
@@ -144,26 +139,22 @@ export default function CategoryFormModal({
             };
 
             if (category) {
-              dispatch(
-                editCategory({
-                  ...category,
-                  ...categoryData,
-                }),
-              );
+              await updateCategory(category._id, {
+                name: categoryData.name,
+                slug: categoryData.slug,
+              });
             } else {
-              dispatch(
-                addCategory({
-                  ...categoryData,
-                  name: categoryData.name.toUpperCase(),
-                }),
-              );
+              await createCategory({
+                name: categoryData.name,
+                slug: categoryData.slug,
+              });
             }
 
+            await onSuccess();
             onClose();
           }}
           className="flex flex-col gap-5 px-6 py-6"
         >
-          {/* Errors */}
           {formErrors.length > 0 && (
             <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
               <ul className="list-inside list-disc space-y-1">
@@ -174,7 +165,6 @@ export default function CategoryFormModal({
             </div>
           )}
 
-          {/* Category Name */}
           <div>
             <label
               htmlFor="category-name"
@@ -193,7 +183,6 @@ export default function CategoryFormModal({
             />
           </div>
 
-          {/* Slug */}
           <div>
             <label
               htmlFor="category-slug"
@@ -209,22 +198,9 @@ export default function CategoryFormModal({
               onChange={(event) => {
                 const value = event.target.value;
 
-                if (!value.trim()) {
-                  setIsSlugCustomized(false);
-
-                  setFormData((prev) => ({
-                    ...prev,
-                    slug: slugify(prev.name),
-                  }));
-
-                  return;
-                }
-
-                setIsSlugCustomized(true);
-
                 setFormData((prev) => ({
                   ...prev,
-                  slug: value,
+                  slug: value.trim() ? value : slugify(prev.name),
                 }));
               }}
               placeholder="e.g. accessories"
@@ -236,7 +212,6 @@ export default function CategoryFormModal({
             </p>
           </div>
 
-          {/* Actions */}
           <div className="mt-2 flex justify-end gap-3 border-t border-neutral-200 pt-5">
             <Button
               type="button"
