@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-import { useAppSelector } from "../../../hooks/reduxHooks";
-import { selectSubCategoriesByCategoryId } from "../../../app/selectors/catalogSelectors";
+import { getSubCategoriesByCategoryId } from "../../../services/subcategoryServices";
+import type { SubCategory } from "../../../services/subcategoryServices";
+import { getAllCategories } from "../../../services/categoryServices";
 
 import SubCategoryCard from "../../ui/SubCategoryCard";
 
@@ -17,12 +18,28 @@ export default function SubCategoryBanner({
   categorySlug,
   activeSubCategoryId,
 }: SubCateggoryBannerProps) {
-  const subCategories = useAppSelector((state) =>
-    selectSubCategoriesByCategoryId(state, categoryId),
-  );
+  const [subCategories, setSubCategories] = useState<SubCategory[]>([]);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const [isBrandsCategory, setIsBrandsCategory] = useState(false);
+
+  useEffect(() => {
+    const fetchSubCategories = async () => {
+      const result = await getSubCategoriesByCategoryId(categoryId);
+      setSubCategories(result);
+    };
+
+    const checkBrandsCategory = async () => {
+      const categories = await getAllCategories();
+
+      setIsBrandsCategory(categories[3]?._id === categoryId);
+    };
+
+    fetchSubCategories();
+    checkBrandsCategory();
+  }, [categoryId]);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
@@ -57,9 +74,9 @@ export default function SubCategoryBanner({
             key={subCategory._id!}
             title={subCategory.name}
             imageUrl={subCategory.image}
-            imageFit={subCategory.categoryId === "4" ? "contain" : "cover"}
+            imageFit={isBrandsCategory ? "contain" : "cover"}
             isActive={subCategory._id === activeSubCategoryId}
-            variant={subCategory.categoryId === "4" ? "brand" : "default"}
+            variant={isBrandsCategory ? "brand" : "default"}
             path={`/category/${categorySlug}/${subCategory.slug}`}
           />
         ))}
@@ -84,9 +101,7 @@ export default function SubCategoryBanner({
                 <SubCategoryCard
                   title={subCategory.name}
                   imageUrl={subCategory.image}
-                  imageFit={
-                    subCategory.categoryId === "4" ? "contain" : "cover"
-                  }
+                  imageFit={isBrandsCategory ? "contain" : "cover"}
                   isActive={subCategory._id === activeSubCategoryId}
                   path={`/category/${categorySlug}/${subCategory.slug}`}
                 />

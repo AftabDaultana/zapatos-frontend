@@ -1,14 +1,19 @@
 import { ChevronLeft, ChevronRight, Pencil, Plus, Trash2 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Button from "../../../components/ui/Button";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
 import { deleteSubCategory } from "../../../app/slices/catalogSlice";
-import type { SubCategory } from "../../../data/subCategories";
+import type { SubCategory } from "../../../services/subcategoryServices";
+import type { Category } from "../../../services/categoryServices";
 import SubCategoryFormModal from "../../../components/admin/AdminSubCategories/SubCategoryFormModal";
 import AlertModal from "../../../components/ui/AlertModal";
+import { getAllSubCategories } from "../../../services/subcategoryServices";
+import { getAllCategories } from "../../../services/categoryServices";
 
 export default function AdminSubCategories() {
   const ITEMS_PER_PAGE = 10;
+
+  const dispatch = useAppDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isSubCategoryFormModalOpen, setIsSubCategoryFormModalOpen] =
@@ -18,29 +23,48 @@ export default function AdminSubCategories() {
   const [subCategoryToDelete, setSubCategoryToDelete] = useState<string | null>(
     null,
   );
-
-  const subCategories = useAppSelector((state) => state.catalog.subCategories);
+  const [subCategories, setSubCategories] = useState<SubCategory[]>([]);
+  const [totalSubCategories, setTotalSubCategories] = useState(0);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const subCategoryToDeleteData = subCategories.find(
     (subCategory) => subCategory._id === subCategoryToDelete,
   );
 
-  const categories = useAppSelector((state) => state.catalog.categories);
+  const fetchCategories = useCallback(async () => {
+    const result = await getAllCategories();
 
-  const dispatch = useAppDispatch();
+    setCategories(result);
+  }, []);
 
-  const totalPages = Math.ceil(subCategories.length / ITEMS_PER_PAGE);
+  const fetchSubCategories = useCallback(async () => {
+    setIsLoading(true);
 
-  const paginatedSubCategories = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    try {
+      const result = await getAllSubCategories(currentPage, ITEMS_PER_PAGE);
 
-    return subCategories.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [currentPage, subCategories]);
+      setSubCategories(result.subCategories);
+      setTotalSubCategories(result.pagination.totalSubCategories);
+      setTotalPages(result.pagination.totalPages);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    fetchSubCategories();
+  }, [fetchSubCategories]);
+
+  useEffect(() => {
+    fetchCategories();
+  }, [fetchCategories]);
 
   const startItem =
-    subCategories.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
+    totalSubCategories === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
 
-  const endItem = Math.min(currentPage * ITEMS_PER_PAGE, subCategories.length);
+  const endItem = Math.min(currentPage * ITEMS_PER_PAGE, totalSubCategories);
 
   const getCategoryName = (categoryId: string) => {
     return (
@@ -119,8 +143,17 @@ export default function AdminSubCategories() {
             </thead>
 
             <tbody>
-              {paginatedSubCategories.length > 0 ? (
-                paginatedSubCategories.map((subCategory) => (
+              {isLoading ? (
+                <tr>
+                  <td
+                    colSpan={5}
+                    className="px-6 py-12 text-center text-sm text-neutral-500"
+                  >
+                    Loading subcategories...
+                  </td>
+                </tr>
+              ) : subCategories.length > 0 ? (
+                subCategories.map((subCategory) => (
                   <tr
                     key={subCategory._id}
                     className="border-b border-neutral-300 last:border-b-0"
@@ -194,7 +227,7 @@ export default function AdminSubCategories() {
             </tbody>
           </table>
 
-          {subCategories.length > 0 && (
+          {totalSubCategories > 0 && (
             <div className="flex items-center justify-between border-t border-neutral-100 px-6 py-4">
               <p className="text-sm text-neutral-500">
                 Showing{" "}
@@ -205,7 +238,7 @@ export default function AdminSubCategories() {
                 <span className="font-medium text-neutral-950">{endItem}</span>{" "}
                 of{" "}
                 <span className="font-medium text-neutral-950">
-                  {subCategories.length}
+                  {totalSubCategories}
                 </span>
               </p>
 
@@ -262,7 +295,11 @@ export default function AdminSubCategories() {
 
       <SubCategoryFormModal
         isOpen={isSubCategoryFormModalOpen}
-        onClose={() => setIsSubCategoryFormModalOpen(false)}
+        onClose={() => {
+          setIsSubCategoryFormModalOpen(false);
+          setSelectedSubCategory(null);
+        }}
+        onSuccess={fetchSubCategories}
         subCategory={selectedSubCategory}
       />
       <AlertModal

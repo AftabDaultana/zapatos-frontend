@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  getAllCategories,
+  type Category,
+} from "../../services/categoryServices";
 import Breadcrumb from "../../components/layout/Breadcrumb/Breadcrumb";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import {
-  selectCategoryBySlug,
   selectProductsByCategoryId,
   selectProductsBySubCategoryId,
   selectSubCategoryBySlug,
@@ -31,9 +34,21 @@ export default function CategoryProducts() {
   const isSustainable = window.location.pathname === "/sustainable";
   const isHighTops = window.location.pathname === "/high-tops";
 
-  const category = useAppSelector((state) =>
-    selectCategoryBySlug(state, categorySlug),
-  );
+  const [category, setCategory] = useState<Category | null>(null);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const categories = await getAllCategories();
+
+      const foundCategory = categories.find(
+        (category) => category.slug === categorySlug,
+      );
+
+      setCategory(foundCategory ?? null);
+    };
+
+    fetchCategory();
+  }, [categorySlug]);
 
   const subCategory = useAppSelector((state) =>
     selectSubCategoryBySlug(state, subCategorySlug),

@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import Button from "../../ui/Button";
-import type { SubCategory } from "../../../data/subCategories";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import type { SubCategory } from "../../../services/subcategoryServices";
 import {
-  addSubCategory,
-  editSubCategory,
-} from "../../../app/slices/catalogSlice";
-import { selectCategories } from "../../../app/selectors/catalogSelectors";
-import { uploadUniqueFilesToCloudinary } from "../../../utils/cloudinary";
+  createSubCategory,
+  updateSubCategory,
+} from "../../../services/subcategoryServices";
+import { getAllCategories } from "../../../services/categoryServices";
+import type { Category } from "../../../services/categoryServices";
 
 interface SubCategoryFormModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
   subCategory?: SubCategory | null;
 }
 
@@ -35,12 +35,9 @@ const slugify = (value: string) => {
 export default function SubCategoryFormModal({
   isOpen,
   onClose,
+  onSuccess,
   subCategory,
 }: SubCategoryFormModalProps) {
-  const dispatch = useAppDispatch();
-
-  const categories = useAppSelector(selectCategories);
-
   const [formData, setFormData] = useState<SubCategoryFormData>({
     name: "",
     slug: "",
@@ -51,8 +48,20 @@ export default function SubCategoryFormModal({
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [isUploading, setIsUploading] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const isEditing = Boolean(subCategory);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const fetchCategories = async () => {
+      const result = await getAllCategories();
+      setCategories(result);
+    };
+
+    fetchCategories();
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -61,7 +70,7 @@ export default function SubCategoryFormModal({
       setFormData({
         name: subCategory.name,
         slug: subCategory.slug,
-        categoryId: subCategory.categoryId,
+        categoryId: String(subCategory.categoryId),
         image: subCategory.image,
       });
     } else {
@@ -83,7 +92,7 @@ export default function SubCategoryFormModal({
     setFormData((prev) => ({
       ...prev,
       name: value,
-      slug: isEditing ? prev.slug : slugify(value),
+      slug: slugify(value),
     }));
   };
 
@@ -123,40 +132,47 @@ export default function SubCategoryFormModal({
     setIsUploading(true);
 
     try {
-      let imageUrl = formData.image;
+      const selectedCategory = categories.find(
+        (category) => category._id === formData.categoryId,
+      );
 
-      if (selectedImage) {
-        const uploadedImageUrls = await uploadUniqueFilesToCloudinary([
-          selectedImage,
-        ]);
-
-        imageUrl = uploadedImageUrls[0];
+      if (!selectedCategory) {
+        setFormErrors(["Selected parent category does not exist."]);
+        return;
       }
 
-      const subCategoryData = {
-        name: formData.name
-          .trim()
-          .replace(/\b\w/g, (char) => char.toUpperCase()),
-        slug: slugify(formData.slug),
-        categoryId: formData.categoryId,
-        image: imageUrl,
-      };
+      if (!subCategory) {
+        if (!selectedImage) {
+          setFormErrors(["Subcategory image is required."]);
+          return;
+        }
 
-      if (subCategory) {
-        dispatch(
-          editSubCategory({
-            ...subCategory,
-            ...subCategoryData,
-          }),
-        );
+        await createSubCategory({
+          categoryName: selectedCategory.name,
+          name: formData.name
+            .trim()
+            .replace(/\b\w/g, (char) => char.toUpperCase()),
+          slug: slugify(formData.slug),
+          image: selectedImage,
+        });
       } else {
-        dispatch(addSubCategory(subCategoryData));
+        await updateSubCategory(subCategory._id, {
+          categoryName: selectedCategory.name,
+          name: formData.name
+            .trim()
+            .replace(/\b\w/g, (char) => char.toUpperCase()),
+          slug: slugify(formData.slug),
+          ...(selectedImage ? { image: selectedImage } : {}),
+        });
       }
 
+      onSuccess?.();
       onClose();
     } catch {
       setFormErrors([
-        "Unable to upload the subcategory image. Please try again.",
+        isEditing
+          ? "Unable to update the subcategory. Please try again."
+          : "Unable to create the subcategory. Please try again.",
       ]);
     } finally {
       setIsUploading(false);
