@@ -1,19 +1,18 @@
 import { ChevronLeft, ChevronRight, Pencil, Plus, Trash2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import Button from "../../../components/ui/Button";
-import { useAppDispatch } from "../../../hooks/reduxHooks";
-import { deleteSubCategory } from "../../../app/slices/catalogSlice";
 import type { SubCategory } from "../../../services/subcategoryServices";
 import type { Category } from "../../../services/categoryServices";
 import SubCategoryFormModal from "../../../components/admin/AdminSubCategories/SubCategoryFormModal";
 import AlertModal from "../../../components/ui/AlertModal";
-import { getAllSubCategories } from "../../../services/subcategoryServices";
+import {
+  getAllSubCategories,
+  deleteSubCategory,
+} from "../../../services/subcategoryServices";
 import { getAllCategories } from "../../../services/categoryServices";
 
 export default function AdminSubCategories() {
   const ITEMS_PER_PAGE = 10;
-
-  const dispatch = useAppDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isSubCategoryFormModalOpen, setIsSubCategoryFormModalOpen] =
@@ -83,11 +82,17 @@ export default function AdminSubCategories() {
     setSubCategoryToDelete(subCategoryId);
   };
 
-  const handleConfirmDeleteSubCategory = () => {
+  const handleConfirmDeleteSubCategory = async () => {
     if (subCategoryToDelete === null) return;
 
-    dispatch(deleteSubCategory(subCategoryToDelete));
-    setSubCategoryToDelete(null);
+    try {
+      await deleteSubCategory(subCategoryToDelete);
+
+      setSubCategoryToDelete(null);
+      await fetchSubCategories();
+    } catch {
+      setSubCategoryToDelete(null);
+    }
   };
 
   return (

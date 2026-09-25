@@ -3,9 +3,9 @@ import { Navigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import {
   selectCategories,
-  selectProducts,
   selectSubCategories,
 } from "../../app/selectors/catalogSelectors";
+import { getProductBySlug, type Product } from "../../services/productServices";
 import {
   Check,
   ChevronLeft,
@@ -33,24 +33,60 @@ export default function ProductDetailsSection() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
+  const [product, setProduct] = useState<Product | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   const { slug } = useParams();
+
   const dispatch = useAppDispatch();
-  const products = useAppSelector(selectProducts);
+
   const wishlistProductIds = useAppSelector(selectWishlistProductIds);
-  const product = products.find((product) => product.slug === slug);
 
   const categories = useAppSelector(selectCategories);
   const subCategories = useAppSelector(selectSubCategories);
+
   const isAdmin = window.location.pathname.startsWith("/admin/");
 
-  if (!product) {
-    return <Navigate to={"/"} replace />;
-  }
-  const isWishlisted = wishlistProductIds.includes(product._id!);
   useEffect(() => {
+    const fetchProduct = async () => {
+      if (!slug) {
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+
+        const result = await getProductBySlug(slug);
+        setProduct(result);
+      } catch (error) {
+        console.error("Failed to fetch product:", error);
+        setProduct(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [slug]);
+
+  useEffect(() => {
+    if (!product) return;
+
     setSelectedColor(product.specifications.color[0] ?? "");
     setSelectedSize(product.specifications.sizeRange[0] ?? "");
   }, [product]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!product) {
+    return <Navigate to="/" replace />;
+  }
+
+  const isWishlisted = wishlistProductIds.includes(product._id);
+
   const handleNextImage = () =>
     setSelectedimage((prev) =>
       prev === product.images.length - 1 ? 0 : prev + 1,
@@ -268,6 +304,7 @@ export default function ProductDetailsSection() {
           categories={categories}
           subCategories={subCategories}
           product={product}
+          onSuccess={() => setIsEditModalOpen(false)}
         />
       )}
       <AlertModal

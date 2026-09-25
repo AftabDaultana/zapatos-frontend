@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import Button from "../../ui/Button";
 import type { Category } from "../../../services/categoryServices";
-import type { SubCategory } from "../../../data/subCategories";
+import type { SubCategory } from "../../../services/subcategoryServices";
 
 interface ProductFiltersModalProps {
   isOpen: boolean;

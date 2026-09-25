@@ -1,5 +1,5 @@
 import type { RootState } from "../store";
-import type { Product } from "../../data/products";
+import type { Product } from "../../services/productServices";
 
 export const selectProductsByFilters = (
   state: RootState,

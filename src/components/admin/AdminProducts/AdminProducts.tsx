@@ -8,21 +8,25 @@ import {
   Trash2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Button from "../../ui/Button";
 import ProductFiltersModal from "./ProductFiltersModal";
 
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import {
-  selectCategories,
-  selectProducts,
-  selectSubCategories,
-} from "../../../app/selectors/catalogSelectors";
-import { deleteProduct } from "../../../app/slices/catalogSlice";
+  deleteProduct,
+  getAllProducts,
+  type Product,
+} from "../../../services/productServices";
+
 import ProductFormModal from "./ProductFormModal";
-import type { Product } from "../../../data/products";
 import AlertModal from "../../ui/AlertModal";
+
+import { getAllCategories } from "../../../services/categoryServices";
+import { getAllSubCategories } from "../../../services/subcategoryServices";
+
+import type { Category } from "../../../services/categoryServices";
+import type { SubCategory } from "../../../services/subcategoryServices";
 
 type PaginationPage = number | "...";
 
@@ -67,9 +71,13 @@ const getPaginationPages = (
 };
 
 export default function AdminProducts() {
-  const products = useAppSelector(selectProducts);
-  const categories = useAppSelector(selectCategories);
-  const subCategories = useAppSelector(selectSubCategories);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [subCategories, setSubCategories] = useState<SubCategory[]>([]);
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -79,15 +87,100 @@ export default function AdminProducts() {
   const [selectedStock, setSelectedStock] = useState("all");
   const [selectedRating, setSelectedRating] = useState("all");
   const [selectedPriceRange, setSelectedPriceRange] = useState("all");
+
   const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
     undefined,
   );
+
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
 
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isProductsFormModalOpen, setIsProductsFormModalOpen] = useState(false);
 
-  const dispatch = useAppDispatch();
+  const fetchProducts = async () => {
+    try {
+      setIsLoading(true);
+
+      let minPrice: number | undefined;
+      let maxPrice: number | undefined;
+
+      if (selectedPriceRange === "under-10000") {
+        maxPrice = 9999;
+      }
+
+      if (selectedPriceRange === "10000-15000") {
+        minPrice = 10000;
+        maxPrice = 15000;
+      }
+
+      if (selectedPriceRange === "15000-20000") {
+        minPrice = 15001;
+        maxPrice = 20000;
+      }
+
+      if (selectedPriceRange === "over-20000") {
+        minPrice = 20001;
+      }
+
+      const result = await getAllProducts(
+        currentPage,
+        PRODUCTS_PER_PAGE,
+        searchTerm,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        selectedStock !== "all" ? selectedStock : undefined,
+        selectedCategory !== "all" ? selectedCategory : undefined,
+        selectedSubCategory !== "all" ? selectedSubCategory : undefined,
+        selectedRating !== "all" ? Number(selectedRating) : undefined,
+        minPrice,
+        maxPrice,
+      );
+
+      setProducts(result.products);
+      setTotalProducts(result.pagination.totalProducts);
+      setTotalPages(result.pagination.totalPages);
+    } catch {
+      setProducts([]);
+      setTotalProducts(0);
+      setTotalPages(0);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, [
+    currentPage,
+    searchTerm,
+    selectedStock,
+    selectedCategory,
+    selectedSubCategory,
+    selectedRating,
+    selectedPriceRange,
+  ]);
+
+  useEffect(() => {
+    const fetchCatalog = async () => {
+      try {
+        const [categoriesResult, subCategoriesResult] = await Promise.all([
+          getAllCategories(),
+          getAllSubCategories(1, 100),
+        ]);
+
+        setCategories(categoriesResult);
+        setSubCategories(subCategoriesResult.subCategories);
+      } catch (error) {
+        console.error("Failed to fetch catalog:", error);
+        setCategories([]);
+        setSubCategories([]);
+      }
+    };
+
+    fetchCatalog();
+  }, []);
 
   const productToDeleteData = products.find(
     (product) => product._id === productToDelete,
@@ -110,70 +203,23 @@ export default function AdminProducts() {
       .join(", ");
   };
 
-  const filteredProducts = products.filter((product) => {
-    const search = searchTerm.trim().toLowerCase();
-    const sku = getProductSku(product._id!);
+  const filteredProducts = products.filter(() => {
+    const matchesCategory = true;
 
-    const matchesSearch =
-      search === "" ||
-      product.name.toLowerCase().includes(search) ||
-      sku.toLowerCase().includes(search);
+    const matchesSubCategory = true;
 
-    const productCategoryIds = product.subCategoryId
-      .map(
-        (subCategoryId) =>
-          subCategories.find((subCategory) => subCategory._id === subCategoryId)
-            ?.categoryId,
-      )
-      .filter((_id): _id is string => _id !== undefined);
+    const matchesRating = true;
 
-    const matchesCategory =
-      selectedCategory === "all" ||
-      productCategoryIds.includes(selectedCategory);
-
-    const matchesSubCategory =
-      selectedSubCategory === "all" ||
-      product.subCategoryId.includes(selectedSubCategory);
-
-    const matchesStock =
-      selectedStock === "all" ||
-      (selectedStock === "in-stock" && product.quantity > 0) ||
-      (selectedStock === "out-of-stock" && product.quantity === 0);
-
-    const matchesRating =
-      selectedRating === "all" || product.rating >= Number(selectedRating);
-
-    const matchesPrice =
-      selectedPriceRange === "all" ||
-      (selectedPriceRange === "under-10000" &&
-        product.discountedPrice < 10000) ||
-      (selectedPriceRange === "10000-15000" &&
-        product.discountedPrice >= 10000 &&
-        product.discountedPrice <= 15000) ||
-      (selectedPriceRange === "15000-20000" &&
-        product.discountedPrice > 15000 &&
-        product.discountedPrice <= 20000) ||
-      (selectedPriceRange === "over-20000" && product.discountedPrice > 20000);
+    const matchesPrice = true;
 
     return (
-      matchesSearch &&
-      matchesCategory &&
-      matchesSubCategory &&
-      matchesStock &&
-      matchesRating &&
-      matchesPrice
+      matchesCategory && matchesSubCategory && matchesRating && matchesPrice
     );
   });
 
-  const totalProducts = filteredProducts.length;
-  const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
+  const currentProducts = filteredProducts;
 
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-
-  const currentProducts = filteredProducts.slice(
-    startIndex,
-    startIndex + PRODUCTS_PER_PAGE,
-  );
 
   const paginationPages = getPaginationPages(currentPage, totalPages);
 
@@ -232,11 +278,20 @@ export default function AdminProducts() {
     setProductToDelete(productId);
   };
 
-  const handleConfirmDeleteProduct = () => {
-    if (productToDelete === null) return;
+  const handleConfirmDeleteProduct = async () => {
+    if (!productToDelete) return;
 
-    dispatch(deleteProduct(productToDelete));
-    setProductToDelete(null);
+    try {
+      await deleteProduct(productToDelete);
+
+      setProducts((prev) =>
+        prev.filter((product) => product._id !== productToDelete),
+      );
+
+      setProductToDelete(null);
+    } catch (error) {
+      console.error("Failed to delete product", error);
+    }
   };
 
   return (
@@ -343,7 +398,16 @@ export default function AdminProducts() {
             </thead>
 
             <tbody>
-              {currentProducts.length > 0 ? (
+              {isLoading ? (
+                <tr>
+                  <td
+                    colSpan={9}
+                    className="px-6 py-12 text-center text-sm text-neutral-500"
+                  >
+                    Loading products...
+                  </td>
+                </tr>
+              ) : currentProducts.length > 0 ? (
                 currentProducts.map((product) => (
                   <tr
                     key={product._id}
@@ -374,7 +438,7 @@ export default function AdminProducts() {
                     </td>
 
                     <td className="px-6 py-4 text-sm text-neutral-600">
-                      {getProductSku(product._id!)}
+                      {getProductSku(product._id)}
                     </td>
 
                     <td className="px-6 py-4 text-sm text-neutral-600">
@@ -432,13 +496,10 @@ export default function AdminProducts() {
                           type="button"
                           aria-label={`Delete ${product.name}`}
                           variant="none"
-                          onClick={() => handleDeleteProduct(product._id!)}
+                          onClick={() => handleDeleteProduct(product._id)}
                           className="transition hover:text-red-600"
                         >
-                          <Trash2
-                            size={20}
-                            onClick={() => handleDeleteProduct(product._id!)}
-                          />
+                          <Trash2 size={20} />
                         </Button>
                       </div>
                     </td>
@@ -546,13 +607,19 @@ export default function AdminProducts() {
         onPriceRangeChange={handlePriceRangeChange}
         onClearFilters={handleClearFilters}
       />
+
       <ProductFormModal
         isOpen={isProductsFormModalOpen}
         onClose={() => setIsProductsFormModalOpen(false)}
         categories={categories}
         subCategories={subCategories}
         product={selectedProduct}
+        onSuccess={() => {
+          setIsProductsFormModalOpen(false);
+          fetchProducts();
+        }}
       />
+
       <AlertModal
         isOpen={productToDelete !== null}
         type="confirmation"

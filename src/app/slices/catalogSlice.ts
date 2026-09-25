@@ -3,9 +3,9 @@ import { products } from "../../data/products";
 import { categories } from "../../data/categories";
 import { subCategories } from "../../data/subCategories";
 
-import type { Product } from "../../data/products";
+import type { Product } from "../../services/productServices";
 import type { Category } from "../../services/categoryServices";
-import type { SubCategory } from "../../data/subCategories";
+import type { SubCategory } from "../../services/subcategoryServices";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface CatalogState {

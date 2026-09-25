@@ -94,3 +94,8 @@ export const getSubCategoriesByCategoryId = async (
   const response = await api.get(`/subcategories/category/${categoryId}`);
   return response.data.data;
 };
+
+export const deleteSubCategory = async (id: string) => {
+  const response = await api.delete(`/subcategories/admin/${id}`);
+  return response.data;
+};

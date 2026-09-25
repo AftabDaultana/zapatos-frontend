@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { addProduct, editProduct } from "../../../app/slices/catalogSlice";
-import { useAppDispatch } from "../../../hooks/reduxHooks";
 import type { Category } from "../../../services/categoryServices";
-import type { SubCategory } from "../../../data/subCategories";
+import type { SubCategory } from "../../../services/subcategoryServices";
 import Button from "../../ui/Button";
 import { X } from "lucide-react";
-import type { Product } from "../../../data/products";
-import { uploadUniqueFilesToCloudinary } from "../../../utils/cloudinary";
+import type { Product } from "../../../services/productServices";
+import {
+  createProduct,
+  updateProduct,
+} from "../../../services/productServices";
 
 interface AddProductForm {
   name: string;
@@ -60,6 +61,7 @@ interface ProductFormModalProps {
   categories: Category[];
   subCategories: SubCategory[];
   product?: Product;
+  onSuccess: () => void;
 }
 
 export default function ProductFormModal({
@@ -68,8 +70,8 @@ export default function ProductFormModal({
   categories,
   subCategories,
   product,
+  onSuccess,
 }: ProductFormModalProps) {
-  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<AddProductForm>(initialFormData);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [featureInput, setFeatureInput] = useState("");
@@ -302,51 +304,52 @@ export default function ProductFormModal({
 
               setFormErrors([]);
 
-              let newImageUrls: string[];
+              if (!product) {
+                try {
+                  await createProduct({
+                    ...formData,
+                    price: Number(formData.price),
+                    discountedPrice:
+                      formData.discountedPrice.trim() === ""
+                        ? Number(formData.price)
+                        : Number(formData.discountedPrice),
+                    quantity: Number(formData.quantity),
+                    images: imageFiles,
+                  });
 
-              try {
-                newImageUrls = await uploadUniqueFilesToCloudinary(imageFiles);
-              } catch {
-                setFormErrors([
-                  "Unable to process one or more product images.",
-                ]);
+                  onSuccess();
+                } catch (error) {
+                  console.error("Create product error:", error);
+                  setFormErrors(["Unable to create product."]);
+                }
+
                 return;
               }
 
-              const imageUrls = [...existingImages, ...newImageUrls];
+              try {
+                await updateProduct(product._id, {
+                  name: formData.name,
+                  slug: formData.slug,
+                  subCategoryId: formData.subCategoryId,
+                  description: formData.description,
+                  price: Number(formData.price),
+                  discountedPrice:
+                    formData.discountedPrice.trim() === ""
+                      ? Number(formData.price)
+                      : Number(formData.discountedPrice),
+                  quantity: Number(formData.quantity),
+                  featured: formData.featured,
+                  isNewArrival: formData.isNewArrival,
+                  isSustainable: formData.isSustainable,
+                  isHighTop: formData.isHighTop,
+                  specifications: formData.specifications,
+                  images: imageFiles,
+                });
 
-              const productData = {
-                ...formData,
-                price: Number(formData.price),
-                discountedPrice:
-                  formData.discountedPrice.trim() === ""
-                    ? Number(formData.price)
-                    : Number(formData.discountedPrice),
-                quantity: Number(formData.quantity),
-                images: imageUrls,
-              };
-
-              if (product) {
-                dispatch(
-                  editProduct({
-                    ...product,
-                    ...productData,
-                    _id: product._id,
-                    rating: product.rating,
-                    ratingCount: product.ratingCount,
-                  }),
-                );
-              } else {
-                dispatch(
-                  addProduct({
-                    ...productData,
-                    rating: 0,
-                    ratingCount: 0,
-                  }),
-                );
+                onSuccess();
+              } catch {
+                setFormErrors(["Unable to update product."]);
               }
-
-              onClose();
             }}
             className="flex flex-col gap-4"
           >

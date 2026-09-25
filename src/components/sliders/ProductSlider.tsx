@@ -1,20 +1,31 @@
-import type { Product } from "../../data/products";
 import useEmblaCarousel from "embla-carousel-react";
 import ProductCard from "../ui/ProductCard";
 import { useEffect, useState } from "react";
-import { products } from "../../data/products";
+import { getAllProducts, type Product } from "../../services/productServices";
 
 const visibleDots = 4;
-const featuredProducts: Product[] = products.filter(
-  (product) => product.featured,
-);
 
 export default function ProductSlider() {
   const [emblaRef, emblaAPI] = useEmblaCarousel({
     align: "start",
   });
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      try {
+        const result = await getAllProducts(1, 10, undefined, undefined, true);
+        setFeaturedProducts(result.products);
+      } catch (error) {
+        console.error("Failed to fetch error: ", error);
+        setFeaturedProducts([]);
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
 
   useEffect(() => {
     if (!emblaAPI) return;
