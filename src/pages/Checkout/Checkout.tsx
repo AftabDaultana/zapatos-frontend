@@ -10,7 +10,7 @@ import AlertModal from "../../components/ui/AlertModal";
 
 import type { Order } from "../../types/order";
 import { addOrder } from "../../app/slices/orderSlice";
-import { clearCart, removeFromCart } from "../../app/slices/cartSlice";
+import { clearUserCart, removeCartItem } from "../../app/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 interface CheckoutFormData {
@@ -117,19 +117,19 @@ export default function Checkout() {
       phoneNumber: currentUser.phoneNumber || "",
 
       billingAddress: {
-        street: currentUser.billingAddress!.street,
-        city: currentUser.billingAddress!.city,
-        state: currentUser.billingAddress!.state,
-        postalCode: currentUser.billingAddress!.postalCode,
-        country: currentUser.billingAddress!.country,
+        street: currentUser.billingAddress?.street || "",
+        city: currentUser.billingAddress?.city || "",
+        state: currentUser.billingAddress?.state || "",
+        postalCode: currentUser.billingAddress?.postalCode || "",
+        country: currentUser.billingAddress?.country || "",
       },
 
       shippingAddress: {
-        street: currentUser.shippingAddress!.street,
-        city: currentUser.shippingAddress!.city,
-        state: currentUser.shippingAddress!.state,
-        postalCode: currentUser.shippingAddress!.postalCode,
-        country: currentUser.shippingAddress!.country,
+        street: currentUser.shippingAddress?.street || "",
+        city: currentUser.shippingAddress?.city || "",
+        state: currentUser.shippingAddress?.state || "",
+        postalCode: currentUser.shippingAddress?.postalCode || "",
+        country: currentUser.shippingAddress?.country || "",
       },
     });
   }, [currentUser]);
@@ -236,7 +236,7 @@ export default function Checkout() {
                     };
 
                     dispatch(addOrder(order));
-                    dispatch(clearCart());
+                    dispatch(clearUserCart());
 
                     showAlertModal(
                       "success",
@@ -690,13 +690,7 @@ export default function Checkout() {
                             type="button"
                             variant="none"
                             onClick={() =>
-                              dispatch(
-                                removeFromCart({
-                                  productId: product._id!,
-                                  color,
-                                  size,
-                                }),
-                              )
+                              dispatch(removeCartItem(product._id!))
                             }
                             className="text-sm font-medium text-neutral-600 hover:text-neutral-950"
                           >

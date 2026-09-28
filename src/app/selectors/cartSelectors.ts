@@ -5,26 +5,17 @@ export const selectCartItemCount = (state: RootState) => {
   return state.cart.items.reduce((total, item) => total + item.quantity, 0);
 };
 
-export const selectCartProducts = (state: RootState) => {
-  return state.cart.items.map((cartItem) => {
-    const product = state.catalog.products.find(
-      (product) => product._id === cartItem.productId,
-    );
-    return {
-      product,
-      quantity: cartItem.quantity,
-      color: cartItem.color,
-      size: cartItem.size,
-    };
-  });
-};
+export const selectCartProducts = (state: RootState) =>
+  state.cart.items.map((cartItem) => ({
+    product: cartItem.productId,
+    quantity: cartItem.quantity,
+    color: cartItem.color,
+    size: cartItem.size,
+  }));
 
-export const selectCartSubTotal = (state: RootState) => {
-  return state.cart.items.reduce((total, cartItem) => {
-    const product = state.catalog.products.find(
-      (product) => product._id === cartItem.productId,
-    );
-    if (!product) return total;
-    return total + product.discountedPrice * cartItem.quantity;
-  }, 0);
-};
+export const selectCartSubTotal = (state: RootState) =>
+  state.cart.items.reduce(
+    (total, cartItem) =>
+      total + cartItem.productId.discountedPrice * cartItem.quantity,
+    0,
+  );

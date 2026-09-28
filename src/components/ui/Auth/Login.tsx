@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../../hooks/reduxHooks";
 import type { SubmitEvent } from "react";
 import { loginUser } from "../../../services/authServices";
 import { setUser } from "../../../app/slices/userSlice";
+import { mergeGuestCart } from "../../../app/slices/cartSlice";
 
 interface LoginProps {
   onClose: () => void;
@@ -40,6 +41,7 @@ export default function Login({
       console.log("Login user: ", response.user);
 
       dispatch(setUser(response.user));
+      await dispatch(mergeGuestCart()).unwrap();
     } catch (error: any) {
       setError(
         error.response?.data?.message || "Login failed. Please try again.",

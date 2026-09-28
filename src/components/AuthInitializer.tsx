@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { getCurrentUser } from "../services/userServices";
 import { setAuthInitialized, setUser } from "../app/slices/userSlice";
+import { fetchProducts } from "../app/slices/catalogSlice";
 
 export default function AuthInitializer() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const restoreUser = async () => {
+      dispatch(fetchProducts());
       try {
         const response = await getCurrentUser();
 

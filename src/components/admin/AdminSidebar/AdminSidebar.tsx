@@ -4,6 +4,7 @@ import {
   Package,
   Users,
   ShoppingBag,
+  ShoppingCart,
   Settings,
   LogOut,
   ChevronDown,
@@ -52,6 +53,11 @@ const navigationItems: NavigationItem[] = [
     label: "Customers",
     icon: Users,
     path: "/admin/customers",
+  },
+  {
+    label: "Carts",
+    icon: ShoppingCart,
+    path: "/admin/carts",
   },
   {
     label: "Orders",

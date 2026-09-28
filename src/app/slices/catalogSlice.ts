@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { products } from "../../data/products";
 import { categories } from "../../data/categories";
 import { subCategories } from "../../data/subCategories";
+import { getAllProducts } from "../../services/productServices";
 
 import type { Product } from "../../services/productServices";
 import type { Category } from "../../services/categoryServices";
@@ -25,6 +26,20 @@ const initialState: CatalogState = {
     ? JSON.parse(storedSubCategories)
     : subCategories,
 };
+
+export const fetchProducts = createAsyncThunk(
+  "catalog/fetchProducts",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await getAllProducts(1, 100);
+      return response.products;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch products",
+      );
+    }
+  },
+);
 
 const catalogSlice = createSlice({
   name: "catalog",
@@ -88,6 +103,11 @@ const catalogSlice = createSlice({
         JSON.stringify(state.subCategories),
       );
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+      state.products = action.payload;
+    });
   },
 });
 

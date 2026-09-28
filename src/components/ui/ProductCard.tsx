@@ -1,8 +1,8 @@
 import { ArrowRight, Heart } from "lucide-react";
-import type { Product } from "../../data/products";
+import type { Product } from "../../services/productServices";
 import Button from "./Button";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { addToCart } from "../../app/slices/cartSlice";
+import { addItemToCart } from "../../app/slices/cartSlice";
 import { Link } from "react-router-dom";
 import { selectWishlistProductIds } from "../../app/selectors/wishlistSelectors";
 import {
@@ -40,8 +40,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     event.stopPropagation();
 
     dispatch(
-      addToCart({
+      addItemToCart({
+        product,
         productId: product._id!,
+        quantity: 1,
         color: product.specifications.color[0],
         size: product.specifications.sizeRange[0],
       }),

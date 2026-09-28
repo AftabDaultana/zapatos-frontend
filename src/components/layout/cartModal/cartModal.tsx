@@ -2,11 +2,7 @@ import { Minus, Plus, X } from "lucide-react";
 import Button from "../../ui/Button";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { selectCartProducts } from "../../../app/selectors/cartSelectors";
-import {
-  decreaseQuantity,
-  increaseQuantity,
-  removeFromCart,
-} from "../../../app/slices/cartSlice";
+import { updateCartItem, removeCartItem } from "../../../app/slices/cartSlice";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -68,7 +64,7 @@ export default function CartModal({ onClose }: CartModalProps) {
               const cartItemSubtotal = product.discountedPrice * quantity;
               return (
                 <div
-                  key={product._id}
+                  key={`${product._id}-${color}-${size}`}
                   className="flex gap-4 items-center border-b border-neutral-300 py-4"
                 >
                   <img
@@ -88,15 +84,19 @@ export default function CartModal({ onClose }: CartModalProps) {
                       <Button
                         type="button"
                         variant="none"
-                        onClick={() =>
+                        onClick={() => {
+                          if (quantity === 1) {
+                            dispatch(removeCartItem(product._id!));
+                            return;
+                          }
+
                           dispatch(
-                            decreaseQuantity({
+                            updateCartItem({
                               productId: product._id!,
-                              color,
-                              size,
+                              quantity: quantity - 1,
                             }),
-                          )
-                        }
+                          );
+                        }}
                         className="flex h-8 w-8 items-center justify-center border border-neutral-500 text-neutral-950"
                       >
                         <Minus size={18} />
@@ -109,10 +109,9 @@ export default function CartModal({ onClose }: CartModalProps) {
                         variant="none"
                         onClick={() =>
                           dispatch(
-                            increaseQuantity({
+                            updateCartItem({
                               productId: product._id!,
-                              color,
-                              size,
+                              quantity: quantity + 1,
                             }),
                           )
                         }
@@ -127,15 +126,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                     <Button
                       type="button"
                       variant="none"
-                      onClick={() =>
-                        dispatch(
-                          removeFromCart({
-                            productId: product._id!,
-                            color,
-                            size,
-                          }),
-                        )
-                      }
+                      onClick={() => dispatch(removeCartItem(product._id!))}
                       className="self-start text-sm font-medium text-neutral-600 hover:text-neutral-950"
                     >
                       REMOVE

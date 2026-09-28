@@ -15,7 +15,7 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import Button from "../ui/Button";
-import { addToCart } from "../../app/slices/cartSlice";
+import { addItemToCart } from "../../app/slices/cartSlice";
 import { selectWishlistProductIds } from "../../app/selectors/wishlistSelectors";
 import {
   addToWishlist,
@@ -99,8 +99,10 @@ export default function ProductDetailsSection() {
 
   const handleAddToCart = () => {
     dispatch(
-      addToCart({
+      addItemToCart({
+        product,
         productId: product._id!,
+        quantity: 1,
         color: selectedColor,
         size: selectedSize,
       }),
