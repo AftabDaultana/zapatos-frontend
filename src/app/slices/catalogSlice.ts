@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { products } from "../../data/products";
 import { categories } from "../../data/categories";
 import { subCategories } from "../../data/subCategories";
 import { getAllProducts } from "../../services/productServices";
@@ -20,7 +19,7 @@ const storedCategories = localStorage.getItem("categories");
 const storedSubCategories = localStorage.getItem("subCategories");
 
 const initialState: CatalogState = {
-  products: storedProducts ? JSON.parse(storedProducts) : products,
+  products: storedProducts && JSON.parse(storedProducts),
   categories: storedCategories ? JSON.parse(storedCategories) : categories,
   subCategories: storedSubCategories
     ? JSON.parse(storedSubCategories)
