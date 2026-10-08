@@ -1,19 +1,45 @@
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { selectOrderById } from "../../app/selectors/orderSelectors";
-import { updateOrderStatus } from "../../app/slices/orderSlice";
-import type { Order } from "../../types/order";
+import { fetchOrderById } from "../../app/slices/orderSlice";
 import Button from "../../components/ui/Button";
 import { ArrowLeft, Printer } from "lucide-react";
 
 export default function OrderDetails() {
-  const { orderId } = useParams();
-  const order = useAppSelector((state) =>
-    orderId ? selectOrderById(state, orderId) : undefined,
-  );
-  const currentUser = useAppSelector((state) => state.user.currentUser);
+  const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const currentUser = useAppSelector((state) => state.user.currentUser);
+  const order = useAppSelector((state) => state.order.selectedOrder);
+  const loading = useAppSelector((state) => state.order.loading);
+  const error = useAppSelector((state) => state.order.error);
+
+  useEffect(() => {
+    if (!id) return;
+
+    dispatch(fetchOrderById(id));
+  }, [id, dispatch]);
+
+  if (loading) {
+    return (
+      <main className="px-6 py-10">
+        <div className="mx-auto max-w-7xl text-center">
+          <p className="text-neutral-600">Loading order...</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="px-6 py-10">
+        <div className="mx-auto max-w-7xl text-center">
+          <h1 className="text-2xl font-semibold text-neutral-950">{error}</h1>
+        </div>
+      </main>
+    );
+  }
 
   if (!order) {
     return (
@@ -94,14 +120,7 @@ export default function OrderDetails() {
                 {currentUser?.role === "admin" ? (
                   <select
                     value={order.status}
-                    onChange={(event) =>
-                      dispatch(
-                        updateOrderStatus({
-                          orderId: order._id,
-                          status: event.target.value as Order["status"],
-                        }),
-                      )
-                    }
+                    onChange={() => {}}
                     className="mt-2 border border-neutral-950 px-2 py-1 text-xs font-medium uppercase outline-none"
                   >
                     <option value="pending">PENDING</option>
@@ -177,12 +196,6 @@ export default function OrderDetails() {
                     >
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-4">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="h-16 w-16 rounded-xl object-contain"
-                          />
-
                           <span className="font-medium text-neutral-950">
                             {item.name}
                           </span>

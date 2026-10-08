@@ -3,7 +3,6 @@ import type { Address } from "./user";
 export interface OrderItem {
   productId: string;
   name: string;
-  image: string;
   price: number;
   quantity: number;
   color: string;
@@ -20,12 +19,17 @@ export interface Order {
   };
   billingAddress: Address;
   shippingAddress: Address;
-
   items: OrderItem[];
   subtotal: number;
   shipping: number;
   total: number;
 
-  status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
+  status:
+    | "pending"
+    | "confirmed"
+    | "processing"
+    | "shipped"
+    | "delivered"
+    | "cancelled";
   createdAt: string;
 }

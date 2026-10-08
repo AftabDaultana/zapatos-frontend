@@ -94,7 +94,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/order/:orderId",
+    path: "/order/:id",
     element: (
       <Layout>
         <ProtectedRoutes>
@@ -149,7 +149,7 @@ const router = createBrowserRouter([
             element: <Dashboard />,
           },
           {
-            path: "orders/:orderId",
+            path: "orders/:id",
             element: <OrderDetails />,
           },
           {

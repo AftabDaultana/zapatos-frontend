@@ -1,19 +1,18 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { selectOrdersByUserId } from "../../app/selectors/orderSelectors";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import Button from "../../components/ui/Button";
+import { fetchCurrentUserOrders } from "../../app/slices/orderSlice";
 
 export default function Orders() {
+  const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state) => state.user.currentUser);
   const [currentPage, setCurrentPage] = useState(1);
 
   const ORDERS_PER_PAGE = 5;
 
-  const orders = useAppSelector((state) =>
-    currentUser ? selectOrdersByUserId(state, currentUser._id!) : undefined,
-  );
+  const orders = useAppSelector((state) => state.order.orders);
 
   const totalOrders = orders?.length ?? 0;
   const totalPages = Math.ceil(totalOrders / ORDERS_PER_PAGE);
@@ -27,6 +26,12 @@ export default function Orders() {
       setCurrentPage(totalPages);
     }
   }, [currentPage, totalPages]);
+
+  useEffect(() => {
+    if (currentUser) {
+      dispatch(fetchCurrentUserOrders());
+    }
+  }, [currentUser, dispatch]);
 
   if (!currentUser) {
     return (
