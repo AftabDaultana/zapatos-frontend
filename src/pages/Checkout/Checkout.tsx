@@ -8,10 +8,9 @@ import {
 import Button from "../../components/ui/Button";
 import AlertModal from "../../components/ui/AlertModal";
 
-import type { Order } from "../../types/order";
-import { addOrder } from "../../app/slices/orderSlice";
-import { clearUserCart, removeCartItem } from "../../app/slices/cartSlice";
+import { removeCartItem, resetCart } from "../../app/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { createOrder } from "../../services/orderServices";
 
 interface CheckoutFormData {
   name: string;
@@ -173,7 +172,7 @@ export default function Checkout() {
                 </h2>
 
                 <form
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
 
                     if (!formData.billingAddress.country) {
@@ -203,10 +202,7 @@ export default function Checkout() {
                       return;
                     }
 
-                    const order: Order = {
-                      _id: `ORD_${Date.now().toString()}`,
-                      userId: currentUser?._id ?? null,
-
+                    const orderData = {
                       customer: {
                         name: formData.name,
                         email: formData.email,
@@ -220,29 +216,31 @@ export default function Checkout() {
                         .filter((item) => item.product)
                         .map(({ product, quantity, color, size }) => ({
                           productId: product!._id!,
-                          name: product!.name,
-                          image: product!.images[0],
-                          price: product!.price,
                           quantity,
                           color,
                           size,
                         })),
-
-                      status: "pending",
-                      subtotal,
-                      shipping: 0,
-                      total: subtotal,
-                      createdAt: new Date().toISOString(),
                     };
 
-                    dispatch(addOrder(order));
-                    dispatch(clearUserCart());
+                    try {
+                      await createOrder(orderData);
 
-                    showAlertModal(
-                      "success",
-                      "Order Placed Successfully",
-                      "Thank you for your order. Your order has been placed successfully.",
-                    );
+                      dispatch(resetCart());
+
+                      setAlertModal({
+                        isOpen: true,
+                        type: "success",
+                        title: "Order placed successfully",
+                        message: "Your order has been placed successfully.",
+                      });
+                    } catch (error: any) {
+                      showAlertModal(
+                        "error",
+                        "Order Failed",
+                        error.response?.data?.message ||
+                          "Something went wrong while placing your order. Please try again.",
+                      );
+                    }
                   }}
                   className="border p-6"
                 >
