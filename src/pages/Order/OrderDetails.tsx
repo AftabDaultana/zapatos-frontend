@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { fetchOrderById } from "../../app/slices/orderSlice";
+import {
+  fetchOrderById,
+  updateOrderStatusThunk,
+  cancelOrderThunk,
+} from "../../app/slices/orderSlice";
+import type { Order } from "../../types/order";
 import Button from "../../components/ui/Button";
 import { ArrowLeft, Printer } from "lucide-react";
 
@@ -14,6 +19,8 @@ export default function OrderDetails() {
   const order = useAppSelector((state) => state.order.selectedOrder);
   const loading = useAppSelector((state) => state.order.loading);
   const error = useAppSelector((state) => state.order.error);
+
+  const cancelling = useAppSelector((state) => state.order.cancelling);
 
   useEffect(() => {
     if (!id) return;
@@ -77,6 +84,7 @@ export default function OrderDetails() {
             </Button>
           </div>
         )}
+
         <div className="mb-8 flex items-center justify-center">
           <div>
             <h1 className="text-2xl font-bold text-neutral-950 text-center">
@@ -88,6 +96,22 @@ export default function OrderDetails() {
             </p>
           </div>
         </div>
+
+        {order.userId === currentUser?._id && order.status === "pending" && (
+          <div className="m-6 flex justify-center">
+            <Button
+              type="button"
+              variant="light"
+              disabled={cancelling}
+              onClick={() => {
+                dispatch(cancelOrderThunk(order._id));
+              }}
+              className="px-5 py-2 text-sm font-medium"
+            >
+              {cancelling ? "Cancelling..." : "Cancel Order"}
+            </Button>
+          </div>
+        )}
 
         <div className="border rounded-2xl bg-white p-6 shadow-sm">
           <div className="mb-8">
@@ -120,10 +144,18 @@ export default function OrderDetails() {
                 {currentUser?.role === "admin" ? (
                   <select
                     value={order.status}
-                    onChange={() => {}}
+                    onChange={(event) => {
+                      dispatch(
+                        updateOrderStatusThunk({
+                          orderId: order._id,
+                          status: event.target.value as Order["status"],
+                        }),
+                      );
+                    }}
                     className="mt-2 border border-neutral-950 px-2 py-1 text-xs font-medium uppercase outline-none"
                   >
                     <option value="pending">PENDING</option>
+                    <option value="confirmed">CONFIRMED</option>
                     <option value="processing">PROCESSING</option>
                     <option value="shipped">SHIPPED</option>
                     <option value="delivered">DELIVERED</option>
@@ -152,6 +184,96 @@ export default function OrderDetails() {
                   })}
                 </p>
               </div>
+              {order.status === "confirmed" && order.updatedAt && (
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-400">
+                    Confirmed At
+                  </p>
+
+                  <p className="mt-2 font-semibold text-neutral-950">
+                    {new Date(order.updatedAt).toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </p>
+                </div>
+              )}
+              {order.status === "processing" && order.updatedAt && (
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-400">
+                    Started Processing At
+                  </p>
+
+                  <p className="mt-2 font-semibold text-neutral-950">
+                    {new Date(order.updatedAt).toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </p>
+                </div>
+              )}
+              {order.status === "shipped" && order.updatedAt && (
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-400">
+                    Shipped At
+                  </p>
+
+                  <p className="mt-2 font-semibold text-neutral-950">
+                    {new Date(order.updatedAt).toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </p>
+                </div>
+              )}
+              {order.status === "delivered" && order.updatedAt && (
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-400">
+                    Delivered At
+                  </p>
+
+                  <p className="mt-2 font-semibold text-neutral-950">
+                    {new Date(order.updatedAt).toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </p>
+                </div>
+              )}
+              {order.status === "cancelled" && order.updatedAt && (
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-400">
+                    Cancelled At
+                  </p>
+
+                  <p className="mt-2 font-semibold text-neutral-950">
+                    {new Date(order.updatedAt).toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 

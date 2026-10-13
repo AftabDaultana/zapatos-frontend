@@ -32,4 +32,5 @@ export interface Order {
     | "delivered"
     | "cancelled";
   createdAt: string;
+  updatedAt?: string;
 }
