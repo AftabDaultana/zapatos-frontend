@@ -9,55 +9,38 @@ import {
 } from "recharts";
 import { useState } from "react";
 import { useAppSelector } from "../../../hooks/reduxHooks";
-import { selectOrders } from "../../../app/selectors/orderSelectors";
-
-interface MonthlyRevenueItem {
-  year: number;
-  month: string;
-  revenue: number;
-}
+import { fetchMonthlyRevenue } from "../../../app/slices/analyticsSlice";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
 
 export default function MonthlyRevenueChart() {
-  const orders = useAppSelector(selectOrders);
+  const currentYear = new Date().getFullYear();
+  const dispatch = useAppDispatch();
+
+  const monthlyData = useAppSelector((state) => state.analytics.monthlyRevenue);
+
+  const [selectedYear, setSelectedYear] = useState(currentYear);
+
   const availableYears = [
-    ...new Set(orders.map((order) => new Date(order.createdAt).getFullYear())),
+    ...new Set([
+      currentYear,
+      ...useAppSelector((state) => state.analytics.annualRevenue).map(
+        (item) => item.year,
+      ),
+    ]),
   ].sort((a, b) => b - a);
-  const [selectedYear, setSelectedYear] = useState(
-    availableYears[0] ?? new Date().getFullYear(),
-  );
-  const monthlyData: MonthlyRevenueItem[] = Array.from(
-    { length: 12 },
-    (_, index) => {
-      const month = new Date(selectedYear, index, 1).toLocaleString("en-US", {
-        month: "short",
-      });
 
-      const revenue = orders
-        .filter((order) => {
-          const date = new Date(order.createdAt);
+  const handleYearChange = (year: number) => {
+    setSelectedYear(year);
+    dispatch(fetchMonthlyRevenue(year));
+  };
 
-          return (
-            date.getFullYear() === selectedYear &&
-            date.getMonth() === index &&
-            order.status !== "cancelled"
-          );
-        })
-        .reduce((total, order) => total + order.total, 0);
-
-      return {
-        year: selectedYear,
-        month,
-        revenue,
-      };
-    },
-  );
   return (
     <div>
       <div className="mb-6 flex h-10 items-center justify-between">
         <h2 className="text-xl font-bold text-neutral-950">Monthly Revenue</h2>
         <select
           value={selectedYear}
-          onChange={(event) => setSelectedYear(Number(event.target.value))}
+          onChange={(event) => handleYearChange(Number(event.target.value))}
           className="rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm font-medium text-neutral-700 outline-none transition focus:border-neutral-300 focus:ring-2 focus:ring-[#16DBCC]/20"
         >
           {availableYears.map((year) => (

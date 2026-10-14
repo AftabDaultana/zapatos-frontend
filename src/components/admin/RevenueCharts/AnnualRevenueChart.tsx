@@ -8,27 +8,11 @@ import {
   CartesianGrid,
 } from "recharts";
 import { useAppSelector } from "../../../hooks/reduxHooks";
-import { selectOrders } from "../../../app/selectors/orderSelectors";
 
 export default function AnnualRevenueChart() {
-  const orders = useAppSelector(selectOrders);
-
-  const annualRevenue = Object.entries(
-    orders
-      .filter((order) => order.status !== "cancelled")
-      .reduce<Record<number, number>>((acc, order) => {
-        const year = new Date(order.createdAt).getFullYear();
-
-        acc[year] = (acc[year] || 0) + order.total;
-
-        return acc;
-      }, {}),
-  )
-    .map(([year, revenue]) => ({
-      year: Number(year),
-      revenue,
-    }))
-    .sort((a, b) => a.year - b.year);
+  const annualRevenue = useAppSelector(
+    (state) => state.analytics.annualRevenue,
+  );
 
   return (
     <div>

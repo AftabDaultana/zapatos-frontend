@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { fetchDashboardAnalytics } from "../../../app/slices/analyticsSlice";
+
 import DashboardActivity from "../../../components/admin/DashboardActivity/DashboardActivity";
 import WeeklyActivityChart from "../../../components/admin/DashboardActivity/WeeklyActivityChart";
 import BestSellingProducts from "../../../components/admin/DashboardActivity/BestSellingProducts";
@@ -7,6 +11,12 @@ import SalesOverview from "../../../components/admin/SalesOverview/SalesOverview
 import OrderStats from "../../../components/admin/OrderStats/OrderStats";
 
 export default function Dashboard() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchDashboardAnalytics());
+  }, [dispatch]);
+
   return (
     <main className="p-6 flex flex-col gap-16">
       <SalesOverview />
