@@ -5,10 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { addItemToCart } from "../../app/slices/cartSlice";
 import { Link } from "react-router-dom";
 import { selectWishlistProductIds } from "../../app/selectors/wishlistSelectors";
-import {
-  addToWishlist,
-  removeFromWishlist,
-} from "../../app/slices/wishlistSlice";
+import { toggleWishlist } from "../../app/slices/wishlistSlice";
 import RatingStars from "./RatingStars";
 import { useState } from "react";
 import AlertModal from "./AlertModal";
@@ -21,18 +18,17 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const dispatch = useAppDispatch();
 
+  const currentUser = useAppSelector((state) => state.user.currentUser);
   const wishlistProductIds = useAppSelector(selectWishlistProductIds);
   const isWishlisted = wishlistProductIds.includes(product._id!);
 
-  const hadnleWishlistClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleWishlistClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
 
-    if (isWishlisted) {
-      dispatch(removeFromWishlist(product._id!));
-    } else {
-      dispatch(addToWishlist(product._id!));
-    }
+    if (!product._id) return;
+
+    dispatch(toggleWishlist(product._id));
   };
 
   const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -71,28 +67,30 @@ export default function ProductCard({ product }: ProductCardProps) {
               <p>Sale!</p>
             </div>
 
-            <div className="absolute bottom-2.5 right-2.5 h-6 w-6 p-1 flex justify-center items-center">
-              <Button
-                type="button"
-                variant="none"
-                aria-label={
-                  isWishlisted
-                    ? `remove ${product.name} from wihslist`
-                    : `add ${product.name} to wishlist`
-                }
-                onClick={hadnleWishlistClick}
-                className="flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-white"
-              >
-                <Heart
-                  size={16}
-                  className={`transition-transform duration-300 ${
+            {currentUser && (
+              <div className="absolute bottom-2.5 right-2.5 h-6 w-6 p-1 flex justify-center items-center">
+                <Button
+                  type="button"
+                  variant="none"
+                  aria-label={
                     isWishlisted
-                      ? "fill-red-400 text-neutral-950"
-                      : "text-neutral-950"
-                  }`}
-                />
-              </Button>
-            </div>
+                      ? `remove ${product.name} from wihslist`
+                      : `add ${product.name} to wishlist`
+                  }
+                  onClick={handleWishlistClick}
+                  className="flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-white"
+                >
+                  <Heart
+                    size={16}
+                    className={`transition-transform duration-300 ${
+                      isWishlisted
+                        ? "fill-red-400 text-neutral-950"
+                        : "text-neutral-950"
+                    }`}
+                  />
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-1 flex-col py-3 gap-3 items-start">

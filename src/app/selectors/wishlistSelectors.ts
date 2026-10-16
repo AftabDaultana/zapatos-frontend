@@ -1,19 +1,21 @@
+import { createSelector } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
+import type { Product } from "../../services/productServices";
 
-export const selectWishlistItems = (state: RootState) => {
-  return state.wishlist.items;
-};
+const selectWishlistItems = (state: RootState) => state.wishlist.items;
 
-export const selectWishlistProductIds = (state: RootState) => {
-  return state.wishlist.items.map((item) => item.productId);
-};
+export const selectWishlistProductIds = createSelector(
+  [selectWishlistItems],
+  (items): string[] =>
+    items.map((item) =>
+      typeof item.productId === "string" ? item.productId : item.productId._id,
+    ),
+);
 
-export const selectWishlistProducts = (state: RootState) => {
-  const wishlistProductsIds = state.wishlist.items.map(
-    (item) => item.productId,
-  );
-
-  return state.catalog.products.filter((product) =>
-    wishlistProductsIds.includes(product._id!),
-  );
-};
+export const selectWishlistProducts = createSelector(
+  [selectWishlistItems],
+  (items): Product[] =>
+    items.flatMap((item) =>
+      typeof item.productId === "string" ? [] : [item.productId as Product],
+    ),
+);

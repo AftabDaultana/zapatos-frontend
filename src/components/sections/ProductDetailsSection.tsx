@@ -17,10 +17,7 @@ import {
 import Button from "../ui/Button";
 import { addItemToCart } from "../../app/slices/cartSlice";
 import { selectWishlistProductIds } from "../../app/selectors/wishlistSelectors";
-import {
-  addToWishlist,
-  removeFromWishlist,
-} from "../../app/slices/wishlistSlice";
+import { toggleWishlist } from "../../app/slices/wishlistSlice";
 import RatingStars from "../ui/RatingStars";
 import ProductFormModal from "../admin/AdminProducts/ProductFormModal";
 import AlertModal from "../ui/AlertModal";
@@ -40,6 +37,7 @@ export default function ProductDetailsSection() {
 
   const dispatch = useAppDispatch();
 
+  const currentUser = useAppSelector((state) => state.user.currentUser);
   const wishlistProductIds = useAppSelector(selectWishlistProductIds);
 
   const categories = useAppSelector(selectCategories);
@@ -148,7 +146,7 @@ export default function ProductDetailsSection() {
           <div className="mt-4 flex gap-3 overflow-x-auto justify-center">
             {product.images.map((image, index) => (
               <Button
-                key={image}
+                key={`${image}-${index}`}
                 type="button"
                 variant="none"
                 onClick={() => setSelectedimage(index)}
@@ -253,27 +251,27 @@ export default function ProductDetailsSection() {
           </div>
           {!isAdmin && (
             <div className="mt-8 flex gap-3">
-              <Button
-                type="button"
-                variant="none"
-                onClick={() => {
-                  if (isWishlisted) {
-                    dispatch(removeFromWishlist(product._id!));
-                  } else {
-                    dispatch(addToWishlist(product._id!));
+              {currentUser && (
+                <Button
+                  type="button"
+                  variant="none"
+                  onClick={() => {
+                    if (product._id) {
+                      dispatch(toggleWishlist(product._id));
+                    }
+                  }}
+                  className={`border border-neutral-950 px-1 py-1 ${
+                    isWishlisted
+                      ? "bg-neutral-950 text-neutral-50"
+                      : "text-neutral-950"
+                  }`}
+                  aria-label={
+                    isWishlisted ? "Remove from wishlist" : "Add to wishlist"
                   }
-                }}
-                className={`border border-neutral-950 px-1 py-1 ${
-                  isWishlisted
-                    ? "bg-neutral-950 text-neutral-50"
-                    : "text-neutral-950"
-                }`}
-                aria-label={
-                  isWishlisted ? "Remove from wishlist" : "Add to wishlist"
-                }
-              >
-                <Heart size={24} fill={isWishlisted ? "red" : "none"} />
-              </Button>
+                >
+                  <Heart size={24} fill={isWishlisted ? "red" : "none"} />
+                </Button>
+              )}
               <Button
                 type="button"
                 variant="none"
