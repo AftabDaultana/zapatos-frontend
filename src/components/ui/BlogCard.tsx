@@ -1,13 +1,20 @@
 import { ArrowRight } from "lucide-react";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 interface BlogCardProps {
   image: string;
   title: string;
   excerpt: string;
+  slug: string;
 }
 
-export default function BlogCard({ image, title, excerpt }: BlogCardProps) {
+export default function BlogCard({
+  image,
+  title,
+  excerpt,
+  slug,
+}: BlogCardProps) {
   return (
     <div className="group flex flex-col xl:w-[409.5px] md:w-[251.33px] w-[163.5px] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div className="relative w-full h-35.5 md:h-54.5 xl:h-98 rounded-t-lg overflow-hidden">
@@ -31,16 +38,18 @@ export default function BlogCard({ image, title, excerpt }: BlogCardProps) {
         </div>
 
         <div>
-          <Button
-            variant="none"
-            className="group/read-more h-10 gap-1.5 py-3 text-lg leading-7 text-neutral-950"
-          >
-            Read more
-            <ArrowRight
-              size={16}
-              className="transition-transform duration-300 group-hover/read-more:translate-x-1"
-            />
-          </Button>
+          <Link to={`/blogs/${slug}`}>
+            <Button
+              variant="none"
+              className="group/read-more h-10 gap-1.5 py-3 text-lg leading-7 text-neutral-950"
+            >
+              Read more
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-300 group-hover/read-more:translate-x-1"
+              />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

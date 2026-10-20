@@ -8,6 +8,7 @@ import {
   Settings,
   LogOut,
   ChevronDown,
+  FileText,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Button from "../../ui/Button";
@@ -63,6 +64,11 @@ const navigationItems: NavigationItem[] = [
     label: "Orders",
     icon: ShoppingBag,
     path: "/admin/orders",
+  },
+  {
+    label: "Blogs",
+    icon: FileText,
+    path: "/admin/blogs",
   },
 ];
 

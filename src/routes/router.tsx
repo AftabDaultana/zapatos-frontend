@@ -19,6 +19,8 @@ import AdminProtectedRoute from "../components/auth/AdminProtectedRoute";
 import AdminCustomers from "../pages/Admin/AdminCustomers/AdminCustomers";
 import AdminOrders from "../pages/Admin/AdminOrders/AdminOrders";
 import ListCarts from "../pages/Admin/ListCarts/ListCarts";
+import BlogDetails from "../pages/BlogDetails/BlogDetails";
+import AdminListBlogs from "../pages/Admin/AdminBlogs/AdminListBlogs";
 
 const router = createBrowserRouter([
   {
@@ -138,6 +140,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/blogs/:slug",
+    element: (
+      <Layout>
+        <BlogDetails />
+      </Layout>
+    ),
+  },
+  {
     path: "/admin",
     element: <AdminProtectedRoute />,
     children: [
@@ -183,6 +193,10 @@ const router = createBrowserRouter([
           {
             path: "carts",
             element: <ListCarts />,
+          },
+          {
+            path: "blogs",
+            element: <AdminListBlogs />,
           },
         ],
       },
