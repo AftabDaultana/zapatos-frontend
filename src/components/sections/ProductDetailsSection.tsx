@@ -22,7 +22,13 @@ import RatingStars from "../ui/RatingStars";
 import ProductFormModal from "../admin/AdminProducts/ProductFormModal";
 import AlertModal from "../ui/AlertModal";
 
-export default function ProductDetailsSection() {
+interface ProductDetailsSectionProps {
+  onProductLoaded: (productId: string) => void;
+}
+
+export default function ProductDetailsSection({
+  onProductLoaded,
+}: ProductDetailsSectionProps) {
   const [selectedImage, setSelectedimage] = useState(0);
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
@@ -57,6 +63,9 @@ export default function ProductDetailsSection() {
 
         const result = await getProductBySlug(slug);
         setProduct(result);
+        if (result._id) {
+          onProductLoaded(result._id);
+        }
       } catch (error) {
         console.error("Failed to fetch product:", error);
         setProduct(null);

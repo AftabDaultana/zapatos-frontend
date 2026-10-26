@@ -48,6 +48,10 @@ const navigationItems: NavigationItem[] = [
           },
         ],
       },
+      {
+        label: "Product Reviews",
+        path: "/admin/product-reviews",
+      },
     ],
   },
   {
