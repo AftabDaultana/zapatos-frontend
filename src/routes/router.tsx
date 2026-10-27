@@ -21,6 +21,7 @@ import AdminOrders from "../pages/Admin/AdminOrders/AdminOrders";
 import ListCarts from "../pages/Admin/ListCarts/ListCarts";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import AdminListBlogs from "../pages/Admin/AdminBlogs/AdminListBlogs";
+import ProductReviews from "../pages/ProductReviews/ProductReviews";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,16 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <ProductDetails />
+      </Layout>
+    ),
+  },
+  {
+    path: "/my-reviews",
+    element: (
+      <Layout>
+        <ProtectedRoutes>
+          <ProductReviews />
+        </ProtectedRoutes>
       </Layout>
     ),
   },
