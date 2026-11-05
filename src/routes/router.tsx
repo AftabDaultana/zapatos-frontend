@@ -22,6 +22,7 @@ import ListCarts from "../pages/Admin/ListCarts/ListCarts";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import AdminListBlogs from "../pages/Admin/AdminBlogs/AdminListBlogs";
 import ProductReviews from "../pages/ProductReviews/ProductReviews";
+import ListProductReviews from "../pages/Admin/ListProductReviews/ListProductReviews";
 
 const router = createBrowserRouter([
   {
@@ -176,6 +177,10 @@ const router = createBrowserRouter([
           {
             path: "products",
             element: <ListProducts />,
+          },
+          {
+            path: "product-reviews",
+            element: <ListProductReviews />,
           },
           {
             path: "products/:slug",

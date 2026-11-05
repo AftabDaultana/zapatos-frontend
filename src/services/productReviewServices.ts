@@ -43,7 +43,7 @@ export const updateProductReview = async (
     rating?: 1 | 2 | 3 | 4 | 5;
   },
 ): Promise<ProductReview> => {
-  const response = await api.put(`/product-review/user/${id}`, data);
+  const response = await api.put(`/product-reviews/user/${id}`, data);
 
   return response.data.data;
 };
@@ -74,9 +74,11 @@ export const updateProductReviewStatus = async (
 export const getAllProductReviews = async (
   page: number,
   limit: number,
+  search?: string,
+  status?: "unapproved" | "approved" | "rejected",
 ): Promise<PaginatedProductReviewsResponse> => {
   const response = await api.get("/product-reviews/admin", {
-    params: { page, limit },
+    params: { page, limit, status, search },
   });
 
   return response.data.data;
@@ -90,7 +92,12 @@ export const getCurrentUserProductReviews = async (
     params: { page, limit },
   });
 
-  return response.data.data;
+  // console.log("Current user reviews response:", response.data);
+
+  return {
+    productReviews: response.data.data.customerProductReviews,
+    pagination: response.data.data.pagination,
+  };
 };
 
 export const deleteProductReview = async (id: string) => {
