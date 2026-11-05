@@ -72,6 +72,11 @@ export default function Profile() {
                 </Button>
               </Link>
             )}
+            <Link to={"/my-reviews"} onClick={() => window.scrollTo(0, 0)}>
+              <Button type="button" variant="dark" className="w-40 h-10">
+                My Reviews
+              </Button>
+            </Link>
             <Link to={"/"}>
               <Button
                 type="button"
