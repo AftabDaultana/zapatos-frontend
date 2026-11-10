@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { useAppSelector } from "../../../hooks/reduxHooks";
 import { selectProducts } from "../../../app/selectors/catalogSelectors";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Button from "../../ui/Button";
 
 export default function SearchBar() {
@@ -10,10 +10,20 @@ export default function SearchBar() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
   const PRODUCTS_PER_PAGE = 5;
 
   const filteredProducts = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
+    const query = debouncedQuery.trim().toLowerCase();
 
     if (!query) {
       return [];
@@ -24,7 +34,11 @@ export default function SearchBar() {
 
       return name.includes(query);
     });
-  }, [products, searchQuery]);
+  }, [products, debouncedQuery]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedQuery]);
 
   const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
 
@@ -46,11 +60,14 @@ export default function SearchBar() {
           className="flex-1 outline-none text-sm leading-6 font-light text-neutral-700 placeholder:text-neutral-700"
         />
         {searchQuery ? (
-          <X
-            size={20}
-            className="text-neutral-700"
+          <Button
+            type="button"
             onClick={() => setSearchQuery("")}
-          />
+            aria-label="Clear search"
+            className="text-neutral-700"
+          >
+            <X size={20} />
+          </Button>
         ) : (
           <Search size={20} className="text-neutral-700" />
         )}

@@ -55,9 +55,18 @@ export default function AdminProductReviews() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("all");
 
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   const fetchReviews = async () => {
     try {
@@ -66,7 +75,7 @@ export default function AdminProductReviews() {
       const result = await getAllProductReviews(
         currentPage,
         REVIEWS_PER_PAGE,
-        searchTerm,
+        debouncedSearchTerm,
         selectedStatus !== "all"
           ? (selectedStatus as "unapproved" | "approved" | "rejected")
           : undefined,
@@ -110,7 +119,7 @@ export default function AdminProductReviews() {
 
   useEffect(() => {
     fetchReviews();
-  }, [currentPage, searchTerm, selectedStatus]);
+  }, [currentPage, debouncedSearchTerm, selectedStatus]);
 
   const startIndex = (currentPage - 1) * REVIEWS_PER_PAGE;
   const paginationPages = getPaginationPages(currentPage, totalPages);
@@ -144,10 +153,7 @@ export default function AdminProductReviews() {
               type="text"
               placeholder="Search customer name"
               value={searchTerm}
-              onChange={(event) => {
-                setSearchTerm(event.target.value);
-                setCurrentPage(1);
-              }}
+              onChange={(event) => setSearchTerm(event.target.value)}
               className="min-w-0 flex-1 px-4 py-2 text-sm text-neutral-950 outline-none placeholder:text-neutral-400"
             />
 

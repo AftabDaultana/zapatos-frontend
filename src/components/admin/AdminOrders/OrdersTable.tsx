@@ -95,7 +95,6 @@ export default function OrdersTable({
   const dispatch = useAppDispatch();
   const ordersSectionRef = useRef<HTMLDivElement>(null);
 
-  // The backend now handles searching, filtering, sorting, and pagination.
   const visibleOrders = useMemo(() => {
     if (!onlyCurrentUser) return orders;
 
@@ -122,7 +121,6 @@ export default function OrdersTable({
 
   const handleSearchChange = (value: string) => {
     setSearch(value);
-    setPage(1);
   };
 
   const handleStatusChange = (value: string) => {

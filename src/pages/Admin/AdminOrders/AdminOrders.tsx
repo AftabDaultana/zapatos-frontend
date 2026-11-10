@@ -11,22 +11,39 @@ export default function AdminOrders() {
 
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [status, setStatus] = useState<"all" | Order["status"]>("all");
 
   const pagination = useAppSelector((state) => state.order.pagination);
 
+  // Debounce search input by 400ms.
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // Reset pagination when the debounced search changes.
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearch]);
+
+  // Fetch orders using the debounced search value.
   useEffect(() => {
     dispatch(
       fetchAllOrders({
         page,
         limit: 10,
-        search,
+        search: debouncedSearch,
         ...(status !== "all" && { status }),
       }),
     );
-  }, [dispatch, page, search, status]);
+  }, [dispatch, page, debouncedSearch, status]);
 
   const onlyCurrentUser = searchParams.get("mine") === "true";
+
   return (
     <div className="flex flex-col gap-6">
       <div>

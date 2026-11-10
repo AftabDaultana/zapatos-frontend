@@ -81,6 +81,7 @@ export default function AdminProducts() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
 
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedSubCategory, setSelectedSubCategory] = useState("all");
@@ -96,6 +97,14 @@ export default function AdminProducts() {
 
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isProductsFormModalOpen, setIsProductsFormModalOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   const fetchProducts = async () => {
     try {
@@ -125,7 +134,7 @@ export default function AdminProducts() {
       const result = await getAllProducts(
         currentPage,
         PRODUCTS_PER_PAGE,
-        searchTerm,
+        debouncedSearchTerm,
         undefined,
         undefined,
         undefined,
@@ -154,7 +163,7 @@ export default function AdminProducts() {
     fetchProducts();
   }, [
     currentPage,
-    searchTerm,
+    debouncedSearchTerm,
     selectedStock,
     selectedCategory,
     selectedSubCategory,
@@ -181,6 +190,10 @@ export default function AdminProducts() {
 
     fetchCatalog();
   }, []);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearchTerm]);
 
   const productToDeleteData = products.find(
     (product) => product._id === productToDelete,
@@ -318,10 +331,7 @@ export default function AdminProducts() {
               type="text"
               placeholder="Type your product name"
               value={searchTerm}
-              onChange={(event) => {
-                setSearchTerm(event.target.value);
-                setCurrentPage(1);
-              }}
+              onChange={(event) => setSearchTerm(event.target.value)}
               className="min-w-0 flex-1 px-4 py-2 text-sm text-neutral-950 outline-none placeholder:text-neutral-400"
             />
 
