@@ -49,6 +49,10 @@ export default function Login({
     }
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`;
+  };
+
   return (
     <main className="fixed inset-0 z-100 flex items-center justify-center bg-black/50 p-4">
       <div className="relative flex max-h-[calc(100dvh-2rem)] w-full max-w-md flex-col overflow-y-auto rounded-xl bg-white p-5 sm:p-6">
@@ -157,6 +161,20 @@ export default function Login({
           className="mt-4 w-full px-4 py-2 text-sm font-medium transition-all duration-200  hover:ring-1 hover:ring-neutral-950"
         >
           SIGN IN
+        </Button>
+
+        <Button
+          type="button"
+          variant="light"
+          onClick={handleGoogleLogin}
+          className="mt-3 flex w-full items-center justify-center gap-3 px-4 py-2 text-sm font-medium"
+        >
+          <img
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            alt=""
+            className="h-5 w-5"
+          />
+          Continue with Google
         </Button>
 
         <div className="mt-5 border-t border-neutral-100 pt-4">

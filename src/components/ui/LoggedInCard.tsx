@@ -37,6 +37,8 @@ export default function LoggedInCard({ onLogOut, onClose }: LoggedInCardProps) {
                 alt={currentUser.name}
                 className="h-full w-full object-cover"
                 loading="lazy"
+                onError={() => console.log("Profile image failed to load")}
+                onLoad={() => console.log("Profile image loaded successfully")}
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center">

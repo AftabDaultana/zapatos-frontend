@@ -1,30 +1,35 @@
-import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home";
-import CategoryProducts from "../pages/CategoryProducts/CategoryProducts";
+import Orders from "../pages/Order/Orders";
 import Profile from "../pages/Profile/Profile";
+import Contact from "../pages/Contact/Contact";
 import Layout from "../components/layout/Layout";
 import Checkout from "../pages/Checkout/Checkout";
-import OrderDetails from "../pages/Order/OrderDetails";
-import Orders from "../pages/Order/Orders";
-import ProtectedRoutes from "../components/auth/ProtectedRoutes";
-import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Wishlist from "../pages/Wishlist/Wishlist";
-import Contact from "../pages/Contact/Contact";
+import AuthSuccess from "../pages/Auth/AuthSuccess";
+import { createBrowserRouter } from "react-router-dom";
+import OrderDetails from "../pages/Order/OrderDetails";
 import AdminLayout from "../components/layout/AdminLayout";
 import Dashboard from "../pages/Admin/DashBoard/Dashboard";
-import ListProducts from "../pages/Admin/ListProducts/ListProduct";
-import AdminCategories from "../pages/Admin/AdminCategories/AdminCategories";
-import AdminSubCategories from "../pages/Admin/AdminSubCategories/AdminSubCategories";
-import AdminProtectedRoute from "../components/auth/AdminProtectedRoute";
-import AdminCustomers from "../pages/Admin/AdminCustomers/AdminCustomers";
-import AdminOrders from "../pages/Admin/AdminOrders/AdminOrders";
 import ListCarts from "../pages/Admin/ListCarts/ListCarts";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
-import AdminListBlogs from "../pages/Admin/AdminBlogs/AdminListBlogs";
+import ProtectedRoutes from "../components/auth/ProtectedRoutes";
+import AdminOrders from "../pages/Admin/AdminOrders/AdminOrders";
+import ListProducts from "../pages/Admin/ListProducts/ListProduct";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import ProductReviews from "../pages/ProductReviews/ProductReviews";
+import AdminListBlogs from "../pages/Admin/AdminBlogs/AdminListBlogs";
+import AdminProtectedRoute from "../components/auth/AdminProtectedRoute";
+import CategoryProducts from "../pages/CategoryProducts/CategoryProducts";
+import AdminCustomers from "../pages/Admin/AdminCustomers/AdminCustomers";
+import AdminCategories from "../pages/Admin/AdminCategories/AdminCategories";
+import AdminSubCategories from "../pages/Admin/AdminSubCategories/AdminSubCategories";
 import ListProductReviews from "../pages/Admin/ListProductReviews/ListProductReviews";
 
 const router = createBrowserRouter([
+  {
+    path: "/auth/success",
+    element: <AuthSuccess />,
+  },
   {
     path: "/",
     element: (
