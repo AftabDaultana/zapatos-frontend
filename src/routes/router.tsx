@@ -24,6 +24,7 @@ import AdminCustomers from "../pages/Admin/AdminCustomers/AdminCustomers";
 import AdminCategories from "../pages/Admin/AdminCategories/AdminCategories";
 import AdminSubCategories from "../pages/Admin/AdminSubCategories/AdminSubCategories";
 import ListProductReviews from "../pages/Admin/ListProductReviews/ListProductReviews";
+import NotFound from "../pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -219,9 +220,18 @@ const router = createBrowserRouter([
             path: "blogs",
             element: <AdminListBlogs />,
           },
+          { path: "*", element: <NotFound /> },
         ],
       },
     ],
+  },
+  {
+    path: "*",
+    element: (
+      <Layout>
+        <NotFound />
+      </Layout>
+    ),
   },
 ]);
 
